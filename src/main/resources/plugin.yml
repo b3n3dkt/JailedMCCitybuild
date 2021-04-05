@@ -1,0 +1,32 @@
+name: JailedMC_Citybuild
+author: b3n3dkt
+version: 1.0.0
+main: me.b3n3dkt.Citybuild
+api-version: 1.16
+
+commands:
+   fly:
+   gamemode:
+     aliases: [gm]
+   money:
+   eco:
+   rang:
+   pay:
+   votekick:
+   chatclear:
+     aliases: [cc]
+   feed:
+   globalmute:
+   heal:
+   invsee:
+   lobby:
+   rename:
+   setspawn:
+   sign:
+   spawn:
+   vanish:
+   message:
+     aliases: [msg]
+   reply:
+     aliases: [r]
+   event:
