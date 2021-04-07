@@ -129,22 +129,6 @@ public class MySQL {
 
     }
 
-    public static void register(Player p) {
-        try {
-            PreparedStatement pr = getStatement("INSERT INTO Citybuild (Spielername, UUID, Tode, Kills, Killstreak) VALUES (?, ?, ?, ?, ?)");
-            pr.setString(1, p.getName());
-            pr.setString(2, p.getUniqueId().toString());
-            pr.setInt(3, 0);
-            pr.setLong(4, 0);
-            pr.setInt(5, 0);
-            pr.executeUpdate();
-            pr.close();
-        } catch (SQLException var2) {
-            var2.printStackTrace();
-        }
-
-    }
-
     public static PreparedStatement getStatement(String sql) {
         if (MySQL.isConnected()) {
             try {
@@ -170,7 +154,7 @@ public class MySQL {
     }
 
     public static boolean isRegistered(String uuid) {
-        try (PreparedStatement ps = getStatement("SELECT UUID FROM Citybuild WHERE UUID= ?")) {
+        try (PreparedStatement ps = getStatement("SELECT UUID FROM Playerdata WHERE UUID= ?")) {
             ps.setString(1, uuid.toString());
             if(ps.executeQuery().next()) {
                 return true;

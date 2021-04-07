@@ -72,6 +72,8 @@ public class Citybuild extends JavaPlugin{
         getCommand("message").setExecutor(new MSG(this));
         getCommand("reply").setExecutor(new Reply(this));
         getCommand("event").setExecutor(new Event());
+        getCommand("home").setExecutor(new Home());
+        getCommand("clearlag").setExecutor(new Clearlag());
 
         Bukkit.getPluginManager().registerEvents(new Join_Quit(), this);
         Bukkit.getPluginManager().registerEvents(new ChatEvent(), this);

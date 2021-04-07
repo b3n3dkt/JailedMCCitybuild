@@ -2,7 +2,8 @@ name: JailedMC_Citybuild
 author: b3n3dkt
 version: 1.0.0
 main: me.b3n3dkt.Citybuild
-api-version: 1.16
+api-version: 1.8
+depend: [SkyRasorCore, ProtocolLib]
 
 commands:
    fly:
@@ -30,3 +31,6 @@ commands:
    reply:
      aliases: [r]
    event:
+   home:
+   clearlag:
+      aliases: [cl]

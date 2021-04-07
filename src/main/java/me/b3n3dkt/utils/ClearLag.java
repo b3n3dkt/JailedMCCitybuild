@@ -1,6 +1,6 @@
 package me.b3n3dkt.utils;
 
-import me.b3n3dkt.SkyPvP;
+import me.b3n3dkt.Citybuild;
 import net.minecraft.server.v1_8_R3.IChatBaseComponent;
 import net.minecraft.server.v1_8_R3.IChatBaseComponent.ChatSerializer;
 import net.minecraft.server.v1_8_R3.PacketPlayOutChat;
@@ -21,7 +21,7 @@ public class ClearLag {
    }
 
    public void startClearlag() {
-      Bukkit.getScheduler().scheduleSyncRepeatingTask(SkyPvP.getMain(), new Runnable() {
+      Bukkit.getScheduler().scheduleSyncRepeatingTask(Citybuild.getMain(), new Runnable() {
          public void run() {
             Player all;
             Iterator var2;
