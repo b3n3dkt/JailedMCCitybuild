@@ -34,3 +34,4 @@ commands:
    home:
    clearlag:
       aliases: [cl]
+   warp:

@@ -47,8 +47,12 @@ public class Home implements CommandExecutor {
                 String name = args[1];
                 Homes homes = new Homes(player.getUniqueId().toString(), name);
                 if (args[0].equalsIgnoreCase("set")) {
-                    homes.setHome(player.getWorld().getName(), player.getLocation().getX(), player.getLocation().getY(), player.getLocation().getZ(), player.getLocation().getYaw(), player.getLocation().getPitch());
-                    player.sendMessage(Citybuild.getPrefix() + "§7Du hast erfolgreich das Home §8'§3" + name + "§8'§7 gesetzt!");
+                    if (homes.homeExists() != true) {
+                        homes.setHome(player.getWorld().getName(), player.getLocation().getX(), player.getLocation().getY(), player.getLocation().getZ(), player.getLocation().getYaw(), player.getLocation().getPitch());
+                        player.sendMessage(Citybuild.getPrefix() + "§7Du hast erfolgreich das Home §8'§3" + name + "§8'§7 gesetzt!");
+                    }else{
+                        player.sendMessage(Citybuild.getPrefix() + "§cDas Home existiert bereits!");
+                    }
                 }else if (args[0].equalsIgnoreCase("remove")) {
                     homes.removeHome();
                     player.sendMessage(Citybuild.getPrefix() + "§7Du hast das Home§8'§3" + name + "§8'§7 gelöscht!");

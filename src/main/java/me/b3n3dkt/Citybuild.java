@@ -74,6 +74,7 @@ public class Citybuild extends JavaPlugin{
         getCommand("event").setExecutor(new Event());
         getCommand("home").setExecutor(new Home());
         getCommand("clearlag").setExecutor(new Clearlag());
+        getCommand("warp").setExecutor(new Warp());
 
         Bukkit.getPluginManager().registerEvents(new Join_Quit(), this);
         Bukkit.getPluginManager().registerEvents(new ChatEvent(), this);
@@ -83,6 +84,9 @@ public class Citybuild extends JavaPlugin{
         Bukkit.getPluginManager().registerEvents(new UnknownCommand(), this);
         Bukkit.getPluginManager().registerEvents(new WeatherChange(), this);
         Bukkit.getPluginManager().registerEvents(new LogIn(), this);
+        Bukkit.getPluginManager().registerEvents(new DropEvent(), this);
+        Bukkit.getPluginManager().registerEvents(new BlockPlace(), this);
+        Bukkit.getPluginManager().registerEvents(new InventoryClick(), this);
     }
 
     public void loadUtils() throws IOException{
