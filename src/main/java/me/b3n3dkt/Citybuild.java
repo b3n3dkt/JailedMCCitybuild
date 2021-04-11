@@ -9,6 +9,9 @@ import com.comphenix.protocol.events.PacketEvent;
 import com.google.gson.JsonObject;
 import me.b3n3dkt.commands.*;
 import me.b3n3dkt.commands.Rang;
+import me.b3n3dkt.home.Home;
+import me.b3n3dkt.home.InventoryClickHome;
+import me.b3n3dkt.job.*;
 import me.b3n3dkt.listener.*;
 import me.b3n3dkt.mysql.MySQL;
 import me.b3n3dkt.utils.*;
@@ -52,6 +55,7 @@ public class Citybuild extends JavaPlugin{
     }
 
     public void register(){
+        getCommand("discord").setExecutor(new Discord());
         getCommand("fly").setExecutor(new Fly());
         getCommand("gamemode").setExecutor(new Gamemode());
         getCommand("money").setExecutor(new Money());
@@ -75,6 +79,8 @@ public class Citybuild extends JavaPlugin{
         getCommand("home").setExecutor(new Home());
         getCommand("clearlag").setExecutor(new Clearlag());
         getCommand("warp").setExecutor(new Warp());
+        getCommand("job").setExecutor(new Job());
+        getCommand("quest").setExecutor(new Quest_CMD());
 
         Bukkit.getPluginManager().registerEvents(new Join_Quit(), this);
         Bukkit.getPluginManager().registerEvents(new ChatEvent(), this);
@@ -87,6 +93,12 @@ public class Citybuild extends JavaPlugin{
         Bukkit.getPluginManager().registerEvents(new DropEvent(), this);
         Bukkit.getPluginManager().registerEvents(new BlockPlace(), this);
         Bukkit.getPluginManager().registerEvents(new InventoryClick(), this);
+        Bukkit.getPluginManager().registerEvents(new InventoryClickHome(), this);
+        Bukkit.getPluginManager().registerEvents(new InventoryClick_Job(), this);
+        Bukkit.getPluginManager().registerEvents(new EntitySpawn(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerMove(), this);
+        Bukkit.getPluginManager().registerEvents(new BreakBlock(), this);
+        Bukkit.getPluginManager().registerEvents(new FishingEvent(), this);
     }
 
     public void loadUtils() throws IOException{

@@ -20,6 +20,7 @@ public class Score implements AutoCloseable {
 
     public void setscoreboard() {
         Scoreboard sb = Bukkit.getScoreboardManager().getNewScoreboard();
+        PlayerData data = new PlayerData(player);
         Objective obj = sb.getObjective("aaa");
         if (obj == null) {
             obj = sb.registerNewObjective("aaa", "bbb");
@@ -38,19 +39,21 @@ public class Score implements AutoCloseable {
         obj.setDisplayName("§8§m   §r§8(§b§lJailedMC§8)§m   ");
         obj.setDisplaySlot(DisplaySlot.SIDEBAR);
 
-        obj.getScore("§a                              ").setScore(14);
-        obj.getScore("§b§lRang:").setScore(13);
-        obj.getScore(updateTeam(sb, "Rang", "§8» §f", "§f§l" + Rang.getSuffix(this.player.getUniqueId().toString()), ChatColor.AQUA)).setScore(12);
-        obj.getScore("§5 ").setScore(11);
-        obj.getScore("§b§lCoins:").setScore(10);
-        obj.getScore(updateTeam(sb, "Coins", "§8» §f", "§f§l" + MySQL.getcoins(this.player.getUniqueId().toString()), ChatColor.BLUE)).setScore(9);
-        obj.getScore("§4").setScore(8);
-        obj.getScore("§b§lClan:").setScore(7);
-        obj.getScore("§8» §f§l" + MySQL.getClannameFromUser(player.getUniqueId())).setScore(6);
+        obj.getScore("§b§lRang:").setScore(16);
+        obj.getScore(updateTeam(sb, "Rang", "§8» §f", "§f" + Rang.getSuffix(this.player.getUniqueId().toString()), ChatColor.AQUA)).setScore(15);
+        obj.getScore("§5 ").setScore(14);
+        obj.getScore("§b§lCoins:").setScore(13);
+        obj.getScore(updateTeam(sb, "Coins", "§8» §f", "§f" + MySQL.getcoins(this.player.getUniqueId().toString()), ChatColor.BLUE)).setScore(12);
+        obj.getScore("§4").setScore(11);
+        obj.getScore("§b§lClan:").setScore(10);
+        obj.getScore("§8» §f" + MySQL.getClannameFromUser(player.getUniqueId())).setScore(9);
+        obj.getScore("§6").setScore(8);
+        obj.getScore("§b§lJob:").setScore(7);
+        obj.getScore(updateTeam(sb, "Job", "§8» §f", "§f" + data.getJobName(), ChatColor.GRAY)).setScore(6);
         obj.getScore("§3").setScore(5);
         obj.getScore("§b§lTeamspeak").setScore(4);
-        obj.getScore("§8» §f§lJailedmc.net").setScore(3);
-        obj.getScore("     ").setScore(2);
+        obj.getScore("§8» §fJailedmc.net").setScore(3);
+        obj.getScore("§a                              ").setScore(2);
 
         this.player.setScoreboard(sb);
     }
@@ -72,15 +75,17 @@ public class Score implements AutoCloseable {
 
     public void update() {
         Bukkit.getScheduler().runTaskLater(Citybuild.getMain(), new Runnable() {
-
+        PlayerData data = new PlayerData(player);
             public void run() {
                 if (Score.this.player.getScoreboard() == null) {
                     Score.this.setscoreboard();
                 }
                 Objective obj = Score.this.player.getScoreboard().getObjective("aaa");
 
-                obj.getScore(Score.this.updateTeam(Score.this.player.getScoreboard(), "Rang", "§8» §f", "§f" + Rang.getSuffix(player.getUniqueId().toString()), ChatColor.AQUA)).setScore(12);
-                obj.getScore(Score.this.updateTeam(Score.this.player.getScoreboard(), "Coins", "§8» §f", "§f" + MySQL.getcoins(player.getUniqueId().toString()), ChatColor.BLUE)).setScore(9);
+                obj.getScore(Score.this.updateTeam(Score.this.player.getScoreboard(), "Rang", "§8» §f", "§f" + Rang.getSuffix(player.getUniqueId().toString()), ChatColor.AQUA)).setScore(15);
+                obj.getScore(Score.this.updateTeam(Score.this.player.getScoreboard(), "Coins", "§8» §f", "§f" + MySQL.getcoins(player.getUniqueId().toString()), ChatColor.BLUE)).setScore(12);
+                obj.getScore(Score.this.updateTeam(Score.this.player.getScoreboard(), "Job", "§8» §f", "§f" + data.getJobName(), ChatColor.GRAY)).setScore(6);
+
             }
         }, 20L);
     }

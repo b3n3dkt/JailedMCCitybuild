@@ -1,8 +1,11 @@
 package me.b3n3dkt.listener;
 
 import me.b3n3dkt.Citybuild;
+import me.b3n3dkt.commands.MSG;
+import me.b3n3dkt.job.Quest;
 import me.b3n3dkt.mysql.MySQL;
 import me.b3n3dkt.utils.Combat;
+import me.b3n3dkt.utils.PlayerData;
 import me.b3n3dkt.utils.Rang;
 import net.minecraft.server.v1_8_R3.EntityPlayer;
 import net.minecraft.server.v1_8_R3.IChatBaseComponent;
@@ -24,6 +27,8 @@ import org.bukkit.scoreboard.Team;
 
 import java.io.File;
 import java.lang.reflect.Field;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Join_Quit implements Listener {
 
@@ -31,11 +36,14 @@ public class Join_Quit implements Listener {
     public void onHandle(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         Score sb = new Score(player);
+        PlayerData data = new PlayerData(player);
         event.setJoinMessage("§8[§a+§8] §7" + player.getName());
         if (player.hasPlayedBefore()) {
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName() + " group add spieler");
         }
-
+        if(data.exist() != true){
+            data.newData();
+        }
         for(int i = 0; i < 200; ++i) {
             if (!player.hasPermission("jailedmc.command.clearchat.bypass")) {
                 player.sendMessage(" ");
@@ -84,6 +92,11 @@ public class Join_Quit implements Listener {
             sb.close();
         } catch (Exception e1) {
             e1.printStackTrace();
+        }
+        if(MSG.map.containsKey(player)){
+            Player temp = MSG.map.get(player);
+            MSG.map.remove(temp);
+            MSG.map.remove(player);
         }
     }
 

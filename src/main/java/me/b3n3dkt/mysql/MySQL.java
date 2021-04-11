@@ -3,9 +3,12 @@ package me.b3n3dkt.mysql;
 import me.b3n3dkt.Citybuild;
 import me.b3n3dkt.utils.ServerConfig;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class MySQL {
@@ -27,6 +30,7 @@ public class MySQL {
                     try {
                         long start = System.currentTimeMillis();
                         MySQL.con = DriverManager.getConnection("jdbc:mysql://" + MySQL.host + ":" + MySQL.port + "/" + MySQL.database + "?useJDBCCompliantTimezoneShift=true&&serverTimezone=UTC&&useUnicode=true&&autoReconnect=true", MySQL.username, MySQL.password);
+                        Update("CREATE TABLE IF NOT EXISTS Homes(UUID varchar(250), Name varchar(255), LocationX VARCHAR(255), LocationY VARCHAR(255), LocationZ VARCHAR(255), LocationYAW VARCHAR(255), LocationPITCH VARCHAR(255))");
                         long end = System.currentTimeMillis();
                         System.out.println("Connection to MySQL server established! (" + host + ":" + port + ")");
                         System.out.println("Connection took " + ((end - start)) + "ms!");
@@ -151,6 +155,202 @@ public class MySQL {
         }
 
         return null;
+    }
+
+    public static Long getX(String uuid, String name) {
+        try {
+            PreparedStatement ps = getStatement("SELECT * FROM Homes WHERE UUID = ? AND Name= ?");
+            ps.setString(1, uuid.toString());
+            ps.setString(2, name);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getLong("LocationX");
+            }
+        } catch (SQLException var4) {
+            var4.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public static Location getLocation(Player p, String name) {
+        try {
+            PreparedStatement ps = getStatement("SELECT * FROM Homes WHERE UUID = ? AND Name= ?");
+            ps.setString(1, p.getUniqueId().toString());
+            ps.setString(2, name);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                Location loc = new Location(p.getWorld(), (double)getX(p.getUniqueId().toString(), name), (double)getY(p.getUniqueId().toString(), name), (double)getZ(p.getUniqueId().toString(), name));
+                loc.setPitch((float)getPitch(p.getUniqueId().toString(), name));
+                loc.setYaw((float)getYaw(p.getUniqueId().toString(), name));
+                return loc;
+            }
+        } catch (SQLException var5) {
+            var5.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public static Long getY(String uuid, String name) {
+        try {
+            PreparedStatement ps = getStatement("SELECT * FROM Homes WHERE UUID = ? AND Name= ?");
+            ps.setString(1, uuid.toString());
+            ps.setString(2, name);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getLong("LocationY");
+            }
+        } catch (SQLException var4) {
+            var4.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public static Long getZ(String uuid, String name) {
+        try {
+            PreparedStatement ps = getStatement("SELECT * FROM Homes WHERE UUID = ? AND Name= ?");
+            ps.setString(1, uuid.toString());
+            ps.setString(2, name);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getLong("LocationZ");
+            }
+        } catch (SQLException var4) {
+            var4.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public static Long getYaw(String uuid, String name) {
+        try {
+            PreparedStatement ps = getStatement("SELECT * FROM Homes WHERE UUID = ? AND Name= ?");
+            ps.setString(1, uuid.toString());
+            ps.setString(2, name);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getLong("LocationYAW");
+            }
+        } catch (SQLException var4) {
+            var4.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public static Long getPitch(String uuid, String name) {
+        try {
+            PreparedStatement ps = getStatement("SELECT * FROM Homes WHERE UUID = ? AND Name= ?");
+            ps.setString(1, uuid.toString());
+            ps.setString(2, name);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getLong("LocationPITCH");
+            }
+        } catch (SQLException var4) {
+            var4.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public static void addHome(Player p, String name) {
+        try {
+            PreparedStatement pr = getStatement("INSERT INTO Homes (UUID, Name, LocationX, LocationY, LocationZ, LocationYAW, LocationPITCH) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            pr.setString(1, p.getUniqueId().toString());
+            pr.setString(2, name);
+            pr.setString(3, String.valueOf(p.getLocation().getX()));
+            pr.setString(4, String.valueOf(p.getLocation().getY()));
+            pr.setString(5, String.valueOf(p.getLocation().getZ()));
+            pr.setString(6, String.valueOf(p.getLocation().getYaw()));
+            pr.setString(7, String.valueOf(p.getLocation().getPitch()));
+            pr.executeUpdate();
+            pr.close();
+        } catch (SQLException var3) {
+            var3.printStackTrace();
+        }
+
+    }
+
+    public static boolean isHomeExist(Player p, String name) {
+        try {
+            PreparedStatement ps = getStatement("SELECT * FROM Homes WHERE UUID= ? AND Name= ?");
+            ps.setString(1, p.getUniqueId().toString());
+            ps.setString(2, name);
+            ResultSet rs = ps.executeQuery();
+            boolean Playercoins = rs.next();
+            rs.close();
+            rs.close();
+            return Playercoins;
+        } catch (Exception var5) {
+            var5.printStackTrace();
+            return false;
+        }
+    }
+
+    public static List<String> getHomes(Player p) {
+        try {
+            PreparedStatement ps = getStatement("SELECT * FROM Homes WHERE UUID = ?");
+            ps.setString(1, p.getUniqueId().toString());
+            ResultSet rs = ps.executeQuery();
+            ArrayList list = new ArrayList();
+
+            while(rs.next()) {
+                list.add(rs.getString("Name"));
+            }
+
+            return list;
+        } catch (SQLException var4) {
+            var4.printStackTrace();
+            return null;
+        }
+    }
+
+    public static void deleteHome(final String home, final Player p) {
+        Bukkit.getScheduler().runTaskAsynchronously(Citybuild.getMain(), new Runnable() {
+            public void run() {
+                MySQL.Update("DELETE FROM `Homes` WHERE Name = '" + home + "' AND UUID = '" + p.getUniqueId().toString() + "'");
+            }
+        });
+    }
+
+    public static int gethomesint(Player p) {
+        try {
+            PreparedStatement sql = getStatement("SELECT COUNT(*) FROM `Homes` WHERE UUID = '" + p.getUniqueId().toString() + "'");
+            ResultSet rs = sql.executeQuery();
+            rs.first();
+            int numberOfRows = rs.getInt("COUNT(*)");
+            sql.close();
+            return numberOfRows;
+        } catch (Exception var4) {
+            var4.printStackTrace();
+            return 0;
+        }
+    }
+
+    public static List<String>[] getHomes2(Player p) {
+        try {
+            List<String>[] lists = new List[3];
+            PreparedStatement ps = getStatement("SELECT * FROM Homes WHERE UUID = ?");
+            ps.setString(1, p.getUniqueId().toString());
+            ResultSet rs = ps.executeQuery();
+            lists[0] = new ArrayList<>();
+
+            while(rs.next()) {
+                byte var5 = -1;
+                switch(var5) {
+                    case 0:
+                        lists[0].add(rs.getString("Name"));
+                }
+            }
+
+            return lists;
+        } catch (SQLException var5) {
+            var5.printStackTrace();
+            return null;
+        }
     }
 
     public static boolean isRegistered(String uuid) {

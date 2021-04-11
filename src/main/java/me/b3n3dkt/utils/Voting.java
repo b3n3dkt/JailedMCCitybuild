@@ -145,21 +145,22 @@ public class Voting {
             all.sendMessage("          §7Der VoteKick endet in §e30 §7Sekunden!");
             all.sendMessage("");
 
-            TextComponent yes = new TextComponent("       [JA]         ");
-            yes.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, (new ComponentBuilder("§2§lStimme daf§r")).color(ChatColor.GRAY).create()));
+            TextComponent yes = new TextComponent("       [JA]       ");
+            yes.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, (new ComponentBuilder("§2§lStimme dafür")).color(ChatColor.GRAY).create()));
             yes.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/votekick yes"));
             yes.setColor(ChatColor.DARK_GREEN);
             yes.setBold(Boolean.valueOf(true));
             yes.addExtra("       ");
 
-            TextComponent no = new TextComponent("                [NEIN]");
+            TextComponent no = new TextComponent("       [NEIN]       ");
             no.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, (new ComponentBuilder("§4§lStimme dagegen")).color(ChatColor.GRAY).create()));
             no.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/votekick no"));
             no.setColor(ChatColor.DARK_RED);
             no.setBold(Boolean.valueOf(true));
 
-            yes.addExtra(no);
             all.spigot().sendMessage(yes);
+            all.spigot().sendMessage(no);
+            all.sendMessage("");
             all.sendMessage("§7]=============== §eVoteKick §7===============[");
 
             Bukkit.getScheduler().runTaskLater(Citybuild.getMain(), new Runnable()

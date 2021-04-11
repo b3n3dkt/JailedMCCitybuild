@@ -3,11 +3,14 @@ package me.b3n3dkt.commands;
 import java.io.File;
 import java.util.ArrayList;
 
+import com.onarandombox.MultiverseCore.api.MultiversePlugin;
+import com.onarandombox.MultiverseCore.commands.MultiverseCommand;
 import me.b3n3dkt.Citybuild;
 import me.b3n3dkt.listener.PlayerMove;
 import me.b3n3dkt.utils.Combat;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.WorldCreator;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -51,15 +54,16 @@ public class Spawn implements CommandExecutor {
                     loc.setYaw((float) yaw);
                     loc.setPitch((float) pitch);
 
-                    this.count = Bukkit.getScheduler().scheduleAsyncRepeatingTask(Citybuild.getMain(), new Runnable() {
+                    this.count = Bukkit.getScheduler().scheduleSyncRepeatingTask(Citybuild.getMain(), new Runnable() {
                         public void run() {
                             if (PlayerMove.spawn.contains(p)) {
                                 switch(Spawn.this.seconds) {
                                     case 0:
-                                        p.teleport(loc);
+                                        MultiversePlugin mvp;
                                         p.sendMessage(Citybuild.getPrefix() + "§7Du wurdest zum Spawn teleportiert!");
                                         Spawn.this.seconds = 5;
                                         PlayerMove.spawn.remove(p);
+                                        p.teleport(loc);
                                         break;
                                     case 1:
                                         p.sendMessage(Citybuild.getPrefix() + "§7Du wirst in einer Sekunde zum Spawn teleportiert. §cBewege dich nicht!");

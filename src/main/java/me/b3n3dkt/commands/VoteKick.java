@@ -27,7 +27,7 @@ public class VoteKick implements CommandExecutor {
                     }
                 } else if (args[0].equalsIgnoreCase("no")) {
                     if (Citybuild.activeVote != null) {
-                        Voting.vote(p, Voting.Vote.YES);
+                        Voting.vote(p, Voting.Vote.NO);
                     } else {
                         p.sendMessage(Citybuild.getPrefix() + "§7Momentan läuft kein VoteKick");
                     }

@@ -16,7 +16,7 @@ public class Vanish implements CommandExecutor {
             Player p = (Player)sender;
             if (p.hasPermission("jailedmc.command.vanish")) {
                 if (args.length == 0) {
-                    PlayerData data = new PlayerData(p.getUniqueId());
+                    PlayerData data = new PlayerData(p);
                     if (data.getVanish()) {
                         data.setUnVanished();
                         p.sendMessage(Citybuild.getPrefix() + "§7Du bist nun §cnicht §7mehr im Vanish!");
@@ -33,7 +33,7 @@ public class Vanish implements CommandExecutor {
                 } else if (args.length == 1) {
                     Player t = Bukkit.getPlayer(args[0]);
                     if (t != null) {
-                        PlayerData tdata = new PlayerData(t.getUniqueId());
+                        PlayerData tdata = new PlayerData(t);
                         if (tdata.getVanish()) {
                             tdata.setUnVanished();
                             p.sendMessage(Citybuild.getPrefix() + "§7Der Spieler §8'§3" + t.getName() + "§8' §7ist nun §cnicht §7mehr im Vanish!");

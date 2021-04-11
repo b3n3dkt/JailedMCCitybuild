@@ -13,6 +13,7 @@ commands:
    eco:
    rang:
    pay:
+   discord:
    votekick:
    chatclear:
      aliases: [cc]
@@ -35,3 +36,5 @@ commands:
    clearlag:
       aliases: [cl]
    warp:
+   job:
+   quest:

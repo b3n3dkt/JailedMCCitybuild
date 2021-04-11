@@ -19,7 +19,7 @@ public class MSG implements CommandExecutor {
     public MSG(Citybuild plugin) {
         this.plugin = plugin;
     }
-    public static HashMap<Player, String> map = new HashMap<>();
+    public static HashMap<Player, Player> map = new HashMap<>();
     @SuppressWarnings("deprecation")
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -28,14 +28,20 @@ public class MSG implements CommandExecutor {
                 Player messager = (Player) sender;
                 Player reciever = Bukkit.getOfflinePlayer(args[0]).getPlayer();
                 map.remove(messager);
-                map.put(messager, reciever.getUniqueId().toString());
-                args[0] = "";
+                map.remove(reciever);
+                map.put(messager, reciever);
+                map.put(reciever, messager);
+                args[0] = ""; //msg <Spieler> <Nachricht>
                 String message = "";
-                for(int i = 0; i < args.length; i++){
-                    message += " " + args[i];
+                for(int i = 1; i < args.length; i++){
+                    if(message == ""){
+                        message = args[i];
+                    }else {
+                        message += " " + args[i];
+                    }
                 }
-                messager.sendMessage("§8[§eMSG§8] §8»§7 " + reciever.getName() + ": §7" + message);
-                reciever.sendMessage("§8[§eMSG§8] §8»§7 " + messager.getName() + ": §7" + message);
+                messager.sendMessage("§8[§eMSG§8] §7Du §8»§7 " + reciever.getName() + ": §7" + message);
+                reciever.sendMessage("§8[§eMSG§8] §7" + messager.getName() + " §8»§7Dir§8: §7" + message);
                 return true;
             } else {
                 sender.sendMessage(Citybuild.getPrefix() + "§cDer Spieler ist nicht online!");
