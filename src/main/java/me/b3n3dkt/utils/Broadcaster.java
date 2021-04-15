@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class Broadcaster {
 
-    private final long MESSAGE_DELAY = 12000;
+    private final long MESSAGE_DELAY = 6000;
     private final String ROOT = "broadcastMessages";
 
     private Citybuild plugin;

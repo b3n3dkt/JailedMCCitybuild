@@ -73,7 +73,7 @@ public class ClearLag {
                   }
 
                   all = (Player)var2.next();
-                  ClearLag.setActionBar(all, "§7Alle bodenliegenden Items werden in §b4 §7Sekudnen gelöscht§8.");
+                  ClearLag.setActionBar(all, "§7Alle bodenliegenden Items werden in §b4 §7Sekunden gelöscht§8.");
                }
             case 5:
                var2 = Bukkit.getOnlinePlayers().iterator();

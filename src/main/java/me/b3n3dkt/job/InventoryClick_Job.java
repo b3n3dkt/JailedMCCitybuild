@@ -1,8 +1,10 @@
 package me.b3n3dkt.job;
 
 import me.b3n3dkt.Citybuild;
+import me.b3n3dkt.shop.Shop_CMD;
 import me.b3n3dkt.utils.PlayerData;
 import me.b3n3dkt.utils.Score;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -17,6 +19,9 @@ public class InventoryClick_Job implements Listener {
             return;
         }
         if (event.getCurrentItem() == null) {
+            return;
+        }
+        if(event.getCurrentItem().getType() == Material.AIR){
             return;
         }
         Player player = (Player) event.getWhoClicked();
@@ -68,6 +73,12 @@ public class InventoryClick_Job implements Listener {
                 data.setJob("arbeitslos");
                 player.closeInventory();
                 player.sendMessage(Citybuild.getPrefix() + "§7Du bist nun §8'§3Arbeitslos§8' §7!");
+            }else if(event.getCurrentItem().getItemMeta().getLore().equals("§7* Klicke um zum Shop zu gelangen *")){
+                player.closeInventory();
+                Shop_CMD.openShopInventory(player);
+            }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7Holzfäller")){
+                player.closeInventory();
+                Shop_CMD.openShopInventory(player);
             }
             sb.update();
         } else if (event.getInventory().getTitle().equalsIgnoreCase("§3Fischer")) { //FISCHER
@@ -76,6 +87,9 @@ public class InventoryClick_Job implements Listener {
                 data.setJob("arbeitslos");
                 player.closeInventory();
                 player.sendMessage(Citybuild.getPrefix() + "§7Du bist nun §8'§3Arbeitslos§8' §7!");
+            }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7Fischer")){
+                player.closeInventory();
+                Shop_CMD.openShopInventory(player);
             }
             sb.update();
         } else if (event.getInventory().getTitle().equalsIgnoreCase("§3Miner")) { //MINER
@@ -84,6 +98,9 @@ public class InventoryClick_Job implements Listener {
                 data.setJob("arbeitslos");
                 player.closeInventory();
                 player.sendMessage(Citybuild.getPrefix() + "§7Du bist nun §8'§3Arbeitslos§8' §7!");
+            }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7Miner")){
+                player.closeInventory();
+                Shop_CMD.openShopInventory(player);
             }
             sb.update();
         } else if (event.getInventory().getTitle().equalsIgnoreCase("§3Farmer")) { //FARMER
@@ -92,9 +109,12 @@ public class InventoryClick_Job implements Listener {
                 data.setJob("arbeitslos");
                 player.closeInventory();
                 player.sendMessage(Citybuild.getPrefix() + "§7Du bist nun §8'§3Arbeitslos§8' §7!");
+            }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7Farmer")){
+                player.closeInventory();
+                Shop_CMD.openShopInventory(player);
             }
+        }
             sb.update();
         }
-    }
 
 }

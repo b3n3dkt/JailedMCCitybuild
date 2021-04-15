@@ -4,6 +4,7 @@ import me.b3n3dkt.Citybuild;
 import me.b3n3dkt.commands.MSG;
 import me.b3n3dkt.job.Quest;
 import me.b3n3dkt.mysql.MySQL;
+import me.b3n3dkt.npc.EntityAPI;
 import me.b3n3dkt.utils.Combat;
 import me.b3n3dkt.utils.PlayerData;
 import me.b3n3dkt.utils.Rang;
@@ -81,6 +82,16 @@ public class Join_Quit implements Listener {
         player.teleport(loc);
 
         Tab(player, "\n§8» §bJailedmc.net §8«\n\n §fBETA Release\n", "\n     §7TeamSpeak | §bjailedmc.net     \n§7Server | §b§oCitybuild\n");
+
+        Citybuild.getExecutorService().execute(() -> {
+            EntityAPI.getNpcEntities().forEach((entity) -> {
+                entity.sendSpawnPackets(player);
+            });
+            EntityAPI.getCreatureEntities().forEach((entity) -> {
+                entity.sendSpawnPackets(player);
+            });
+        });
+
     }
 
     @EventHandler

@@ -3,10 +3,12 @@ author: b3n3dkt
 version: 1.0.0
 main: me.b3n3dkt.Citybuild
 api-version: 1.8
-depend: [SkyRasorCore, ProtocolLib]
+depend: [ProtocolLib]
 
 commands:
    fly:
+   flyspeed:
+   sign:
    gamemode:
      aliases: [gm]
    money:
@@ -24,13 +26,9 @@ commands:
    lobby:
    rename:
    setspawn:
-   sign:
    spawn:
    vanish:
-   message:
-     aliases: [msg]
-   reply:
-     aliases: [r]
+   enchant:
    event:
    home:
    clearlag:
@@ -38,3 +36,7 @@ commands:
    warp:
    job:
    quest:
+   shop:
+   lag:
+   tpa:
+   rand:

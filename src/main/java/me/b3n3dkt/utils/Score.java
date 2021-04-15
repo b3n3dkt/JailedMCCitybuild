@@ -10,9 +10,12 @@ import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
+import java.text.DecimalFormat;
+
 
 public class Score implements AutoCloseable {
     Player player;
+    private static DecimalFormat df = new DecimalFormat("0.00");
 
     public Score(Player player) {
         this.player = player;
@@ -43,7 +46,7 @@ public class Score implements AutoCloseable {
         obj.getScore(updateTeam(sb, "Rang", "§8» §f", "§f" + Rang.getSuffix(this.player.getUniqueId().toString()), ChatColor.AQUA)).setScore(15);
         obj.getScore("§5 ").setScore(14);
         obj.getScore("§b§lCoins:").setScore(13);
-        obj.getScore(updateTeam(sb, "Coins", "§8» §f", "§f" + MySQL.getcoins(this.player.getUniqueId().toString()), ChatColor.BLUE)).setScore(12);
+        obj.getScore(updateTeam(sb, "Coins", "§8» §f", "§f" + df.format(MySQL.getcoins(this.player.getUniqueId().toString())), ChatColor.BLUE)).setScore(12);
         obj.getScore("§4").setScore(11);
         obj.getScore("§b§lClan:").setScore(10);
         obj.getScore("§8» §f" + MySQL.getClannameFromUser(player.getUniqueId())).setScore(9);
@@ -83,7 +86,7 @@ public class Score implements AutoCloseable {
                 Objective obj = Score.this.player.getScoreboard().getObjective("aaa");
 
                 obj.getScore(Score.this.updateTeam(Score.this.player.getScoreboard(), "Rang", "§8» §f", "§f" + Rang.getSuffix(player.getUniqueId().toString()), ChatColor.AQUA)).setScore(15);
-                obj.getScore(Score.this.updateTeam(Score.this.player.getScoreboard(), "Coins", "§8» §f", "§f" + MySQL.getcoins(player.getUniqueId().toString()), ChatColor.BLUE)).setScore(12);
+                obj.getScore(Score.this.updateTeam(Score.this.player.getScoreboard(), "Coins", "§8» §f", "§f" + df.format(MySQL.getcoins(player.getUniqueId().toString())), ChatColor.BLUE)).setScore(12);
                 obj.getScore(Score.this.updateTeam(Score.this.player.getScoreboard(), "Job", "§8» §f", "§f" + data.getJobName(), ChatColor.GRAY)).setScore(6);
 
             }

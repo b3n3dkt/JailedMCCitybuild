@@ -14,7 +14,7 @@ public class BlockPlace implements Listener {
                 event.setCancelled(true);
             }
             if(event.getItemInHand().getData().getItemType().equals(Material.HOPPER_MINECART)) {
-                if(!event.getPlayer().hasPermission("skyrasor.blockplace.bypass")) {
+                if(!event.getPlayer().hasPermission("jailedmc.blockplace.bypass")) {
                     event.setCancelled(true);
                     event.getPlayer().sendMessage(Citybuild.getPrefix() + "§cMan kann dieses Item nicht plazieren, da man dadurch Items von anderen Spielern klauen kann!");
                 }

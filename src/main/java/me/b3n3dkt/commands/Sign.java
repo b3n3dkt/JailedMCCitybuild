@@ -59,7 +59,7 @@ public class Sign implements CommandExecutor {
                 p.sendMessage(Citybuild.getPrefix() + "§cBenutze bitte /Sign <Signierung>!");
             }
         } else {
-            Bukkit.getConsoleSender().sendMessage(Citybuild.getPrefix() + "§cDie Konsole kann nichts signieren!");
+            Bukkit.getConsoleSender().sendMessage(Citybuild.getPrefix() + "§cDie Console kann nichts signieren!");
         }
 
         return true;

@@ -18,7 +18,10 @@ public class Home implements CommandExecutor {
 
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         Player p = (Player)commandSender;
-        if(!p.getWorld().getName().equalsIgnoreCase("farmwelt")){ p.sendMessage(Citybuild.getPrefix() + "§7Du kannst nur in der Farmwelt Homes setzen!"); return true; }
+        if(p.getWorld().getName().equalsIgnoreCase("plotworld")){
+            p.sendMessage(Citybuild.getPrefix() + "§7Du kannst nur in der Farmwelt Homes setzen!");
+            return true;
+        }
         if (p.isOp()) {
             homesint = 18;
         } else if (p.hasPermission("homes.use.1")) {

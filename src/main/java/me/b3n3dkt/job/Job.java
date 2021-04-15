@@ -43,7 +43,6 @@ public class Job implements CommandExecutor {
                     ItemStack forscher = (new ItemBuilder(Material.EMPTY_MAP).setAmount(1).setDisplayName("§7Forscher").setLore(Arrays.asList("§cSoon"))).build();
                     ItemStack techniker = (new ItemBuilder(Material.REDSTONE).setAmount(1).setDisplayName("§7Techniker").setLore(Arrays.asList("§cSoon"))).build();
                     ItemStack schmied = (new ItemBuilder(Material.ANVIL).setAmount(1).setDisplayName("§7Schmied").setLore(Arrays.asList("§cSoon"))).build();
-                    ItemStack arbeitslos = (new ItemBuilder(Material.BARRIER).setAmount(1).setDisplayName("§7Arbeitslos")).build();
                     ItemStack glas = (new ItemBuilder(Material.STAINED_GLASS_PANE).setAmount(1).setDisplayName("§7")).build();
                     player.openInventory(inv);
                     for (int i = 0; i < 3 * 9; i++) {
@@ -56,7 +55,6 @@ public class Job implements CommandExecutor {
                     inv.setItem(14, forscher);
                     inv.setItem(15, techniker);
                     inv.setItem(16, schmied);
-                    inv.setItem(22, arbeitslos);
                     player.updateInventory();
                 }else{
                     Inventory inv = Bukkit.createInventory(null, 3*9, "§3" + data.getJobName());

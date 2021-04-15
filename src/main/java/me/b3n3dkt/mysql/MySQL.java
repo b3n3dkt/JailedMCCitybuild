@@ -366,19 +366,19 @@ public class MySQL {
     }
 
 
-    public static long getcoins(String uuid) {
+    public static double getcoins(String uuid) {
         try {
             PreparedStatement ps = getStatement("SELECT * FROM Playerdata WHERE UUID= ?");
             ps.setString(1, uuid);
             ResultSet rs = ps.executeQuery();
             rs.next();
-            long points = rs.getLong("Coins");
+            double points = rs.getDouble("Coins");
             rs.close();
             ps.close();
             return points;
         } catch (Exception var5) {
             var5.printStackTrace();
-            return -1L;
+            return -1.0;
         }
     }
 

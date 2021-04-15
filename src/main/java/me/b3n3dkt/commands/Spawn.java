@@ -64,6 +64,12 @@ public class Spawn implements CommandExecutor {
                                         Spawn.this.seconds = 5;
                                         PlayerMove.spawn.remove(p);
                                         p.teleport(loc);
+                                        Bukkit.getScheduler().runTaskLater(Citybuild.getMain(), new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                p.teleport(loc);
+                                            }
+                                        }, 10);
                                         break;
                                     case 1:
                                         p.sendMessage(Citybuild.getPrefix() + "§7Du wirst in einer Sekunde zum Spawn teleportiert. §cBewege dich nicht!");

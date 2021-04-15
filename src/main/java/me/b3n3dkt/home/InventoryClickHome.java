@@ -75,7 +75,7 @@ public class InventoryClickHome implements Listener {
             } else if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7Homes Löschen")) {
                 try {
                     if (MySQL.gethomesint(p) >= 1) {
-                        inv = Bukkit.createInventory((InventoryHolder)null, 3*9, "§bDelete Homes");
+                        inv = Bukkit.createInventory((InventoryHolder)null, 3*9, "§3Homes löschen");
                         MySQL.getHomes(p).forEach((mod) -> {
                             ItemStack item = new ItemStack(Material.TRIPWIRE_HOOK);
                             ItemMeta meta = item.getItemMeta();
