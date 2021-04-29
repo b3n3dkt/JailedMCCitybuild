@@ -25,8 +25,8 @@ public class Eco implements CommandExecutor {
 
                 OfflinePlayer offlinetarget = Bukkit.getOfflinePlayer(args[1]);
                 String uuid = offlinetarget.getUniqueId().toString();
-                Score sb = new Score((Player) offlinetarget);
                 Player t = Bukkit.getPlayer(args[1]);
+                Score sb = new Score((Player) t);
                 Double amount = Double.valueOf(Double.parseDouble(args[2]));
 
                 if (args[0].equalsIgnoreCase("add")) {

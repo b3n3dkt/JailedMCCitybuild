@@ -3,7 +3,9 @@ package me.b3n3dkt.listener;
 import me.b3n3dkt.Citybuild;
 import me.b3n3dkt.commands.Event;
 import me.b3n3dkt.commands.GlobalMute;
+import me.b3n3dkt.utils.PlayerData;
 import me.b3n3dkt.utils.Rang;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -43,7 +45,11 @@ public class ChatEvent implements Listener {
                 e.setCancelled(false);
             }
         }
-        e.setFormat(Rang.getSuffix(p.getUniqueId().toString()) + " §8× §7" + p.getName() + " §8→ §7" + ChatColor.translateAlternateColorCodes('&', e.getMessage()));
+        if(e.getPlayer().hasPermission("jailedmc.chat.color.*")){
+            e.setFormat(Rang.getSuffix(p.getUniqueId().toString()) + " §8× §7" + p.getName() + " §8→ §7" + ChatColor.translateAlternateColorCodes('&', e.getMessage()));
+        }else{
+            e.setFormat(Rang.getSuffix(p.getUniqueId().toString()) + " §8× §7" + p.getName() + " §8→ §7" + e.getMessage());
+        }
 
     }
 }

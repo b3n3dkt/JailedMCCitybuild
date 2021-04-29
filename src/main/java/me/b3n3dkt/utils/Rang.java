@@ -41,6 +41,8 @@ public class Rang {
             prefix = "§dStreamer";
         }else if(rang.equalsIgnoreCase("azubi")){
             prefix = "§1Azubi";
+        }else if(rang.equalsIgnoreCase("partner")){
+            prefix = "§ePartner";
         }else if(rang.equalsIgnoreCase("supporter")){
             prefix = "§1Sup";
         }else if(rang.equalsIgnoreCase("builder")){
@@ -99,6 +101,8 @@ public class Rang {
             suffix = "§dStreamer";
         }else if(rang.equalsIgnoreCase("azubi")){
             suffix = "§1Azubi";
+        }else if(rang.equalsIgnoreCase("partner")){
+            suffix = "§ePartner";
         }else if(rang.equalsIgnoreCase("supporter")){
             suffix = "§1Supporter";
         }else if(rang.equalsIgnoreCase("builder")){
@@ -125,38 +129,40 @@ public class Rang {
     public static String getGroupNumber(String group) {
         String number = "0001";
         if (group.equalsIgnoreCase("spieler")) {
-            number = "0025";
+            number = "0026";
         } else if (group.equalsIgnoreCase("mitglied")) {
-            number = "0024";
+            number = "0025";
         } else if (group.equalsIgnoreCase("premium")) {
-            number = "0023";
+            number = "0024";
         } else if (group.equalsIgnoreCase("obsidian")) {
-            number = "0022";
+            number = "0023";
         } else if (group.equalsIgnoreCase("titan")) {
-            number = "0021";
+            number = "0022";
         } else if (group.equalsIgnoreCase("bedrock")) {
-            number = "0020";
+            number = "0021";
         } else if (group.equalsIgnoreCase("legende")) {
-            number = "0019";
+            number = "0020";
         } else if (group.equalsIgnoreCase("phoenix")) {
+            number = "0019";
+        } else if (group.equalsIgnoreCase("vip")) {
             number = "0018";
         } else if (group.equalsIgnoreCase("vip")) {
             number = "0017";
-        } else if (group.equalsIgnoreCase("vip")) {
-            number = "0016";
         } else if (group.equalsIgnoreCase("elite")) {
-            number = "0015";
+            number = "0016";
         } else if (group.equalsIgnoreCase("donator")) {
-            number = "0014";
+            number = "0015";
         }else if(group.equalsIgnoreCase("freund")){
-            number= "0013";
+            number= "0014";
         }else if(group.equalsIgnoreCase("youtuber")){
-            number = "0012";
+            number = "0013";
         }else if(group.equalsIgnoreCase("streamer")){
-            number = "0011";
+            number = "0012";
         } else if (group.equalsIgnoreCase("azubi")) {
+            number = "0011";
+        } else if (group.equalsIgnoreCase("partner")) {
             number = "0010";
-        } else if (group.equalsIgnoreCase("supporter")) {
+        }  else if (group.equalsIgnoreCase("supporter")) {
             number = "0009";
         } else if (group.equalsIgnoreCase("builder")) {
             number = "0008";

@@ -32,7 +32,7 @@ public class Score implements AutoCloseable {
         Bukkit.getOnlinePlayers().forEach((players) -> {
             this.getTeam(sb, players, Rang.getTeamNumber(players.getUniqueId().toString()), Rang.getPrefix(players.getUniqueId().toString()) + "§8x§7", "§7").addPlayer(players);
             players.setDisplayName(Rang.getPrefix(players.getUniqueId().toString()) + "§8x§7" + players.getName());
-            players.setPlayerListName(Rang.getPrefix(players.getUniqueId().toString()) + "§8x§7" + players.getName() + " §8[§e" + MySQL.getClannameFromUser(players.getUniqueId()) + "§8]");
+            players.setPlayerListName(Rang.getPrefix(players.getUniqueId().toString()) + "§8x§7" + players.getName() + " §8[§e" + MySQL.getClanPrefix(MySQL.getClannameFromUser(players.getUniqueId())) + "§8]");
             Scoreboard scoreboard = players.getScoreboard();
             Bukkit.getOnlinePlayers().forEach((p) -> {
                 this.getTeam(scoreboard, p, Rang.getTeamNumber(p.getUniqueId().toString()), Rang.getPrefix(p.getUniqueId().toString()) + "§8x§7", "§7").addPlayer(p);
@@ -49,7 +49,7 @@ public class Score implements AutoCloseable {
         obj.getScore(updateTeam(sb, "Coins", "§8» §f", "§f" + df.format(MySQL.getcoins(this.player.getUniqueId().toString())), ChatColor.BLUE)).setScore(12);
         obj.getScore("§4").setScore(11);
         obj.getScore("§b§lClan:").setScore(10);
-        obj.getScore("§8» §f" + MySQL.getClannameFromUser(player.getUniqueId())).setScore(9);
+        obj.getScore("§8» §f" + MySQL.getClanPrefix(MySQL.getClannameFromUser(player.getUniqueId()))).setScore(9);
         obj.getScore("§6").setScore(8);
         obj.getScore("§b§lJob:").setScore(7);
         obj.getScore(updateTeam(sb, "Job", "§8» §f", "§f" + data.getJobName(), ChatColor.GRAY)).setScore(6);
@@ -67,7 +67,7 @@ public class Score implements AutoCloseable {
         Bukkit.getOnlinePlayers().forEach((players) -> {
             this.getTeam(sb, players, Rang.getTeamNumber(players.getUniqueId().toString()), Rang.getPrefix(players.getUniqueId().toString()) + "§8x§7", "§7").addPlayer(players);
             players.setDisplayName(Rang.getPrefix(players.getUniqueId().toString()) + "§8x§7" + players.getName());
-            players.setPlayerListName(Rang.getPrefix(players.getUniqueId().toString()) + "§8x§7" + players.getName() + " §8[§e" + MySQL.getClannameFromUser(players.getUniqueId()) + "§8]");
+            players.setPlayerListName(Rang.getPrefix(players.getUniqueId().toString()) + "§8x§7" + players.getName() + " §8[§e" + MySQL.getClanPrefix(MySQL.getClannameFromUser(players.getUniqueId())) + "§8]");
             Scoreboard scoreboard = players.getScoreboard();
             Bukkit.getOnlinePlayers().forEach((p) -> {
                 this.getTeam(scoreboard, p, Rang.getTeamNumber(p.getUniqueId().toString()), Rang.getPrefix(p.getUniqueId().toString()) + "§8x§7", "§7").addPlayer(p);

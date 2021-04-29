@@ -441,4 +441,16 @@ public class MySQL {
         return "Clanlos";
     }
 
+    public static String getClanPrefix(String clanname) {
+        try (PreparedStatement ps = getStatement("SELECT * FROM clans WHERE clanname= ?")) {
+            ps.setString(1, clanname);
+            if(ps.executeQuery().next()) {
+                return ps.getResultSet().getString("prefix");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return "Clanlos";
+    }
+
 }

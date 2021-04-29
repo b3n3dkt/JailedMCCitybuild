@@ -85,6 +85,10 @@ public class Rang implements CommandExecutor {
                             setRank((Player) offlinetarget, "streamer");
                             sender.sendMessage(Citybuild.getPrefix() + "§7Der Spieler §8'§e" + offlinetarget.getName() + "§8' §7hat nun den Rang §8'§d§lStreamer§8'§7.");
                             MySQL.setRang(uuid, "streamer");
+                        }else if(rang.equalsIgnoreCase("partner")){
+                            setRank((Player) offlinetarget, "partner");
+                            sender.sendMessage(Citybuild.getPrefix() + "§7Der Spieler §8'§e" + offlinetarget.getName() + "§8' §7hat nun den Rang §8'§ePartner§8'§7.");
+                            MySQL.setRang(uuid, "partner");
                         }else if(rang.equalsIgnoreCase("azubi")){
                             setRank((Player) offlinetarget, "azubi");
                             sender.sendMessage(Citybuild.getPrefix() + "§7Der Spieler §8'§e" + offlinetarget.getName() + "§8' §7hat nun den Rang §8'§1Azubi§8'§7.");
@@ -167,6 +171,7 @@ public class Rang implements CommandExecutor {
                     sender.sendMessage("§7-§9Freund");
                     sender.sendMessage("§7-§4§lYou§f§lTuber");
                     sender.sendMessage("§7-§d§lStreamer");
+                    sender.sendMessage("§7-§ePartner");
                     sender.sendMessage("§7-§1Azubi");
                     sender.sendMessage("§7-§1Supporter");
                     sender.sendMessage("§7-§2Builder");

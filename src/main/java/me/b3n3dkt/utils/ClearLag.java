@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 import java.util.Iterator;
 
 public class ClearLag {
-   private int seconds = 360;
+   private int seconds = 360*3;
 
    public static void setActionBar(Player player, String message) {
       CraftPlayer p = (CraftPlayer)player;
@@ -106,40 +106,7 @@ public class ClearLag {
                   }
 
                   all = (Player)var2.next();
-                  ClearLag.setActionBar(all, "§7Alle bodenliegenden Items werden in §b5 §7Minuten gelöscht§8.");
-               }
-            case 120:
-               var2 = Bukkit.getOnlinePlayers().iterator();
-
-               while(true) {
-                  if (!var2.hasNext()) {
-                     break label106;
-                  }
-
-                  all = (Player)var2.next();
-                  ClearLag.setActionBar(all, "§7Alle bodenliegenden Items werden in §b5 §7Minuten gelöscht§8.");
-               }
-            case 180:
-               var2 = Bukkit.getOnlinePlayers().iterator();
-
-               while(true) {
-                  if (!var2.hasNext()) {
-                     break label106;
-                  }
-
-                  all = (Player)var2.next();
-                  ClearLag.setActionBar(all, "§7Alle bodenliegenden Items werden in §b5 §7Minuten gelöscht§8.");
-               }
-            case 240:
-               var2 = Bukkit.getOnlinePlayers().iterator();
-
-               while(true) {
-                  if (!var2.hasNext()) {
-                     break label106;
-                  }
-
-                  all = (Player)var2.next();
-                  ClearLag.setActionBar(all, "§7Alle bodenliegenden Items werden in §b5 §7Minuten gelöscht§8.");
+                  ClearLag.setActionBar(all, "§7Alle bodenliegenden Items werden in §beiner §7Minute gelöscht§8.");
                }
             case 300:
                var2 = Bukkit.getOnlinePlayers().iterator();

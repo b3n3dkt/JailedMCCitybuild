@@ -20,6 +20,7 @@ public class InvetoryClick_Rand implements Listener {
         PlotBlock[] plotBlock = Configuration.BLOCKLIST.parseString("STEP");
         PlotAPI plotAPI = new PlotAPI();
         Plot plot = plotAPI.getPlot(player.getLocation());
+        try{
 
         if(event.getInventory() == null){return;}
         if(event.getCurrentItem() == null){return;}
@@ -308,6 +309,9 @@ public class InvetoryClick_Rand implements Listener {
                     player.playSound(player.getLocation(), Sound.ANVIL_BREAK, 1.0F, 2.0F);
                 }
             }
+        }
+        }catch (Exception e1){
+            System.out.println("[ERROR] InventoryCLick_Rand hat einen Fehler!");
         }
     }
 

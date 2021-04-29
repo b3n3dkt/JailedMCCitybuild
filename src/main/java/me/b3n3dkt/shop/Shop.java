@@ -59,14 +59,13 @@ public class Shop {
     public int getID(int itemCount){return this.f.getInt("items." + itemCount + ".id");}
 
     public void addItemPrice(int itemCount){
-        double percent = getPercent(itemCount);
+        double percent = getPercentUp(itemCount);
         double newprice = percent*getPrice(itemCount);
         setPrice(itemCount, newprice);
     }
     public void removeItemPrice(int itemCount){
-        double percent = getPercent(itemCount)-1; //1.01-1=0.01
-        percent = 1-percent; // 1-0.01=0.99
-        double newprice = getPrice(itemCount)*percent;
+        double percent = getPercentDown(itemCount);
+        double newprice = percent*getPrice(itemCount);
         setPrice(itemCount, newprice);
     }
 
@@ -83,24 +82,30 @@ public class Shop {
         this.f.save();
     }
 
-    public void addItem(ItemStack stack, double price, int available, int id, double percent, double sellMulti){
+    public void addItem(ItemStack stack, double price, int available, int id, double percentUp, double percentDown, double sellMulti){
         this.f.setValue("items." + getItemCount() + ".stack", stack);
         this.f.setValue("items." + getItemCount() + ".price", price );
         this.f.setValue("items." + getItemCount() + ".available", available);
         this.f.setValue("items." + getItemCount() + ".sold", 0);
         this.f.setValue("items." + getItemCount() + ".id", id);
-        this.f.setValue("items." + getItemCount() + ".percent", percent);
+        this.f.setValue("items." + getItemCount() + ".percentUp", percentUp);
+        this.f.setValue("items." + getItemCount() + ".percentDown", percentDown);
         this.f.setValue("items." + getItemCount() + ".sellMulti", sellMulti);
         this.f.save();
         setItemCount(getItemCount()+1);
+    }
+
+    public double getPercentDown(int itemCount){
+        double perccent = Double.valueOf(this.f.getString("items." + itemCount + ".percentDown"));
+        return perccent;
     }
 
     public double getSellMulti(int itemCount){
         return this.f.getDouble("items." + itemCount + ".sellMulti");
     }
 
-    public double getPercent(int itemCount){
-        double perccent = Double.valueOf(this.f.getString("items." + itemCount + ".percent"));
+    public double getPercentUp(int itemCount){
+        double perccent = Double.valueOf(this.f.getString("items." + itemCount + ".percentUp"));
         return perccent;
     }
 
@@ -122,6 +127,11 @@ public class Shop {
             }
         }
         return temp;
+    }
+
+    public static double roundToDecimals(double d, int c) {
+        int temp = (int)(d * Math.pow(10 , c));
+        return ((double)temp)/Math.pow(10 , c);
     }
 
 }

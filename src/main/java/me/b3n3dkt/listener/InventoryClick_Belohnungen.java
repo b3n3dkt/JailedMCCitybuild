@@ -18,6 +18,8 @@ public class InventoryClick_Belohnungen implements Listener {
 
    @EventHandler
    public void onHandle(InventoryClickEvent e){
+      try{
+
       ItemStack tskull = new ItemStack(Material.SKULL_ITEM, 1, (short) SkullType.PLAYER.ordinal());
       SkullMeta tmeta = (SkullMeta) Bukkit.getItemFactory().getItemMeta(Material.SKULL_ITEM);
       tmeta.setDisplayName("§6§lTägliche Belohnungen");
@@ -107,6 +109,9 @@ public class InventoryClick_Belohnungen implements Listener {
                }
             }
          }
+      }
+      }catch (Exception e1){
+         System.out.println("[ERROR] InventoryClick_Belohnungen hat einen fehler!");
       }
    }
 }

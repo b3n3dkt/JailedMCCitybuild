@@ -25,10 +25,16 @@ commands:
    invsee:
    lobby:
    rename:
+   crash:
+   merge:
+   auktionshaus:
+      aliases: [ah]
    setspawn:
    spawn:
    vanish:
    enchant:
+   enderchest:
+      aliases: [ec]
    event:
    home:
    clearlag:

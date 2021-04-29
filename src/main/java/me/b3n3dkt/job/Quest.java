@@ -54,6 +54,11 @@ public class Quest {
         return this.fb.getInt("quest." + index + ".belohnung");
     }
 
+    public double getMoneyPrice(int index) {
+        double money = Double.valueOf(this.fb.getString("quest." + index + ".money"));
+        return money;
+    }
+
     public String getReplacedMSG(int index, int needed, String name){
         String msg = getMSG(index);
         return msg.replace("%number%", ""+needed).replace("%block%", ""+name).replace("&", "§");

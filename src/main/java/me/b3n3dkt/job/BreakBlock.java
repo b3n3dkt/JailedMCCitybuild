@@ -135,7 +135,7 @@ public class BreakBlock implements Listener {
                 data.addXP("miner", 75);
                 data.setMinerOre("diamond", data.getMinerOres("diamond") + 1);
                 setActionBar(player, "§7Du hast §8'§375XP§8' §7für das Abbauen von §8'§3" + item.getType() + "§8' §7bekommen!");
-            }else if(stack == Material.REDSTONE_ORE){ //REDSTONE
+            }else if(stack == Material.GLOWING_REDSTONE_ORE || stack == Material.REDSTONE_ORE){ //REDSTONE
                 if(dn.equalsIgnoreCase("Redstoneerze") || dn.equalsIgnoreCase("Erze")){
 
                     data.addBlock(data.getJob(), 1);

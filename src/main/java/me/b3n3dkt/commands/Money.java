@@ -2,6 +2,7 @@ package me.b3n3dkt.commands;
 
 import me.b3n3dkt.Citybuild;
 import me.b3n3dkt.mysql.MySQL;
+import me.b3n3dkt.utils.Score;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
@@ -12,15 +13,17 @@ import org.bukkit.entity.Player;
 import java.text.DecimalFormat;
 
 public class Money implements CommandExecutor {
-    private static DecimalFormat df = new DecimalFormat("0.0000");
+    private static DecimalFormat df = new DecimalFormat("0.00");
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(sender instanceof Player){
             Player player = (Player) sender;
+            Score sb = new Score(player);
             if(args.length == 0){
                 double coins = MySQL.getcoins(player.getUniqueId().toString());
                 player.sendMessage(Citybuild.getPrefix() + "§7Du hast §8'§e" + df.format(coins) +"§8' §7Coins.");
+                sb.update();
             }else if(args.length == 1){
                 OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(args[0]);
                 if(MySQL.isRegistered(offlinePlayer.getUniqueId().toString()) == true){

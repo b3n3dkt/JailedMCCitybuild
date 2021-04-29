@@ -9,8 +9,11 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.text.DecimalFormat;
+
 
 public class Pay implements CommandExecutor {
+    private static DecimalFormat df = new DecimalFormat("0.00");
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (!(sender instanceof Player)) {
@@ -41,8 +44,8 @@ public class Pay implements CommandExecutor {
                     if (MySQL.isRegistered(t.getUniqueId().toString())) {
                         MySQL.setcoins(p.getUniqueId().toString(), pamount.doubleValue());
                         MySQL.setcoins(t.getUniqueId().toString(), tamount.doubleValue());
-                        p.sendMessage(String.valueOf(Citybuild.getPrefix()) + "§7Du hast dem Spieler §8'§e" + t.getName() + "§8 §e" + amount + "§8' §7 Coins gegeben!");
-                        t.sendMessage(String.valueOf(Citybuild.getPrefix()) + "§7Du hast von §8'§e" + p.getName() + "§8 §e" + amount + "§8' §7Coins bekommen!");
+                        p.sendMessage(String.valueOf(Citybuild.getPrefix()) + "§7Du hast dem Spieler §8'§e" + t.getName() + "§8 §e" + df.format(amount) + "§8' §7 Coins gegeben!");
+                        t.sendMessage(String.valueOf(Citybuild.getPrefix()) + "§7Du hast von §8'§e" + p.getName() + "§8 §e" + df.format(amount) + "§8' §7Coins bekommen!");
                         scoreTBoard.update();
                         scorePBoard.update();
                     } else if (!MySQL.isRegistered(t.getUniqueId().toString())) {

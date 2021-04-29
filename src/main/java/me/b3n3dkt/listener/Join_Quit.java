@@ -1,6 +1,7 @@
 package me.b3n3dkt.listener;
 
 import me.b3n3dkt.Citybuild;
+import me.b3n3dkt.commands.Event;
 import me.b3n3dkt.commands.MSG;
 import me.b3n3dkt.job.Quest;
 import me.b3n3dkt.mysql.MySQL;
@@ -37,13 +38,18 @@ public class Join_Quit implements Listener {
     public void onHandle(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         Score sb = new Score(player);
-        PlayerData data = new PlayerData(player);
         event.setJoinMessage("§8[§a+§8] §7" + player.getName());
         if (player.hasPlayedBefore()) {
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName() + " group add spieler");
         }
+        PlayerData data = new PlayerData(player);
         if(data.exist() != true){
             data.newData();
+        }
+        if(Event.event == true){
+            if(!Event.eventPlayers.contains(player)){
+                Event.eventPlayers.add(player);
+            }
         }
         for(int i = 0; i < 200; ++i) {
             if (!player.hasPermission("jailedmc.command.clearchat.bypass")) {
@@ -80,6 +86,12 @@ public class Join_Quit implements Listener {
         loc.setYaw((float) yaw);
         loc.setPitch((float) pitch);
         player.teleport(loc);
+        Bukkit.getScheduler().runTaskLater(Citybuild.getMain(), new Runnable() {
+            @Override
+            public void run() {
+                player.teleport(loc);
+            }
+        }, 20);
 
         Tab(player, "\n§8» §bJailedmc.net §8«\n\n §fBETA Release\n", "\n     §7TeamSpeak | §bjailedmc.net     \n§7Server | §b§oCitybuild\n");
 
@@ -108,6 +120,11 @@ public class Join_Quit implements Listener {
             Player temp = MSG.map.get(player);
             MSG.map.remove(temp);
             MSG.map.remove(player);
+        }
+        if(Event.event == true){
+            if(Event.eventPlayers.contains(player)){
+                Event.eventPlayers.remove(player);
+            }
         }
     }
 

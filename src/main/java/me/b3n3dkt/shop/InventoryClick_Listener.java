@@ -27,6 +27,7 @@ public class InventoryClick_Listener implements Listener {
 
     @EventHandler
     public void onHandle(InventoryClickEvent event){
+        try{
         if(event.getInventory() == null){return;}
         if(event.getCurrentItem() == null){return;}
         if(event.getInventory() == event.getWhoClicked().getInventory()){return;}
@@ -214,7 +215,7 @@ public class InventoryClick_Listener implements Listener {
                     int amount = 0;
                     for(ItemStack itemStack : player.getInventory().getContents()){
                         if(itemStack != null) {
-                            if (itemStack.getType() == stack.getType()) {
+                            if (itemStack.getData().equals(stack.getData())) {
                                 ItemStack temp = itemStack;
                                     amount = amount + itemStack.getAmount();
                             }
@@ -229,10 +230,9 @@ public class InventoryClick_Listener implements Listener {
                     shop.setAvailable(id, shop.getAvailable(id)+1);
                     for(ItemStack itemStack : player.getInventory().getContents()){
                         if(itemStack != null) {
-                            ItemStack temp = itemStack;
-                            if (itemStack.getDurability() == stack.getDurability()) {
-                                if (temp.getAmount() != 1) {
-                                    temp.setAmount(itemStack.getAmount() - 1);
+                            if (itemStack.getData().equals(stack.getData())) {
+                                if (itemStack.getAmount() != 1) {
+                                    itemStack.setAmount(itemStack.getAmount() - 1);
                                     break;
                                 } else {
                                     player.getInventory().remove(itemStack);
@@ -257,8 +257,7 @@ public class InventoryClick_Listener implements Listener {
                     int amount = 0;
                     for(ItemStack itemStack : player.getInventory().getContents()){
                         if(itemStack != null) {
-                            if (itemStack.getDurability() == stack.getDurability()) {
-                                ItemStack temp = itemStack;
+                            if (itemStack.getData().equals(stack.getData())) {
                                 amount = amount + itemStack.getAmount();
                             }
                         }
@@ -271,15 +270,16 @@ public class InventoryClick_Listener implements Listener {
                         estimatedPrice = estimatedPrice+(price*sellMulti); //10+9.5=19.5
                     }
                     player.sendMessage(Citybuild.getPrefix() + "§aDu hast §8'§3" + amount + "§8' §aItem für §8'§3" + df.format(estimatedPrice) + "§8' §averkauft!");
+                    shop.setAvailable(id, shop.getAvailable(id)+amount);
                     MySQL.setcoins(player.getUniqueId().toString(), MySQL.getcoins(player.getUniqueId().toString())+estimatedPrice);
                     for(int i = 0;i<amount;i++){
                         shop.removeItemPrice(id);
                     }
+
                     for(ItemStack itemStack : player.getInventory().getContents()){
                         if(itemStack != null) {
-                            ItemStack temp = itemStack;
-                            if (itemStack.getDurability() == stack.getDurability()) {
-                                    player.getInventory().remove(temp);
+                            if (itemStack.getData().equals(stack.getData())) {
+                                    player.getInventory().remove(itemStack);
                             }
                         }
                     }
@@ -287,7 +287,6 @@ public class InventoryClick_Listener implements Listener {
                     for(int i = 0;i<64;i++){
                         estimatedPrice = estimatedPrice+(price*sellMulti);
                     }
-                    shop.setAvailable(id, shop.getAvailable(id)+amount);
                     ItemMeta stackmeta = stack.getItemMeta();
                     stackmeta.setLore(Arrays.asList("§7ID: §a" + id, "§7Preis: §a" + df.format(shop.getPrice(id)), "§7Verfügbar: §a" + shop.getAvailable(id), "§7Kategorie: §a" + category));
                     ItemStack sign = (new ItemBuilder(Material.SIGN).setAmount(1).setDisplayName("§6Bist du die sicher?").setLore(Arrays.asList("§71 Stück: §a" + df.format((price/100)*80),"§764 Stück: §a" + df.format(estimatedPrice)))).build();
@@ -299,9 +298,12 @@ public class InventoryClick_Listener implements Listener {
                 sb.update();
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cKlicke zum Abbruch!")){
                 player.closeInventory();
+              }
             }
-            }
+        }catch (Exception e1){
+            System.out.println("[ERROR] InventoryClick_Listener hat einen Fehler!");
         }
+    }
 
     public static void openSellInventory(ItemStack stack, Player player, String category){
         Shop shop = new Shop(category);
@@ -346,7 +348,7 @@ public class InventoryClick_Listener implements Listener {
         double estimatedPrice = price;
 
         for(int i = 0;i<64;i++){
-            estimatedPrice = estimatedPrice+(price*shop.getPercent(id));
+            estimatedPrice = estimatedPrice+(price*shop.getPercentUp(id));
         }
 
         ItemStack glas = (new ItemBuilder(Material.STAINED_GLASS_PANE).setAmount(1).setDisplayName("§a")).build();

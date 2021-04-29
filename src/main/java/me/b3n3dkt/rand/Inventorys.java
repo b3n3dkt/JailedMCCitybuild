@@ -1,12 +1,16 @@
 package me.b3n3dkt.rand;
 
+import me.b3n3dkt.utils.EnderChest;
 import me.b3n3dkt.utils.ItemBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.HashMap;
 
 public class Inventorys {
 
@@ -152,6 +156,32 @@ public class Inventorys {
         inv.setItem(53, zurück);
         player.updateInventory();
 
+    }
+
+    public static void openOtherEnderChest(Player player, Player target) {
+        EnderChest ec = new EnderChest(target);
+        HashMap<Integer, ItemStack> temp = ec.getEnderChest(target);
+        Inventory inv = Bukkit.createInventory((InventoryHolder)null, 54, "§5EnderChest");
+        player.openInventory(inv);
+
+        for(int i = 0; i < 54; ++i) {
+            inv.setItem(i, (ItemStack)temp.get(i));
+        }
+
+        player.updateInventory();
+    }
+
+    public static void openEnderChest(Player player) {
+        EnderChest ec = new EnderChest(player);
+        HashMap<Integer, ItemStack> temp = ec.getEnderChest(player);
+        Inventory inv = Bukkit.createInventory((InventoryHolder)null, 54, "§5EnderChest");
+        player.openInventory(inv);
+
+        for(int i = 0; i < 54; ++i) {
+            inv.setItem(i, (ItemStack)temp.get(i));
+        }
+
+        player.updateInventory();
     }
 
 }

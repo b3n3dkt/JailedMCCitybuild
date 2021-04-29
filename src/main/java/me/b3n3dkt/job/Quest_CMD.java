@@ -26,13 +26,16 @@ public class Quest_CMD implements CommandExecutor {
                 }
             }else if(args.length == 2){
                 OfflinePlayer op = Bukkit.getOfflinePlayer(Utility.getUUIDFromName(args[1]));
-                PlayerData data = new PlayerData((Player) op);
+                PlayerData data = new PlayerData((Player)op);
                 if(data.exist() != true){ return true;}
-                Quest quest = new Quest(data.getJob(), (Player) op);
+                Quest quest = new Quest(data.getJob(), (Player)op);
                 sender.sendMessage(Citybuild.getPrefix() + "§aDer angegebene Spieler bekommt nun eine neue Quest, er muss eventuell reconnecten!");
+                quest.getNewQuest(data.getJob());
             }else{
                 sender.sendMessage(Citybuild.getPrefix() + "§cNutze /quest <new> <Spieler>!");
             }
+        }else{
+            sender.sendMessage(Citybuild.getNoperm());
         }
         return false;
     }

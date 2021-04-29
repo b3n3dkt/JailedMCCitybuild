@@ -39,18 +39,19 @@ public class Shop_CMD implements CommandExecutor {
                             player.sendMessage(Citybuild.getPrefix() + "§cDie Katogrie existiert bereits!");
                         }
                     } else {
-                        player.sendMessage(Citybuild.getPrefix() + "§cNutze /shop <additem|createcategory> <Price|Name> <Amount> <Percent> <SellMulti>");
+                        player.sendMessage(Citybuild.getPrefix() + "§cNutze /shop <additem|createcategory|reload> <Price|Name> <Amount> <PercentUp> <PercentDown> <SellMulti>");
                     }
                 } else {
                     player.sendMessage(Citybuild.getPrefix() + "§cNutze /shop!");
                 }
             }else if(args.length == 6){
+                if (player.hasPermission("jailedmc.command.shop")) {
                 if (args[0].equalsIgnoreCase("additem")) {
                     Shop shop = new Shop(args[1]);
                     if (shop.categoryExist() == true) {
                         if(player.getItemInHand() != null && player.getItemInHand() != new ItemStack(Material.AIR)) {
-                            shop.addItem(player.getItemInHand(), Double.valueOf(args[2]), Integer.valueOf(args[3]), shop.getItemCount(), Double.valueOf(args[4]), Double.valueOf(args[5]));
-                            player.sendMessage(Citybuild.getPrefix() + "§aDu hast ein Item zur Kategorie §8'§3" + args[1] + "§8' §7hinzugefügt!Preis: §a" + args[2] + "§7, Verfügbar: §a" + args[3] + "§7, Prozent: §a" + args[4]);
+                            shop.addItem(player.getItemInHand(), Double.valueOf(args[2]), Integer.valueOf(args[3]), shop.getItemCount(), Double.valueOf(args[4]), Double.valueOf(args[5]), Double.valueOf(args[6]));
+                            player.sendMessage(Citybuild.getPrefix() + "§aDu hast ein Item zur Kategorie §8'§3" + args[1] + "§8' §7hinzugefügt!Preis: §a" + args[2] + "§7, Verfügbar: §a" + args[3] + "§7, ProzentUp: §a" + args[4] + "§7, ProzentDown: §a" + args[5] + "§7,SellMulti: §a" + args[6]);
                         }else{
                             player.sendMessage(Citybuild.getPrefix() + "§cDu musst ein Item in der Hand haben!");
                         }
@@ -58,11 +59,25 @@ public class Shop_CMD implements CommandExecutor {
                         player.sendMessage(Citybuild.getPrefix() + "§cDie Kategorie existiert nicht!");
                     }
                 } else {
-                    player.sendMessage(Citybuild.getPrefix() + "§cNutze /shop <additem|createcategory> <Price|Name> <Amount> <Percent> <SellMulti>");
+                    player.sendMessage(Citybuild.getPrefix() + "§cNutze /shop <additem|createcategory|reload> <Price|Name> <Amount> <PercentUp> <PercentDown> <SellMulti>");
                 }
-            }else{
+                } else {
+                    player.sendMessage(Citybuild.getPrefix() + "§cNutze /shop!");
+                }
+            }/*else if(args.length == 1){
+                if (player.hasPermission("jailedmc.command.shop")) {
+                    if (args[0].equalsIgnoreCase("reload")) {
+
+                    } else {
+                        player.sendMessage(Citybuild.getPrefix() + "§cNutze /shop <additem|createcategory|reload> <Price|Name> <Amount> <PercentUp> <PercentDown> <SellMulti>");
+                    }
+                } else {
+                    player.sendMessage(Citybuild.getPrefix() + "§cNutze /shop!");
+                }
+            }*/else{
                 player.sendMessage(Citybuild.getPrefix() + "§cNutze /shop!");
             }
+
         }
         return false;
     }
@@ -169,7 +184,7 @@ public class Shop_CMD implements CommandExecutor {
             shopinv.setItem(16, ggrlass);
         }else if(category.equalsIgnoreCase("waffen")){
             shopinv.setItem(19, ggrlass);
-        }else if(category.equalsIgnoreCase("glass")){
+        }else if(category.equalsIgnoreCase("mobloot")){
             shopinv.setItem(25, ggrlass);
         }else if(category.equalsIgnoreCase("spawneggs")){
             shopinv.setItem(28, ggrlass);
