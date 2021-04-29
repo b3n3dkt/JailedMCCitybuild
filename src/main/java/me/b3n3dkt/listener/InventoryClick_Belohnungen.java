@@ -20,18 +20,18 @@ public class InventoryClick_Belohnungen implements Listener {
    public void onHandle(InventoryClickEvent e){
       try{
 
-      ItemStack tskull = new ItemStack(Material.SKULL_ITEM, 1, (short) SkullType.PLAYER.ordinal());
-      SkullMeta tmeta = (SkullMeta) Bukkit.getItemFactory().getItemMeta(Material.SKULL_ITEM);
+      ItemStack tskull = new ItemStack(Material.LEGACY_SKULL_ITEM, 1, (short) SkullType.PLAYER.ordinal());
+      SkullMeta tmeta = (SkullMeta) Bukkit.getItemFactory().getItemMeta(Material.LEGACY_SKULL_ITEM);
       tmeta.setDisplayName("§6§lTägliche Belohnungen");
       tmeta.setOwner("MHF_Chest");
       tskull.setItemMeta(tmeta);
-      ItemStack wskull = new ItemStack(Material.SKULL_ITEM, 1, (short)SkullType.PLAYER.ordinal());
-      SkullMeta wmeta = (SkullMeta)Bukkit.getItemFactory().getItemMeta(Material.SKULL_ITEM);
+      ItemStack wskull = new ItemStack(Material.LEGACY_SKULL_ITEM, 1, (short)SkullType.PLAYER.ordinal());
+      SkullMeta wmeta = (SkullMeta)Bukkit.getItemFactory().getItemMeta(Material.LEGACY_SKULL_ITEM);
       wmeta.setDisplayName("§6§lWöchentliche Belohnungen");
       wmeta.setOwner("MHF_Chest");
       wskull.setItemMeta(wmeta);
-      ItemStack mskull = new ItemStack(Material.SKULL_ITEM, 1, (short)SkullType.PLAYER.ordinal());
-      SkullMeta mmeta = (SkullMeta)Bukkit.getItemFactory().getItemMeta(Material.SKULL_ITEM);
+      ItemStack mskull = new ItemStack(Material.LEGACY_SKULL_ITEM, 1, (short)SkullType.PLAYER.ordinal());
+      SkullMeta mmeta = (SkullMeta)Bukkit.getItemFactory().getItemMeta(Material.LEGACY_SKULL_ITEM);
       mmeta.setDisplayName("§6§lMonatliche Belohnungen");
       mmeta.setOwner("MHF_Chest");
       mskull.setItemMeta(mmeta);
@@ -41,7 +41,7 @@ public class InventoryClick_Belohnungen implements Listener {
       if(e.getInventory() == null){
          return;
       }
-      if(e.getInventory().getTitle() == null){
+      if(e.getView().getTitle() == null){
          return;
       }
       if(e.getCurrentItem() == null){
@@ -50,7 +50,7 @@ public class InventoryClick_Belohnungen implements Listener {
       if(e.getCurrentItem().getType() == Material.AIR){
          return;
       }
-      if (e.getInventory().getTitle().equalsIgnoreCase("§6§lBelohnungen")) {
+      if (e.getView().getTitle().equalsIgnoreCase("§6§lBelohnungen")) {
          e.setCancelled(true);
          if (e.getCurrentItem() != null) {
             if (e.getCurrentItem().getItemMeta().getDisplayName().equals("§6§lTägliche Belohnungen")) {

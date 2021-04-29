@@ -20,28 +20,28 @@ public class FishingEvent implements Listener {
             Item d =(Item) event.getCaught();
             String dn = data.getQuestDN(data.getJob());
             if(data.getJob().equalsIgnoreCase("fischer")){
-                if(d.getItemStack().equals(new ItemStack(Material.RAW_FISH, 1))){ //FISH
+                if(d.getItemStack().equals(new ItemStack(Material.LEGACY_RAW_FISH, 1))){ //FISH
                     if(dn.equalsIgnoreCase("Kabeljau") || dn.equalsIgnoreCase("Fische")){
 
                         data.addBlock(data.getJob(), 1);
                     }
                     data.addXP("fischer", 25);
                     data.setFischerItem("fish", data.getFischerItems("fish") + 1);
-                }else if(d.getItemStack().equals(new ItemStack(Material.RAW_FISH, 1, (short) 1))){ //SALMON
+                }else if(d.getItemStack().equals(new ItemStack(Material.SALMON, 1))){ //SALMON
                     if(dn.equalsIgnoreCase("Lachs") || dn.equalsIgnoreCase("Fische")){
     
                         data.addBlock(data.getJob(), 1);
                     }
                     data.addXP("fischer", 60);
                     data.setFischerItem("salmon", data.getFischerItems("salmon") + 1);
-                }else if(d.getItemStack().equals(new ItemStack(Material.RAW_FISH, 1, (short) 3))){ //CLOWNFISH
+                }else if(d.getItemStack().equals(new ItemStack(Material.TROPICAL_FISH, 1, (short) 3))){ //CLOWNFISH
                     if(dn.equalsIgnoreCase("Clownfische") || dn.equalsIgnoreCase("Fische")){
     
                         data.addBlock(data.getJob(), 1);
                     }
                     data.addXP("fischer", 150);
                     data.setFischerItem("clownfish", data.getFischerItems("clownfish") + 1);
-                }else if(d.getItemStack().equals(new ItemStack(Material.RAW_FISH, 1, (short) 2))){ //PUFFERFISH
+                }else if(d.getItemStack().equals(new ItemStack(Material.PUFFERFISH, 1, (short) 2))){ //PUFFERFISH
                     if(dn.equalsIgnoreCase("Kugelfische") || dn.equalsIgnoreCase("Fische")){
     
                         data.addBlock(data.getJob(), 1);

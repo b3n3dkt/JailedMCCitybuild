@@ -44,7 +44,7 @@ public class Clearlag implements CommandExecutor {
                 }
                 for(Player all : Bukkit.getOnlinePlayers()){
                     me.b3n3dkt.utils.ClearLag.setActionBar(all, " §c§l➤ §bAlle bodenliegenden Items und alle Entities wurden gelöscht!");
-                    all.playSound(all.getLocation(), Sound.NOTE_BASS_DRUM, 1.0F, 1.0F);
+                    all.playSound(all.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 1.0F, 1.0F);
                 }
             }
         } else {

@@ -9,16 +9,15 @@ import me.b3n3dkt.npc.EntityAPI;
 import me.b3n3dkt.utils.Combat;
 import me.b3n3dkt.utils.PlayerData;
 import me.b3n3dkt.utils.Rang;
-import net.minecraft.server.v1_8_R3.EntityPlayer;
-import net.minecraft.server.v1_8_R3.IChatBaseComponent;
-import net.minecraft.server.v1_8_R3.PacketPlayOutPlayerListHeaderFooter;
-import net.minecraft.server.v1_8_R3.PlayerConnection;
 import me.b3n3dkt.utils.Score;
+import net.minecraft.server.v1_16_R3.IChatBaseComponent;
+import net.minecraft.server.v1_16_R3.PacketPlayOutPlayerListHeaderFooter;
+import net.minecraft.server.v1_16_R3.PlayerConnection;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -137,18 +136,20 @@ public class Join_Quit implements Listener {
         IChatBaseComponent Title = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + header + "\"}");
         IChatBaseComponent Foot = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + footer + "\"}");
 
-        PacketPlayOutPlayerListHeaderFooter headerPacket = new PacketPlayOutPlayerListHeaderFooter(Title);
+        PacketPlayOutPlayerListHeaderFooter headerPacket = new PacketPlayOutPlayerListHeaderFooter();
 
         try {
-            Field field = headerPacket.getClass().getDeclaredField("b");
-            field.setAccessible(true);
-            field.set(headerPacket, Foot);
+            Field fielda = headerPacket.getClass().getDeclaredField("a");
+            fielda.setAccessible(true);
+            fielda.set(headerPacket, Title);
+            Field fieldb = headerPacket.getClass().getDeclaredField("b");
+            fieldb.setAccessible(true);
+            fieldb.set(headerPacket, Foot);
         }
         catch (Exception e) {
 
             e.printStackTrace();
         } finally {
-
             connection.sendPacket(headerPacket);
         }
     }

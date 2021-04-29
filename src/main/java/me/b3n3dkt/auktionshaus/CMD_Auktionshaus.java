@@ -73,7 +73,7 @@ public class CMD_Auktionshaus implements CommandExecutor{
 		papermeta.setDisplayName("§aVerlauf"); //§aHistory
 		paper.setItemMeta(papermeta);
 		
-		ItemStack glas = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 0);
+		ItemStack glas = new ItemStack(Material.WHITE_STAINED_GLASS_PANE, 1);
 		ItemMeta glasmeta = glas.getItemMeta();
 		glasmeta.setDisplayName("§6");
 		glas.setItemMeta(glasmeta);
@@ -83,7 +83,7 @@ public class CMD_Auktionshaus implements CommandExecutor{
 		barriermeta.setDisplayName("§6");
 		barrier.setItemMeta(barriermeta);
 		
-		ItemStack greenglas = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 5);
+		ItemStack greenglas = new ItemStack(Material.GREEN_STAINED_GLASS_PANE, 1);
 		ItemMeta greenglasmeta = greenglas.getItemMeta();
 		greenglasmeta.setDisplayName("§aNächste Seite"); //§aNext Page
 		ArrayList<String> lore = new ArrayList<String>();
@@ -93,7 +93,7 @@ public class CMD_Auktionshaus implements CommandExecutor{
 		greenglasmeta.setLore(lore);
 		greenglas.setItemMeta(greenglasmeta);
 		
-		ItemStack redglas= new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 14);
+		ItemStack redglas= new ItemStack(Material.RED_STAINED_GLASS_PANE, 1);
 		ItemMeta redglasmeta = redglas.getItemMeta();
 		redglasmeta.setDisplayName("§cLetzte Seite"); //§cLast Page
 		redglas.setItemMeta(redglasmeta);

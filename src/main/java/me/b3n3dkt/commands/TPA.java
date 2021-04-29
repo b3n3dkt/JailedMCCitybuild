@@ -45,15 +45,15 @@ public class TPA implements CommandExecutor {
                                         }, 10);
                                         Bukkit.getScheduler().cancelTask(taskid);
                                     case 1:
-                                        target.playSound(target.getLocation(), Sound.NOTE_BASS_DRUM, 1, 1);
+                                        target.playSound(target.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
                                     case 2:
-                                        target.playSound(target.getLocation(), Sound.NOTE_BASS_DRUM, 1, 1);
+                                        target.playSound(target.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
                                     case 3:
-                                        target.playSound(target.getLocation(), Sound.NOTE_BASS_DRUM, 1, 1);
+                                        target.playSound(target.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
                                     case 4:
-                                        target.playSound(target.getLocation(), Sound.NOTE_BASS_DRUM, 1, 1);
+                                        target.playSound(target.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
                                     case 5:
-                                        target.playSound(target.getLocation(), Sound.NOTE_BASS_DRUM, 1, 1);
+                                        target.playSound(target.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
                                 }
                                 seconds--;
                             }

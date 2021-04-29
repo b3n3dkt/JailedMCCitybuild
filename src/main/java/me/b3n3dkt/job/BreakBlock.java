@@ -2,12 +2,15 @@ package me.b3n3dkt.job;
 
 import me.b3n3dkt.Citybuild;
 import me.b3n3dkt.utils.PlayerData;
-import net.minecraft.server.v1_8_R3.IChatBaseComponent;
-import net.minecraft.server.v1_8_R3.PacketPlayOutChat;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
+import net.minecraft.server.v1_16_R3.IChatBaseComponent;
+import net.minecraft.server.v1_16_R3.PacketPlayOutChat;
+import net.minecraft.server.v1_16_R3.PacketPlayOutPlayerInfo;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Ageable;
 import org.bukkit.entity.Player;
@@ -37,8 +40,7 @@ public class BreakBlock implements Listener {
         HOLZFÄLLER
         */
         if(data.getJob().equalsIgnoreCase("holzfäller")){
-            if(stack == Material.LOG){ //OAK
-                if(id == 0){ //OAK
+                if(stack == Material.OAK_LOG){ //OAK
                     if(dn.equalsIgnoreCase("Eichenholzstämme") || dn.equalsIgnoreCase("Holzstämme")){
 
                         data.addBlock(data.getJob(), 1);
@@ -46,7 +48,7 @@ public class BreakBlock implements Listener {
                     data.addXP("holzfäller", 25);
                     data.setHolzfällerBlock("oak", data.getHolzfällerBlock("oak") + 1);
                     setActionBar(player, "§7Du hast §8'§325XP§8' §7für das Abbauen von §8'§3" + item.getType() + "§8' §7bekommen!");
-                }else if(id == 3){ //JUNGLE
+                }else if(stack == Material.JUNGLE_LOG){ //JUNGLE
                     if(dn.equalsIgnoreCase("Jungleholzstämme") || dn.equalsIgnoreCase("Holzstämme")){
 
                         data.addBlock(data.getJob(), 1);
@@ -54,7 +56,7 @@ public class BreakBlock implements Listener {
                     data.addXP("holzfäller", 10);
                     data.setHolzfällerBlock("jungle", data.getHolzfällerBlock("jungle") + 1);
                     setActionBar(player, "§7Du hast §8'§310XP§8' §7für das Abbauen von §8'§3" + item.getType() + "§8' §7bekommen!");
-                }else if(id == 1){ //SPRUCE
+                }else if(stack == Material.SPRUCE_LOG){ //SPRUCE
                     if(dn.equalsIgnoreCase("Fichtenholzstämme") || dn.equalsIgnoreCase("Holzstämme")){
 
                         data.addBlock(data.getJob(), 1);
@@ -62,7 +64,7 @@ public class BreakBlock implements Listener {
                     data.addXP("holzfäller", 20);
                     data.setHolzfällerBlock("spruce", data.getHolzfällerBlock("spruce") + 1);
                     setActionBar(player, "§7Du hast §8'§320XP§8' §7für das Abbauen von §8'§3" + item.getType() + "§8' §7bekommen!");
-                }else if(id == 2){ //BIRCH
+                }else if(stack == Material.BIRCH_LOG){ //BIRCH
                     if(dn.equalsIgnoreCase("Birkenholzstämme") || dn.equalsIgnoreCase("Holzstämme")){
 
                         data.addBlock(data.getJob(), 1);
@@ -70,9 +72,7 @@ public class BreakBlock implements Listener {
                     data.addXP("holzfäller", 25);
                     data.setHolzfällerBlock("birch", data.getHolzfällerBlock("birch") + 1);
                     setActionBar(player, "§7Du hast §8'§325XP§8' §7für das Abbauen von §8'§3" + item.getType() + "§8' §7bekommen!");
-                }
-            }else if(stack == Material.LOG_2){ 
-                if(id == 0){//ACACIA
+                }else if(stack == Material.ACACIA_LOG){//ACACIA
                     if(dn.equalsIgnoreCase("Acacienholzstämme") || dn.equalsIgnoreCase("Holzstämme")){
 
                         data.addBlock(data.getJob(), 1);
@@ -80,7 +80,7 @@ public class BreakBlock implements Listener {
                     data.addXP("holzfäller", 50);
                     data.setHolzfällerBlock("acacia", data.getHolzfällerBlock("acacia") + 1);
                     setActionBar(player, "§7Du hast §8'§350XP§8' §7für das Abbauen von §8'§3" + item.getType() + "§8' §7bekommen!");
-                }else if(id == 1){//DARKOAK
+                }else if(stack == Material.DARK_OAK_LOG){//DARKOAK
                     if(dn.equalsIgnoreCase("Schwarzeichenholzstämme") || dn.equalsIgnoreCase("Holzstämme")){
 
                         data.addBlock(data.getJob(), 1);
@@ -89,8 +89,7 @@ public class BreakBlock implements Listener {
                     data.setHolzfällerBlock("darkoak", data.getHolzfällerBlock("darkoak") + 1);
                     setActionBar(player, "§7Du hast §8'§310XP§8' §7für das Abbauen von §8'§3" + item.getType() + "§8' §7bekommen!");
                 }
-                
-            }
+
             /*
             MINER
             */
@@ -135,7 +134,7 @@ public class BreakBlock implements Listener {
                 data.addXP("miner", 75);
                 data.setMinerOre("diamond", data.getMinerOres("diamond") + 1);
                 setActionBar(player, "§7Du hast §8'§375XP§8' §7für das Abbauen von §8'§3" + item.getType() + "§8' §7bekommen!");
-            }else if(stack == Material.GLOWING_REDSTONE_ORE || stack == Material.REDSTONE_ORE){ //REDSTONE
+            }else if(stack == Material.LEGACY_GLOWING_REDSTONE_ORE || stack == Material.LEGACY_REDSTONE_ORE || stack == Material.REDSTONE_ORE){ //REDSTONE
                 if(dn.equalsIgnoreCase("Redstoneerze") || dn.equalsIgnoreCase("Erze")){
 
                     data.addBlock(data.getJob(), 1);
@@ -151,7 +150,7 @@ public class BreakBlock implements Listener {
                 data.addXP("miner", 150);
                 data.setMinerOre("emerald", data.getMinerOres("emerald") + 1);
                 setActionBar(player, "§7Du hast §8'§3150XP§8' §7für das Abbauen von §8'§3" + item.getType() + "§8' §7bekommen!");
-            }else if(stack == Material.QUARTZ_ORE) { //QUARTZ
+            }else if(stack == Material.LEGACY_QUARTZ_ORE || stack == Material.NETHER_QUARTZ_ORE) { //QUARTZ
                 if(dn.equalsIgnoreCase("Quartzerze") || dn.equalsIgnoreCase("Erze")){
 
                     data.addBlock(data.getJob(), 1);
@@ -164,7 +163,7 @@ public class BreakBlock implements Listener {
             FARMER
              */
         }else if(data.getJob().equalsIgnoreCase("farmer")){
-            if(stack == Material.CROPS){ //WHEAT
+            if(stack == Material.WHEAT || stack == Material.LEGACY_WHEAT){ //WHEAT
                 if(dn.equalsIgnoreCase("Weizen") || dn.equalsIgnoreCase("Items")){
 
                     data.addBlock(data.getJob(), 1);
@@ -173,7 +172,7 @@ public class BreakBlock implements Listener {
                 data.addXP("farmer", 25);
                 data.setFarmerItem("wheat", data.getFarmerItems("wheat") + 1);
                 setActionBar(player, "§7Du hast §8'§325XP§8' §7für das Abbauen von §8'§3" + item.getType() + "§8' §7bekommen!");
-            }else if(stack == Material.CARROT){ //CARROT
+            }else if(stack == Material.CARROT ||stack == Material.LEGACY_CARROT){ //CARROT
                 if(dn.equalsIgnoreCase("Karotten") || dn.equalsIgnoreCase("Items")){
 
                     data.addBlock(data.getJob(), 1);
@@ -182,7 +181,7 @@ public class BreakBlock implements Listener {
                 data.addXP("farmer", 25);
                 data.setFarmerItem("carrot", data.getFarmerItems("carrot") + 1);
                 setActionBar(player, "§7Du hast §8'§325XP§8' §7für das Abbauen von §8'§3" + item.getType() + "§8' §7bekommen!");
-            }else if(stack == Material.POTATO){ //POTATO
+            }else if(stack == Material.POTATO ||stack == Material.LEGACY_POTATO){ //POTATO
                 if(dn.equalsIgnoreCase("Kartoffeln") || dn.equalsIgnoreCase("Items")){
 
                     data.addBlock(data.getJob(), 1);
@@ -191,7 +190,7 @@ public class BreakBlock implements Listener {
                 data.addXP("farmer", 25);
                 data.setFarmerItem("potato", data.getFarmerItems("potato") + 1);
                 setActionBar(player, "§7Du hast §8'§325XP§8' §7für das Abbauen von §8'§3" + item.getType() + "§8' §7bekommen!");
-            }else if(stack == Material.COCOA) {//COCOA
+            }else if(stack == Material.COCOA || stack == Material.LEGACY_COCOA) {//COCOA
                 if(dn.equalsIgnoreCase("Kakao") || dn.equalsIgnoreCase("Items")){
 
                     data.addBlock(data.getJob(), 1);
@@ -200,12 +199,12 @@ public class BreakBlock implements Listener {
                 if(event.getBlock().getData() < 0x8){return;}
                 data.addXP("farmer", 25);
                 data.setFarmerItem("cacoa", data.getFarmerItems("cacoa") + 1);
-                setActionBar(player, "§7Du hast §8'§325XP§8' §7für das Abbauen von §8'§3" + item.getType() + "§8' §7bekommen!");
-            }else if(stack == Material.NETHER_WARTS){ //WART
                 if(dn.equalsIgnoreCase("Warzen") || dn.equalsIgnoreCase("Items")){
+                }else if(stack == Material.LEGACY_NETHER_WARTS || stack == Material.NETHER_WART){ //WART
 
                     data.addBlock(data.getJob(), 1);
                 }
+                setActionBar(player, "§7Du hast §8'§325XP§8' §7für das Abbauen von §8'§3" + item.getType() + "§8' §7bekommen!");
                 if(event.getBlock().getData() != 0x3){return;}
                 data.addXP("farmer", 35);
                 data.setFarmerItem("wart", data.getFarmerItems("wart") + 1);
@@ -226,10 +225,7 @@ public class BreakBlock implements Listener {
     }
 
     public static void setActionBar(Player player, String message) {
-        CraftPlayer p = (CraftPlayer)player;
-        IChatBaseComponent ibc = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + message + "\"}");
-        PacketPlayOutChat packet = new PacketPlayOutChat(ibc, (byte)2);
-        p.getHandle().playerConnection.sendPacket(packet);
+        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(message));
     }
 
 }

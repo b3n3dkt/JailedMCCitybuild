@@ -58,7 +58,7 @@ public class Event implements CommandExecutor {
                         all.sendMessage("§8§l│");
                         all.sendMessage("§8§l└─────[§r§6Event§8§l]─────┘");
                         all.sendTitle("§6Verlosung!", "§e§l" + name);
-                        all.playSound(all.getLocation(), Sound.FIREWORK_BLAST, 5.0F, 5.0F);
+                        all.playSound(all.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 5.0F, 5.0F);
                     }
                     Bukkit.getScheduler().runTaskLater(Citybuild.getMain(), new Runnable() {
                         @Override
@@ -67,7 +67,7 @@ public class Event implements CommandExecutor {
                             Player gewinner = eventPlayers.get(randomNum);
                             for(Player all : Bukkit.getOnlinePlayers()){
                                 all.sendMessage(Citybuild.getPrefix() + "§3" + gewinner.getName() + " hat §8'§7" + name + "§8' §3gewonnen!");
-                                all.playSound(all.getLocation(), Sound.ANVIL_LAND, 5.0F, 5.0F);
+                                all.playSound(all.getLocation(), Sound.BLOCK_ANVIL_LAND, 5.0F, 5.0F);
                             }
                             gewinner.sendMessage(Citybuild.getPrefix() + "§3Du hast §8'§7" + name + "§8' §3gewonnen!");
                             gewinner.getInventory().addItem(stack);

@@ -246,22 +246,22 @@ public class Belohnungen {
 
    public static void openBelohnungen(Player player) {
       Inventory inv = Bukkit.createInventory((InventoryHolder)null, 27, "§6§lBelohnungen");
-      ItemStack glas = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short)7);
+      ItemStack glas = new ItemStack(Material.GRAY_STAINED_GLASS_PANE);
       ItemMeta glasmeta = glas.getItemMeta();
       glasmeta.setDisplayName("§e§l");
       glas.setItemMeta(glasmeta);
-      ItemStack tskull = new ItemStack(Material.SKULL_ITEM, 1, (short) SkullType.PLAYER.ordinal());
-      SkullMeta tmeta = (SkullMeta)Bukkit.getItemFactory().getItemMeta(Material.SKULL_ITEM);
+      ItemStack tskull = new ItemStack(Material.LEGACY_SKULL_ITEM, 1, (short) SkullType.PLAYER.ordinal());
+      SkullMeta tmeta = (SkullMeta)Bukkit.getItemFactory().getItemMeta(Material.LEGACY_SKULL_ITEM);
       tmeta.setDisplayName("§6§lTägliche Belohnungen");
       tmeta.setOwner("MHF_Chest");
       tskull.setItemMeta(tmeta);
-      ItemStack wskull = new ItemStack(Material.SKULL_ITEM, 1, (short)SkullType.PLAYER.ordinal());
-      SkullMeta wmeta = (SkullMeta)Bukkit.getItemFactory().getItemMeta(Material.SKULL_ITEM);
+      ItemStack wskull = new ItemStack(Material.LEGACY_SKULL_ITEM, 1, (short)SkullType.PLAYER.ordinal());
+      SkullMeta wmeta = (SkullMeta)Bukkit.getItemFactory().getItemMeta(Material.LEGACY_SKULL_ITEM);
       wmeta.setDisplayName("§6§lWöchentliche Belohnungen");
       wmeta.setOwner("MHF_Chest");
       wskull.setItemMeta(wmeta);
-      ItemStack mskull = new ItemStack(Material.SKULL_ITEM, 1, (short)SkullType.PLAYER.ordinal());
-      SkullMeta mmeta = (SkullMeta)Bukkit.getItemFactory().getItemMeta(Material.SKULL_ITEM);
+      ItemStack mskull = new ItemStack(Material.LEGACY_SKULL_ITEM, 1, (short)SkullType.PLAYER.ordinal());
+      SkullMeta mmeta = (SkullMeta)Bukkit.getItemFactory().getItemMeta(Material.LEGACY_SKULL_ITEM);
       mmeta.setDisplayName("§6§lMonatliche Belohnungen");
       mmeta.setOwner("MHF_Chest");
       mskull.setItemMeta(mmeta);

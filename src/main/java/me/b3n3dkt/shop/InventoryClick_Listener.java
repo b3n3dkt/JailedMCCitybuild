@@ -4,7 +4,6 @@ import me.b3n3dkt.Citybuild;
 import me.b3n3dkt.mysql.MySQL;
 import me.b3n3dkt.utils.ItemBuilder;
 import me.b3n3dkt.utils.Score;
-import net.minecraft.server.v1_8_R3.Items;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -32,11 +31,11 @@ public class InventoryClick_Listener implements Listener {
         if(event.getCurrentItem() == null){return;}
         if(event.getInventory() == event.getWhoClicked().getInventory()){return;}
         Player player = (Player)event.getWhoClicked();
-        if(event.getInventory().getTitle().equalsIgnoreCase("§6§lShop")){
+        if(event.getView().getTitle().equalsIgnoreCase("§6§lShop")){
             event.setCancelled(true);
             if(event.getCurrentItem().getItemMeta().hasLore() == true){
                 if(event.getCurrentItem().getItemMeta().getLore().get(0).contains("§7ID: §a")){
-                    ItemStack ggrlass = (new ItemBuilder(Material.STAINED_GLASS_PANE, (short) 5).setAmount(1).setDisplayName("4")).build();
+                    ItemStack ggrlass = (new ItemBuilder(Material.GREEN_STAINED_GLASS_PANE).setAmount(1).setDisplayName("4")).build();
                     if(event.getInventory().getItem(1).equals(ggrlass)){
                         if(event.getClick().equals(ClickType.RIGHT)){
                             openSellInventory(event.getCurrentItem(), player, "holz");
@@ -139,7 +138,7 @@ public class InventoryClick_Listener implements Listener {
                 Shop_CMD.openShopInventory(player);
                 Shop_CMD.openCategoryInv(player, "essen");
             }
-        }else if(event.getInventory().getTitle().equalsIgnoreCase("§6Item(s) §3§lkaufen?")){
+        }else if(event.getView().getTitle().equalsIgnoreCase("§6Item(s) §3§lkaufen?")){
             event.setCancelled(true);
             Score sb = new Score(player);
             ItemStack stack = event.getInventory().getItem(13);
@@ -199,7 +198,7 @@ public class InventoryClick_Listener implements Listener {
                         }
                     }
             sb.update();
-            }else if(event.getInventory().getTitle().equalsIgnoreCase("§6Item(s) §c§lverkaufen?")){
+            }else if(event.getView().getTitle().equalsIgnoreCase("§6Item(s) §c§lverkaufen?")){
             event.setCancelled(true);
             Score sb = new Score(player);
             ItemStack stack = event.getInventory().getItem(13);
@@ -248,7 +247,7 @@ public class InventoryClick_Listener implements Listener {
                     }
                     ItemMeta stackmeta = stack.getItemMeta();
                     stackmeta.setLore(Arrays.asList("§7ID: §a" + id, "§7Preis: §a" + df.format(shop.getPrice(id)), "§7Verfügbar: §a" + shop.getAvailable(id), "§7Kategorie: §a" + category));
-                    ItemStack sign = (new ItemBuilder(Material.SIGN).setAmount(1).setDisplayName("§6Bist du die sicher?").setLore(Arrays.asList("§71 Stück: §a" + df.format((price/100)*80),"§764 Stück: §a" + df.format(estimatedPrice)))).build();
+                    ItemStack sign = (new ItemBuilder(Material.OAK_SIGN).setAmount(1).setDisplayName("§6Bist du die sicher?").setLore(Arrays.asList("§71 Stück: §a" + df.format((price/100)*80),"§764 Stück: §a" + df.format(estimatedPrice)))).build();
                     stack.setItemMeta(stackmeta);
                     player.getOpenInventory().setItem(13, stack);
                     player.getOpenInventory().setItem(4, sign);
@@ -289,7 +288,7 @@ public class InventoryClick_Listener implements Listener {
                     }
                     ItemMeta stackmeta = stack.getItemMeta();
                     stackmeta.setLore(Arrays.asList("§7ID: §a" + id, "§7Preis: §a" + df.format(shop.getPrice(id)), "§7Verfügbar: §a" + shop.getAvailable(id), "§7Kategorie: §a" + category));
-                    ItemStack sign = (new ItemBuilder(Material.SIGN).setAmount(1).setDisplayName("§6Bist du die sicher?").setLore(Arrays.asList("§71 Stück: §a" + df.format((price/100)*80),"§764 Stück: §a" + df.format(estimatedPrice)))).build();
+                    ItemStack sign = (new ItemBuilder(Material.OAK_SIGN).setAmount(1).setDisplayName("§6Bist du die sicher?").setLore(Arrays.asList("§71 Stück: §a" + df.format((price/100)*80),"§764 Stück: §a" + df.format(estimatedPrice)))).build();
                     stack.setItemMeta(stackmeta);
                     player.getOpenInventory().setItem(13, stack);
                     player.getOpenInventory().setItem(4, sign);
@@ -318,11 +317,11 @@ public class InventoryClick_Listener implements Listener {
             estimatedPrice = estimatedPrice+(price*sellMulti);
         }
 
-        ItemStack glas = (new ItemBuilder(Material.STAINED_GLASS_PANE).setAmount(1).setDisplayName("§a")).build();
+        ItemStack glas = (new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setAmount(1).setDisplayName("§a")).build();
         Inventory buy = Bukkit.createInventory(null, 3*9, "§6Item(s) §c§lverkaufen?");
-        ItemStack green = (new ItemBuilder(Material.STAINED_GLASS_PANE, (short) 5).setAmount(1).setDisplayName("§aKlicke zum Verkaufen!").setLore(Arrays.asList("§7Mit Shift kannst du alle Items in deinem Inventar gleichzeitig Verkaufen!"))).build();
-        ItemStack red = (new ItemBuilder(Material.STAINED_GLASS_PANE, (short) 14).setAmount(1).setDisplayName("§cKlicke zum Abbruch!")).build();
-        ItemStack sign = (new ItemBuilder(Material.SIGN).setAmount(1).setDisplayName("§6Bist du die sicher?").setLore(Arrays.asList("§71 Stück: §a" + df.format((price*sellMulti)),"§764 Stück: §a" + df.format(estimatedPrice)))).build();
+        ItemStack green = (new ItemBuilder(Material.GREEN_STAINED_GLASS_PANE).setAmount(1).setDisplayName("§aKlicke zum Verkaufen!").setLore(Arrays.asList("§7Mit Shift kannst du alle Items in deinem Inventar gleichzeitig Verkaufen!"))).build();
+        ItemStack red = (new ItemBuilder(Material.RED_STAINED_GLASS_PANE).setAmount(1).setDisplayName("§cKlicke zum Abbruch!")).build();
+        ItemStack sign = (new ItemBuilder(Material.OAK_SIGN).setAmount(1).setDisplayName("§6Bist du die sicher?").setLore(Arrays.asList("§71 Stück: §a" + df.format((price*sellMulti)),"§764 Stück: §a" + df.format(estimatedPrice)))).build();
 
         player.openInventory(buy);
         for(int i = 0;i<27;i++){
@@ -351,11 +350,11 @@ public class InventoryClick_Listener implements Listener {
             estimatedPrice = estimatedPrice+(price*shop.getPercentUp(id));
         }
 
-        ItemStack glas = (new ItemBuilder(Material.STAINED_GLASS_PANE).setAmount(1).setDisplayName("§a")).build();
+        ItemStack glas = (new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setAmount(1).setDisplayName("§a")).build();
         Inventory buy = Bukkit.createInventory(null, 3*9, "§6Item(s) §3§lkaufen?");
-        ItemStack green = (new ItemBuilder(Material.STAINED_GLASS_PANE, (short) 5).setAmount(1).setDisplayName("§aKlicke zum Kaufen!").setLore(Arrays.asList("§7Mit Shift kannst du 64 Items gleichzeitig kaufen!"))).build();
-        ItemStack red = (new ItemBuilder(Material.STAINED_GLASS_PANE, (short) 14).setAmount(1).setDisplayName("§cKlicke zum Abbruch!")).build();
-        ItemStack sign = (new ItemBuilder(Material.SIGN).setAmount(1).setDisplayName("§6Bist du die sicher?").setLore(Arrays.asList("§71 Stück: §a" + df.format(price),"§764 Stück: §a" + df.format(estimatedPrice)))).build();
+        ItemStack green = (new ItemBuilder(Material.GREEN_STAINED_GLASS_PANE).setAmount(1).setDisplayName("§aKlicke zum Kaufen!").setLore(Arrays.asList("§7Mit Shift kannst du 64 Items gleichzeitig kaufen!"))).build();
+        ItemStack red = (new ItemBuilder(Material.RED_STAINED_GLASS_PANE).setAmount(1).setDisplayName("§cKlicke zum Abbruch!")).build();
+        ItemStack sign = (new ItemBuilder(Material.OAK_SIGN).setAmount(1).setDisplayName("§6Bist du die sicher?").setLore(Arrays.asList("§71 Stück: §a" + df.format(price),"§764 Stück: §a" + df.format(estimatedPrice)))).build();
 
         player.openInventory(buy);
         for(int i = 0;i<27;i++){

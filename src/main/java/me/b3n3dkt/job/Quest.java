@@ -81,22 +81,22 @@ public class Quest {
             if(msg.contains("%block%")){
                 if(randomNum == 1){
                     dn = "Eichenholzstämme";
-                    stack = new ItemStack(Material.LOG, 1, (short) 0);
+                    stack = new ItemStack(Material.OAK_LOG, 1, (short) 0);
                 }else if(randomNum == 2){
                     dn = "Fichtenholzstämme";
-                    stack = new ItemStack(Material.LOG, 1, (short) 1);
+                    stack = new ItemStack(Material.SPRUCE_LOG, 1, (short) 1);
                 }else if(randomNum == 3){
                     dn = "Birkenholzstämme";
-                    stack = new ItemStack(Material.LOG, 1, (short) 2);
+                    stack = new ItemStack(Material.BIRCH_LOG, 1, (short) 2);
                 }else if(randomNum == 4){
                     dn = "Jungleholzstämme";
-                    stack = new ItemStack(Material.LOG, 1, (short) 3);
+                    stack = new ItemStack(Material.JUNGLE_LOG, 1, (short) 3);
                 }else if(randomNum == 5){
                     dn = "Acacienholzstämme";
-                    stack = new ItemStack(Material.LOG_2, 1, (short) 0);
+                    stack = new ItemStack(Material.ACACIA_LOG, 1, (short) 0);
                 }else if(randomNum == 6){
                     dn = "Schwarzeichenholzstämme";
-                    stack = new ItemStack(Material.LOG_2, 1, (short) 1);
+                    stack = new ItemStack(Material.DARK_OAK_LOG, 1, (short) 1);
                 }
             }else{
                 dn = "Holzstämme";
@@ -108,16 +108,16 @@ public class Quest {
             if(msg.contains("%block%")){
                 if(randomNum == 1){
                     dn = "Kabeljau";
-                    stack = new ItemStack(Material.RAW_FISH);
+                    stack = new ItemStack(Material.LEGACY_RAW_FISH);
                 }else if(randomNum == 2){
                     dn = "Lachs";
-                    stack = new ItemStack(Material.RAW_FISH, 1, (short) 1);
+                    stack = new ItemStack(Material.SALMON, 1, (short) 1);
                 }else if(randomNum == 3){
-                    dn = "Clownfische";
-                    stack = new ItemStack(Material.RAW_FISH, 1, (short) 2);
+                    dn = "Tropische Fische";
+                    stack = new ItemStack(Material.TROPICAL_FISH, 1, (short) 2);
                 }else if(randomNum == 4){
                     dn = "Kugelfische";
-                    stack = new ItemStack(Material.RAW_FISH, 1, (short) 3);
+                    stack = new ItemStack(Material.PUFFERFISH, 1, (short) 3);
                 }
             }else{
                 dn = "Fische";
@@ -147,7 +147,7 @@ public class Quest {
                     stack = new ItemStack(Material.REDSTONE_ORE);
                 }else if(randomNum == 7){
                     dn = "Quartzerze";
-                    stack = new ItemStack(Material.QUARTZ_ORE);
+                    stack = new ItemStack(Material.NETHER_QUARTZ_ORE);
                 }
             }else{
                 dn = "Erze";
@@ -168,10 +168,10 @@ public class Quest {
                     stack = new ItemStack(Material.CARROT);
                 }else if(randomNum == 4){
                     dn = "Kakao";
-                    stack = new ItemStack(Material.INK_SACK, 1, (short) 2);
+                    stack = new ItemStack(Material.LEGACY_INK_SACK, 1, (short) 2);
                 }else if(randomNum == 5){
                     dn = "Warzen";
-                    stack = new ItemStack(Material.NETHER_WARTS);
+                    stack = new ItemStack(Material.LEGACY_NETHER_WARTS);
                 }
             }else{
                 dn = "Items";

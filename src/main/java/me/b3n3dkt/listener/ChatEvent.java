@@ -23,18 +23,18 @@ public class ChatEvent implements Listener {
             } else {
                 e.setCancelled(true);
                 p.sendMessage(Citybuild.getPrefix() + "§7Du kannst momentan nicht schreiben, weil ein VoteKick aktiv ist!");
-                p.playSound(p.getLocation(), Sound.NOTE_BASS_DRUM, 1.0F, 1.0F);
+                p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 1.0F, 1.0F);
             }
         } else if (GlobalMute.globalmute) {
             if (!p.hasPermission("jailedmc.command.globalmute.bypass")) {
                 e.setCancelled(true);
                 p.sendMessage(Citybuild.getPrefix() + "§7Du kannst momentan nicht schreiben, weil der Chat gemuted ist!");
-                p.playSound(p.getLocation(), Sound.NOTE_BASS_DRUM, 1.0F, 1.0F);
+                p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 1.0F, 1.0F);
             }
         } else if (Event.event && !p.hasPermission("jailedmc.command.globalmute.bypass")) {
             e.setCancelled(true);
             p.sendMessage(Citybuild.getPrefix() + "§cDu kannst momentan nicht schreiben, weil in Event aktiv ist!");
-            p.playSound(p.getLocation(), Sound.NOTE_BASS_DRUM, 1.0F, 1.0F);
+            p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 1.0F, 1.0F);
         }
 
         if (e.getMessage().equalsIgnoreCase("/pl") || e.getMessage().equalsIgnoreCase("/plugins") || e.getMessage().equalsIgnoreCase("/bukkit") || e.getMessage().equalsIgnoreCase("/?") || e.getMessage().equalsIgnoreCase("/help") || e.getMessage().equalsIgnoreCase("/bukkit:help") || e.getMessage().startsWith("//") || e.getMessage().equalsIgnoreCase("/hawk")) {

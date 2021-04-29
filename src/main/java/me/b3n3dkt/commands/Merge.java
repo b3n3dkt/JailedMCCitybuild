@@ -44,12 +44,21 @@ public class Merge implements CommandExecutor {
                         PlotAPI plotAPI = new PlotAPI();
                         Plot plot = plotAPI.getPlot(p.getLocation());
                         Score sb = new Score(p);
-                        if(plot == null){p.sendMessage(Citybuild.getPrefix() + "§cDu befindest dich nicht auf einem Plot");p.playSound(p.getLocation(), Sound.ANVIL_BREAK, 1.0F, 2.0F); return true;}
+                        if(plot == null){p.sendMessage(Citybuild.getPrefix() + "§cDu befindest dich nicht auf einem Plot");p.playSound(p.getLocation(), Sound.BLOCK_ANVIL_BREAK, 1.0F, 2.0F); return true;}
                         if(isOwner(p, plot)){
                                 merge.add(p);
-                                p.chat("/p merge");
+                                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set plots.merge");
+                                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set plots.merge.1000");
                                 MySQL.setcoins(p.getUniqueId().toString(), MySQL.getcoins(p.getUniqueId().toString())-50000);
-                                p.playSound(p.getLocation(), Sound.ENDERDRAGON_GROWL, 1.0F, 1.0F);
+                                Bukkit.getScheduler().runTaskLater(Citybuild.getMain(), new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        p.playSound(p.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 1.0F, 1.0F);
+                                        p.chat("/p merge");
+                                        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission unset plots.merge");
+                                        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission unset plots.merge.1000");
+                                    }
+                                }, 20);
                                 sb.update();
                             } else {
                                 p.sendMessage(Citybuild.getPrefix() + "§cDas ist nicht dein Plot!");

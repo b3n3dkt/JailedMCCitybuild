@@ -84,22 +84,22 @@ public class Shop_CMD implements CommandExecutor {
 
     public static void openShopInventory(Player player){
         shopinv = Bukkit.createInventory(null, 54, "§6§lShop");
-        ItemStack glas = new ItemStack(Material.STAINED_GLASS_PANE, 1);
+        ItemStack glas = new ItemStack(Material.WHITE_STAINED_GLASS_PANE, 1);
         ItemMeta glasmeta = glas.getItemMeta();
         glasmeta.setDisplayName("§e§l");
         glas.setItemMeta(glasmeta);
 
-        ItemStack holz = (new ItemBuilder(Material.LOG).setAmount(1).setDisplayName("§6Holz")).build();
+        ItemStack holz = (new ItemBuilder(Material.OAK_LOG).setAmount(1).setDisplayName("§6Holz")).build();
         ItemStack baumaterialien = (new ItemBuilder(Material.BRICK).setAmount(1).setDisplayName("§6Baumaterialien")).build();
-        ItemStack besonderes = (new ItemBuilder(Material.MOB_SPAWNER).setAmount(1).setDisplayName("§6Besonderes")).build();
+        ItemStack besonderes = (new ItemBuilder(Material.SPAWNER).setAmount(1).setDisplayName("§6Besonderes")).build();
         ItemStack werkzeuge = (new ItemBuilder(Material.IRON_PICKAXE).setAmount(1).setDisplayName("§6Werkzeuge")).build();
         ItemStack waffen = (new ItemBuilder(Material.DIAMOND_SWORD).setAmount(1).setDisplayName("§6Waffen")).build();
         ItemStack glass = (new ItemBuilder(Material.BLAZE_ROD).setAmount(1).setDisplayName("§6Mob-Loot")).build();
-        ItemStack spawneggs = (new ItemBuilder(Material.MONSTER_EGG, (short) 120).setAmount(1).setDisplayName("§6Spawn Eggs")).build();
+        ItemStack spawneggs = (new ItemBuilder(Material.CREEPER_SPAWN_EGG, (short) 120).setAmount(1).setDisplayName("§6Spawn Eggs")).build();
         ItemStack redstone = (new ItemBuilder(Material.REDSTONE).setAmount(1).setDisplayName("§6Redstone")).build();
         ItemStack rüstung = (new ItemBuilder(Material.IRON_CHESTPLATE).setAmount(1).setDisplayName("§6Rüstung")).build();
         ItemStack books = (new ItemBuilder(Material.ENCHANTED_BOOK).setAmount(1).setDisplayName("§6Verzauberungen")).build();
-        ItemStack deko = (new ItemBuilder(Material.DOUBLE_PLANT, (short) 5).setAmount(1).setDisplayName("§6Deko")).build();
+        ItemStack deko = (new ItemBuilder(Material.PEONY, (short) 5).setAmount(1).setDisplayName("§6Deko")).build();
         ItemStack essen = (new ItemBuilder(Material.COOKED_BEEF).setAmount(1).setDisplayName("§6Essen")).build();
 
         player.openInventory(shopinv);
@@ -127,7 +127,7 @@ public class Shop_CMD implements CommandExecutor {
 
     public static void openCategoryInv(Player player, String category){
         Shop shop = new Shop(category);
-        ItemStack ggrlass = (new ItemBuilder(Material.STAINED_GLASS_PANE, (short) 5).setAmount(1).setDisplayName("4")).build();
+        ItemStack ggrlass = (new ItemBuilder(Material.GREEN_STAINED_GLASS_PANE).setAmount(1).setDisplayName("4")).build();
         int index = shop.getItemCount();
         int s = 0;
         for(int i = 0;i<index;i++){

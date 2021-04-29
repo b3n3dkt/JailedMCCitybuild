@@ -9,26 +9,12 @@ import java.util.Random;
 import java.util.UUID;
 
 import me.b3n3dkt.Citybuild;
-import net.minecraft.server.v1_8_R3.DataWatcher;
-import net.minecraft.server.v1_8_R3.EntityPlayer;
-import net.minecraft.server.v1_8_R3.MinecraftServer;
-import net.minecraft.server.v1_8_R3.Packet;
-import net.minecraft.server.v1_8_R3.PacketPlayOutAnimation;
-import net.minecraft.server.v1_8_R3.PacketPlayOutEntityDestroy;
-import net.minecraft.server.v1_8_R3.PacketPlayOutEntityHeadRotation;
-import net.minecraft.server.v1_8_R3.PacketPlayOutEntityMetadata;
-import net.minecraft.server.v1_8_R3.PacketPlayOutEntityTeleport;
-import net.minecraft.server.v1_8_R3.PacketPlayOutNamedEntitySpawn;
-import net.minecraft.server.v1_8_R3.PacketPlayOutPlayerInfo;
-import net.minecraft.server.v1_8_R3.PlayerConnection;
-import net.minecraft.server.v1_8_R3.PlayerInteractManager;
-import net.minecraft.server.v1_8_R3.WorldServer;
-import net.minecraft.server.v1_8_R3.PacketPlayOutPlayerInfo.EnumPlayerInfoAction;
+import net.minecraft.server.v1_16_R3.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_8_R3.CraftServer;
-import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_16_R3.CraftServer;
+import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
+import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
@@ -47,7 +33,7 @@ public class NPCEntity {
         this.signature = signature;
     }
 
-    public void init(String name) {
+    public void init(String name) throws InterruptedException {
         MinecraftServer nmsServer = ((CraftServer)Bukkit.getServer()).getServer();
         WorldServer nmsWorld = ((CraftWorld)this.location.getWorld()).getHandle();
         Random random = new Random();
@@ -64,9 +50,9 @@ public class NPCEntity {
         }
 
         DataWatcher dataWatcher = this.entityPlayer.getDataWatcher();
-        dataWatcher.watch(10, (byte)127);
+        dataWatcher.wait(10, (byte)127);
         this.spawnPackets.add(new PacketPlayOutEntityMetadata(this.entityPlayer.getId(), dataWatcher, false));
-        this.spawnPackets.add(new PacketPlayOutPlayerInfo(EnumPlayerInfoAction.ADD_PLAYER, new EntityPlayer[]{this.entityPlayer}));
+        this.spawnPackets.add(new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.ADD_PLAYER, new EntityPlayer[]{this.entityPlayer}));
         this.spawnPackets.add(new PacketPlayOutNamedEntitySpawn(this.entityPlayer));
     }
 
@@ -80,7 +66,7 @@ public class NPCEntity {
         }
 
         Bukkit.getScheduler().scheduleAsyncDelayedTask(Citybuild.getMain(), () -> {
-            connection.sendPacket(new PacketPlayOutPlayerInfo(EnumPlayerInfoAction.REMOVE_PLAYER, new EntityPlayer[]{this.entityPlayer}));
+            connection.sendPacket(new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.REMOVE_PLAYER, new EntityPlayer[]{this.entityPlayer}));
         }, 40L);
     }
 

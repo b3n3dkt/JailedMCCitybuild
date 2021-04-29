@@ -17,14 +17,14 @@ public class Inventorys {
     public static void openRandMenü(Player player){
         Inventory inv = Bukkit.createInventory(null, 3*9, "§6Randmenü");
 
-        ItemStack glas = new ItemStack(Material.STAINED_GLASS_PANE, 1);
+        ItemStack glas = new ItemStack(Material.WHITE_STAINED_GLASS_PANE, 1);
         ItemMeta glasmeta = glas.getItemMeta();
         glasmeta.setDisplayName("§e§l");
         glas.setItemMeta(glasmeta);
 
-        ItemStack stufen = (new ItemBuilder(Material.STEP).setAmount(1).setDisplayName("§aStufen")).build();
+        ItemStack stufen = (new ItemBuilder(Material.STONE_SLAB).setAmount(1).setDisplayName("§aStufen")).build();
         ItemStack besonderes = (new ItemBuilder(Material.BEACON).setAmount(1).setDisplayName("§cBesondere")).build();
-        ItemStack teppiche = (new ItemBuilder(Material.CARPET, (short) 5).setAmount(1).setDisplayName("§aTeppiche")).build();
+        ItemStack teppiche = (new ItemBuilder(Material.GREEN_CARPET, (short) 5).setAmount(1).setDisplayName("§aTeppiche")).build();
         ItemStack barrier = (new ItemBuilder(Material.BARRIER).setAmount(1).setDisplayName("§cKeinen Rand")).build();
 
         player.openInventory(inv);
@@ -43,21 +43,21 @@ public class Inventorys {
     public static void openStufenMenü(Player player){
         Inventory inv = Bukkit.createInventory(null, 54, "§aStufen");
 
-        ItemStack glas = (new ItemBuilder(Material.STAINED_GLASS_PANE, (short) 0).setAmount(1).setDisplayName("§7")).build();
-        ItemStack zurück = (new ItemBuilder(Material.STAINED_GLASS_PANE, (short) 14).setAmount(1).setDisplayName("§cZurück")).build();
-        ItemStack birch = (new ItemBuilder(Material.WOOD_STEP, (short) 2).setAmount(1).setDisplayName("§aBirkenholzstufe")).build();
-        ItemStack acacia = (new ItemBuilder(Material.WOOD_STEP, (short) 4).setAmount(1).setDisplayName("§aAkazienholzstufe")).build();
-        ItemStack jungle = (new ItemBuilder(Material.WOOD_STEP, (short) 3).setAmount(1).setDisplayName("§aTropenholzstufe")).build();
-        ItemStack darkoak = (new ItemBuilder(Material.WOOD_STEP, (short) 5).setAmount(1).setDisplayName("§aSchwarzeichenholzstufe")).build();
-        ItemStack oak = (new ItemBuilder(Material.WOOD_STEP, (short) 0).setAmount(1).setDisplayName("§aEichenholzstufe")).build();
-        ItemStack spruce = (new ItemBuilder(Material.WOOD_STEP, (short) 1).setAmount(1).setDisplayName("§aFichtenholzstufe")).build();
+        ItemStack glas = (new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setAmount(1).setDisplayName("§7")).build();
+        ItemStack zurück = (new ItemBuilder(Material.RED_STAINED_GLASS_PANE).setAmount(1).setDisplayName("§cZurück")).build();
+        ItemStack birch = (new ItemBuilder(Material.BIRCH_STAIRS, (short) 2).setAmount(1).setDisplayName("§aBirkenholzstufe")).build();
+        ItemStack acacia = (new ItemBuilder(Material.ACACIA_STAIRS, (short) 4).setAmount(1).setDisplayName("§aAkazienholzstufe")).build();
+        ItemStack jungle = (new ItemBuilder(Material.JUNGLE_STAIRS, (short) 3).setAmount(1).setDisplayName("§aTropenholzstufe")).build();
+        ItemStack darkoak = (new ItemBuilder(Material.DARK_OAK_STAIRS, (short) 5).setAmount(1).setDisplayName("§aSchwarzeichenholzstufe")).build();
+        ItemStack oak = (new ItemBuilder(Material.OAK_STAIRS, (short) 0).setAmount(1).setDisplayName("§aEichenholzstufe")).build();
+        ItemStack spruce = (new ItemBuilder(Material.SPRUCE_STAIRS, (short) 1).setAmount(1).setDisplayName("§aFichtenholzstufe")).build();
 
-        ItemStack stone = (new ItemBuilder(Material.STEP).setAmount(1).setDisplayName("§aSteinstufe")).build();
-        ItemStack brickstone = (new ItemBuilder(Material.STEP, (short) 5).setAmount(1).setDisplayName("§aZiegelsteinstufe")).build();
-        ItemStack sand = (new ItemBuilder(Material.STEP, (short) 1).setAmount(1).setDisplayName("§aSandsteinstufe")).build();
-        ItemStack quartz = (new ItemBuilder(Material.STEP, (short) 7).setAmount(1).setDisplayName("§aQuartzstufe")).build();
-        ItemStack brick = (new ItemBuilder(Material.STEP, (short) 4).setAmount(1).setDisplayName("§aZiegelstufe")).build();
-        ItemStack nether = (new ItemBuilder(Material.STEP, (short) 6).setAmount(1).setDisplayName("§aNetherziegelstufe")).build();
+        ItemStack stone = (new ItemBuilder(Material.STONE_SLAB).setAmount(1).setDisplayName("§aSteinstufe")).build();
+        ItemStack brickstone = (new ItemBuilder(Material.BRICK_SLAB, (short) 5).setAmount(1).setDisplayName("§aZiegelsteinstufe")).build();
+        ItemStack sand = (new ItemBuilder(Material.SANDSTONE_SLAB, (short) 1).setAmount(1).setDisplayName("§aSandsteinstufe")).build();
+        ItemStack quartz = (new ItemBuilder(Material.QUARTZ_SLAB, (short) 7).setAmount(1).setDisplayName("§aQuartzstufe")).build();
+        ItemStack brick = (new ItemBuilder(Material.STONE_BRICK_SLAB, (short) 4).setAmount(1).setDisplayName("§aZiegelstufe")).build();
+        ItemStack nether = (new ItemBuilder(Material.NETHER_BRICK_SLAB, (short) 6).setAmount(1).setDisplayName("§aNetherziegelstufe")).build();
 
         player.openInventory(inv);
 
@@ -84,15 +84,15 @@ public class Inventorys {
 
     public static void openBesondere(Player player){
         Inventory inv = Bukkit.createInventory(null, 3*9, "§6Besondere");
-        ItemStack glas = (new ItemBuilder(Material.STAINED_GLASS_PANE, (short) 0).setAmount(1).setDisplayName("§7")).build();
-        ItemStack zurück = (new ItemBuilder(Material.STAINED_GLASS_PANE, (short) 14).setAmount(1).setDisplayName("§cZurück")).build();
+        ItemStack glas = (new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setAmount(1).setDisplayName("§7")).build();
+        ItemStack zurück = (new ItemBuilder(Material.RED_STAINED_GLASS_PANE).setAmount(1).setDisplayName("§cZurück")).build();
 
         ItemStack anvil = (new ItemBuilder(Material.ANVIL).setAmount(1).setDisplayName("§aAmboss")).build();
-        ItemStack rail = (new ItemBuilder(Material.RAILS).setAmount(1).setDisplayName("§aSchienen")).build();
+        ItemStack rail = (new ItemBuilder(Material.RAIL).setAmount(1).setDisplayName("§aSchienen")).build();
         ItemStack beacon = (new ItemBuilder(Material.BEACON).setAmount(1).setDisplayName("§aBeacon")).build();
         ItemStack snow = (new ItemBuilder(Material.SNOW).setAmount(1).setDisplayName("§aSchnee")).build();
-        ItemStack ironfence = (new ItemBuilder(Material.IRON_FENCE).setAmount(1).setDisplayName("§aEisengitter")).build();
-        ItemStack spawner = (new ItemBuilder(Material.MOB_SPAWNER).setAmount(1).setDisplayName("§aSpawner")).build();
+        ItemStack ironfence = (new ItemBuilder(Material.LEGACY_IRON_FENCE).setAmount(1).setDisplayName("§aEisengitter")).build();
+        ItemStack spawner = (new ItemBuilder(Material.SPAWNER).setAmount(1).setDisplayName("§aSpawner")).build();
 
         player.openInventory(inv);
         for(int i = 0;i<3*9;i++){
@@ -111,25 +111,25 @@ public class Inventorys {
 
     public static void openTeppiche(Player player){
         Inventory inv = Bukkit.createInventory(null, 54, "§aTeppiche");
-        ItemStack glas = (new ItemBuilder(Material.STAINED_GLASS_PANE, (short) 0).setAmount(1).setDisplayName("§7")).build();
-        ItemStack zurück = (new ItemBuilder(Material.STAINED_GLASS_PANE, (short) 14).setAmount(1).setDisplayName("§cZurück")).build();
+        ItemStack glas = (new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setAmount(1).setDisplayName("§7")).build();
+        ItemStack zurück = (new ItemBuilder(Material.RED_STAINED_GLASS_PANE).setAmount(1).setDisplayName("§cZurück")).build();
 
-        ItemStack white = (new ItemBuilder(Material.CARPET, (short) 0).setAmount(1).setDisplayName("§aWeißer Teppich")).build();
-        ItemStack orange = (new ItemBuilder(Material.CARPET, (short) 1).setAmount(1).setDisplayName("§aOranger Teppich")).build();
-        ItemStack magenta = (new ItemBuilder(Material.CARPET, (short) 2).setAmount(1).setDisplayName("§aMagenta Teppich")).build();
-        ItemStack light_blue = (new ItemBuilder(Material.CARPET, (short) 3).setAmount(1).setDisplayName("§aHellblauer Teppich")).build();
-        ItemStack yellow = (new ItemBuilder(Material.CARPET, (short) 4).setAmount(1).setDisplayName("§aGelber Teppich")).build();
-        ItemStack lime = (new ItemBuilder(Material.CARPET, (short) 5).setAmount(1).setDisplayName("§aHellgrüner Teppich")).build();
-        ItemStack pink = (new ItemBuilder(Material.CARPET, (short) 6).setAmount(1).setDisplayName("§aPinker Teppich")).build();
-        ItemStack gray = (new ItemBuilder(Material.CARPET, (short) 7).setAmount(1).setDisplayName("§aGrauer Teppich")).build();
-        ItemStack light_gray = (new ItemBuilder(Material.CARPET, (short) 8).setAmount(1).setDisplayName("§aHellgrauer Teppich")).build();
-        ItemStack cyan = (new ItemBuilder(Material.CARPET, (short) 9).setAmount(1).setDisplayName("§aCyan Teppich")).build();
-        ItemStack purple = (new ItemBuilder(Material.CARPET, (short) 10).setAmount(1).setDisplayName("§aLila Teppich")).build();
-        ItemStack blue = (new ItemBuilder(Material.CARPET, (short) 11).setAmount(1).setDisplayName("§aBlauer Teppich")).build();
-        ItemStack brown = (new ItemBuilder(Material.CARPET, (short) 12).setAmount(1).setDisplayName("§aBrauner Teppich")).build();
-        ItemStack green = (new ItemBuilder(Material.CARPET, (short) 13).setAmount(1).setDisplayName("§aGrüner Teppich")).build();
-        ItemStack red = (new ItemBuilder(Material.CARPET, (short) 14).setAmount(1).setDisplayName("§aRoter Teppich")).build();
-        ItemStack black = (new ItemBuilder(Material.CARPET, (short) 15).setAmount(1).setDisplayName("§aSchwarzer Teppich")).build();
+        ItemStack white = (new ItemBuilder(Material.WHITE_CARPET).setAmount(1).setDisplayName("§aWeißer Teppich")).build();
+        ItemStack orange = (new ItemBuilder(Material.ORANGE_CARPET).setAmount(1).setDisplayName("§aOranger Teppich")).build();
+        ItemStack magenta = (new ItemBuilder(Material.MAGENTA_CARPET).setAmount(1).setDisplayName("§aMagenta Teppich")).build();
+        ItemStack light_blue = (new ItemBuilder(Material.LIGHT_BLUE_CARPET).setAmount(1).setDisplayName("§aHellblauer Teppich")).build();
+        ItemStack yellow = (new ItemBuilder(Material.YELLOW_CARPET).setAmount(1).setDisplayName("§aGelber Teppich")).build();
+        ItemStack lime = (new ItemBuilder(Material.LIME_CARPET).setAmount(1).setDisplayName("§aHellgrüner Teppich")).build();
+        ItemStack pink = (new ItemBuilder(Material.PINK_CARPET).setAmount(1).setDisplayName("§aPinker Teppich")).build();
+        ItemStack gray = (new ItemBuilder(Material.GRAY_CARPET).setAmount(1).setDisplayName("§aGrauer Teppich")).build();
+        ItemStack light_gray = (new ItemBuilder(Material.LIGHT_GRAY_CARPET).setAmount(1).setDisplayName("§aHellgrauer Teppich")).build();
+        ItemStack cyan = (new ItemBuilder(Material.CYAN_CARPET).setAmount(1).setDisplayName("§aCyan Teppich")).build();
+        ItemStack purple = (new ItemBuilder(Material.PURPLE_CARPET).setAmount(1).setDisplayName("§aLila Teppich")).build();
+        ItemStack blue = (new ItemBuilder(Material.BLUE_CARPET).setAmount(1).setDisplayName("§aBlauer Teppich")).build();
+        ItemStack brown = (new ItemBuilder(Material.BROWN_CARPET).setAmount(1).setDisplayName("§aBrauner Teppich")).build();
+        ItemStack green = (new ItemBuilder(Material.GREEN_CARPET).setAmount(1).setDisplayName("§aGrüner Teppich")).build();
+        ItemStack red = (new ItemBuilder(Material.RED_CARPET).setAmount(1).setDisplayName("§aRoter Teppich")).build();
+        ItemStack black = (new ItemBuilder(Material.BLACK_CARPET).setAmount(1).setDisplayName("§aSchwarzer Teppich")).build();
 
         player.openInventory(inv);
 

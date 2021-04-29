@@ -40,52 +40,52 @@ public class InventoryClick_Auktionshaus implements Listener {
             return;
         }
         Player player = (Player) event.getWhoClicked();
-        ItemStack glas = new ItemStack(Material.STAINED_GLASS_PANE, 1);
+        ItemStack glas = new ItemStack(Material.WHITE_STAINED_GLASS_PANE, 1);
         ItemMeta glasmeta = glas.getItemMeta();
         glasmeta.setDisplayName("§6");
         glas.setItemMeta(glasmeta);
 
-        ItemStack p1c = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 5);
+        ItemStack p1c = new ItemStack(Material.GREEN_STAINED_GLASS_PANE, 1);
         ItemMeta p1cmeta = p1c.getItemMeta();
         p1cmeta.setDisplayName("§aPlus 0.01 Coins");
         p1c.setItemMeta(p1cmeta);
 
-        ItemStack p1d = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 5);
+        ItemStack p1d = new ItemStack(Material.GREEN_STAINED_GLASS_PANE, 1);
         ItemMeta p1dmeta = p1d.getItemMeta();
         p1dmeta.setDisplayName("§aPlus 1 Coins");
         p1d.setItemMeta(p1dmeta);
 
-        ItemStack p10d = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 5);
+        ItemStack p10d = new ItemStack(Material.GREEN_STAINED_GLASS_PANE, 1);
         ItemMeta p10dmeta = p10d.getItemMeta();
         p10dmeta.setDisplayName("§aPlus 10 Coins");
         p10d.setItemMeta(p10dmeta);
 
-        ItemStack p100d = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 5);
+        ItemStack p100d = new ItemStack(Material.GREEN_STAINED_GLASS_PANE, 1);
         ItemMeta p100dmeta = p100d.getItemMeta();
         p100dmeta.setDisplayName("§aPlus 100 Coins");
         p100d.setItemMeta(p100dmeta);
 
-        ItemStack m1c = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 14);
+        ItemStack m1c = new ItemStack(Material.RED_STAINED_GLASS_PANE, 1);
         ItemMeta m1cmeta = m1c.getItemMeta();
         m1cmeta.setDisplayName("§cMinus 0.01 Coins");
         m1c.setItemMeta(m1cmeta);
 
-        ItemStack m1d = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 14);
+        ItemStack m1d = new ItemStack(Material.RED_STAINED_GLASS_PANE, 1);
         ItemMeta m1dmeta = m1d.getItemMeta();
         m1dmeta.setDisplayName("§cMinus 1 Coins");
         m1d.setItemMeta(m1dmeta);
 
-        ItemStack m10d = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 14);
+        ItemStack m10d = new ItemStack(Material.RED_STAINED_GLASS_PANE, 1);
         ItemMeta m10dmeta = m10d.getItemMeta();
         m10dmeta.setDisplayName("§cMinus 10 Coins");
         m10d.setItemMeta(m10dmeta);
 
-        ItemStack m100d = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 14);
+        ItemStack m100d = new ItemStack(Material.RED_STAINED_GLASS_PANE, 1);
         ItemMeta m100dmeta = m100d.getItemMeta();
         m100dmeta.setDisplayName("§cMinus 100 Coins");
         m100d.setItemMeta(m100dmeta);
 
-        ItemStack sign = new ItemStack(Material.SIGN, 1);
+        ItemStack sign = new ItemStack(Material.OAK_SIGN, 1);
         ItemMeta signmeta = sign.getItemMeta();
         signmeta.setDisplayName("§7Verkaufe für: §a" + currentValue); //§7Verkaufe für: §a
         ArrayList<String> lore = new ArrayList<String>();
@@ -95,7 +95,7 @@ public class InventoryClick_Auktionshaus implements Listener {
         signmeta.setLore(lore);
         sign.setItemMeta(signmeta);
 
-        if (event.getInventory().getTitle().equals("§6Auktionshaus")) { //Auktionhaus
+        if (event.getView().getTitle().equals("§6Auktionshaus")) { //Auktionhaus
             event.setCancelled(true);
             if (event.getCurrentItem().getItemMeta().hasDisplayName()) {
                 if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§eDeine Items")) {
@@ -112,7 +112,7 @@ public class InventoryClick_Auktionshaus implements Listener {
                     tlore.setDisplayName("§eSofort verkauf"); //§eSofort verkauf
                     torch.setItemMeta(tlore);
 
-                    ItemStack rtorch = new ItemStack(Material.REDSTONE_TORCH_ON, 1);
+                    ItemStack rtorch = new ItemStack(Material.REDSTONE_TORCH, 1);
                     ItemMeta rtlore = rtorch.getItemMeta();
                     rtlore.setDisplayName("§cAuktions verkauf"); //§cAuktions verkauf
                     rtlore.setLore(Arrays.asList("§cSoon!"));
@@ -136,7 +136,7 @@ public class InventoryClick_Auktionshaus implements Listener {
                             inv.setItem(i, new ItemStack(Material.AIR));
                         }
 
-                        ItemStack greenglas = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 5);
+                        ItemStack greenglas = new ItemStack(Material.GREEN_STAINED_GLASS_PANE, 1);
                         ItemMeta greenglasmeta = greenglas.getItemMeta();
                         greenglasmeta.setDisplayName("§aNächste Seite");
                         ArrayList<String> greenlore = new ArrayList<String>();
@@ -146,7 +146,7 @@ public class InventoryClick_Auktionshaus implements Listener {
                         greenglasmeta.setLore(greenlore);
                         greenglas.setItemMeta(greenglasmeta);
 
-                        ItemStack redglas = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 14);
+                        ItemStack redglas = new ItemStack(Material.RED_STAINED_GLASS_PANE, 1);
                         ItemMeta redglasmeta = redglas.getItemMeta();
                         redglasmeta.setDisplayName("§cLetzte Seite");
                         ArrayList<String> redlore = new ArrayList<String>();
@@ -194,7 +194,7 @@ public class InventoryClick_Auktionshaus implements Listener {
                     for (int i = 0; i < 45; i++) {
                         inv.setItem(i, new ItemStack(Material.AIR));
                     }
-                    ItemStack greenglas = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 5);
+                    ItemStack greenglas = new ItemStack(Material.GREEN_STAINED_GLASS_PANE, 1);
                     ItemMeta greenglasmeta = greenglas.getItemMeta();
                     greenglasmeta.setDisplayName("§aNächste Seite");
                     ArrayList<String> greenlore = new ArrayList<String>();
@@ -204,7 +204,7 @@ public class InventoryClick_Auktionshaus implements Listener {
                     greenglasmeta.setLore(greenlore);
                     greenglas.setItemMeta(greenglasmeta);
 
-                    ItemStack redglas = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 14);
+                    ItemStack redglas = new ItemStack(Material.RED_STAINED_GLASS_PANE, 1);
                     ItemMeta redglasmeta = redglas.getItemMeta();
                     redglasmeta.setDisplayName("§cLetzte Seite");
                     ArrayList<String> redlore = new ArrayList<String>();
@@ -262,17 +262,17 @@ public class InventoryClick_Auktionshaus implements Listener {
 
                     if (item.getInstantSell(index) == true) {
                         Inventory inv = Bukkit.createInventory(null, 3 * 9, "§6Bist du sicher?"); //§6Bist du sicher?
-                        ItemStack greenglas = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 5);
+                        ItemStack greenglas = new ItemStack(Material.GREEN_STAINED_GLASS_PANE, 1);
                         ItemMeta greenglasmeta = greenglas.getItemMeta();
                         greenglasmeta.setDisplayName("§aItem kaufen"); //§aItem kaufen
                         greenglas.setItemMeta(greenglasmeta);
 
-                        ItemStack redglas = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 14);
+                        ItemStack redglas = new ItemStack(Material.RED_STAINED_GLASS_PANE, 1);
                         ItemMeta redglasmeta = redglas.getItemMeta();
                         redglasmeta.setDisplayName("§cAbbruch"); //§cAbbruch
                         redglas.setItemMeta(redglasmeta);
 
-                        ItemStack buysign = new ItemStack(Material.SIGN, 1);
+                        ItemStack buysign = new ItemStack(Material.OAK_SIGN, 1);
                         ItemMeta buysignmeta = buysign.getItemMeta();
                         buysignmeta.setDisplayName("§7Verkaufsangebot");//§7Verkaufsangebot
                         ArrayList<String> buylore = new ArrayList<String>();
@@ -298,7 +298,7 @@ public class InventoryClick_Auktionshaus implements Listener {
                     } else if (item.getInstantSell(index) == false) {
                         Inventory inv = Bukkit.createInventory(null, 5 * 9, "§6Dein Angebot:"); //§6Dein Angebot:
 
-                        ItemStack isign = new ItemStack(Material.SIGN, 1);
+                        ItemStack isign = new ItemStack(Material.OAK_SIGN, 1);
                         ItemMeta isignmeta = isign.getItemMeta();
                         isignmeta.setDisplayName("§7Du bietest: §a" + currentValue); //§7Du bietest: §a
                         ArrayList<String> ilore = new ArrayList<String>();
@@ -339,7 +339,7 @@ public class InventoryClick_Auktionshaus implements Listener {
                     }
                 }
             }
-        } else if (event.getInventory().getTitle().equals("§6Bist du sicher?")) { //Are you sure
+        } else if (event.getView().getTitle().equals("§6Bist du sicher?")) { //Are you sure
             event.setCancelled(true);
 
             if (event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§aItem kaufen")) { //Item Kaufen
@@ -390,8 +390,8 @@ public class InventoryClick_Auktionshaus implements Listener {
                 canCloseInv = true;
                 CMD_Auktionshaus.openAuktionshaus(player);
             }
-        } else if (event.getInventory().getTitle().equalsIgnoreCase("§bWähle ein Item!") ||
-                event.getInventory().getTitle().equalsIgnoreCase("§6Dein Angebot:")) { //Choose Item or Your offer
+        } else if (event.getView().getTitle().equalsIgnoreCase("§bWähle ein Item!") ||
+                event.getView().getTitle().equalsIgnoreCase("§6Dein Angebot:")) { //Choose Item or Your offer
             if (!event.getCurrentItem().hasItemMeta()) {
                 return;
             }
@@ -500,17 +500,17 @@ public class InventoryClick_Auktionshaus implements Listener {
 
                     Inventory sellmenu = Bukkit.createInventory(null, 3 * 9, "§eSofort Verkaufsangebot"); //§eSofort Verkaufsangebot
 
-                    ItemStack greenglas = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 5);
+                    ItemStack greenglas = new ItemStack(Material.GREEN_STAINED_GLASS_PANE, 1);
                     ItemMeta greenglasmeta = greenglas.getItemMeta();
                     greenglasmeta.setDisplayName("§eSofort verkauf"); //§eSofort verkauf
                     greenglas.setItemMeta(greenglasmeta);
 
-                    ItemStack redglas = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 14);
+                    ItemStack redglas = new ItemStack(Material.RED_STAINED_GLASS_PANE, 1);
                     ItemMeta redglasmeta = redglas.getItemMeta();
                     redglasmeta.setDisplayName("§cAbbruch");
                     redglas.setItemMeta(redglasmeta);
 
-                    ItemStack sellsign = new ItemStack(Material.SIGN, 1);
+                    ItemStack sellsign = new ItemStack(Material.OAK_SIGN, 1);
                     ItemMeta sellsignmeta = sellsign.getItemMeta();
                     sellsignmeta.setDisplayName("§7Sofort Verkaufsangebot"); //§7Sofort Verkaufsangebot
                     ArrayList<String> selllore = new ArrayList<String>();
@@ -535,7 +535,7 @@ public class InventoryClick_Auktionshaus implements Listener {
                     player.closeInventory();
                     player.openInventory(sellmenu);
             }
-        } else if (event.getInventory().getTitle().equals("§eSofort Verkaufsangebot")) { //Instant selloffer
+        } else if (event.getView().getTitle().equals("§eSofort Verkaufsangebot")) { //Instant selloffer
             event.setCancelled(true);
             if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§eSofort verkauf")) { //Instant verkaufen
                 isInSellMenu = false;
@@ -569,10 +569,10 @@ public class InventoryClick_Auktionshaus implements Listener {
                 player.closeInventory();
                 canCloseInv = true;
             }
-        } else if (event.getInventory().getTitle().equals("§6Sofort-/Auktionsverkauf")) { //Instant sell or Auction sell
+        } else if (event.getView().getTitle().equals("§6Sofort-/Auktionsverkauf")) { //Instant sell or Auction sell
             event.setCancelled(true);
             if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§eSofort verkauf")) { //Instant verkaufen
-                ItemStack isign = new ItemStack(Material.SIGN, 1);
+                ItemStack isign = new ItemStack(Material.OAK_SIGN, 1);
                 ItemMeta isignmeta = isign.getItemMeta();
                 isignmeta.setDisplayName("§7Verkaufe für: §a" + currentValue);
                 ArrayList<String> ilore = new ArrayList<String>();
@@ -604,7 +604,7 @@ public class InventoryClick_Auktionshaus implements Listener {
         }
     }
     public void updateSign (Player p){
-        ItemStack sign = new ItemStack(Material.SIGN, 1);
+        ItemStack sign = new ItemStack(Material.OAK_SIGN, 1);
         ItemMeta signmeta = sign.getItemMeta();
         ArrayList<String> lore = new ArrayList<String>();
         lore.add("§7");

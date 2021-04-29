@@ -5,9 +5,10 @@ import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.handler.codec.DecoderException;
 import io.netty.handler.codec.EncoderException;
-import net.minecraft.server.v1_8_R3.PacketDataSerializer;
-import net.minecraft.server.v1_8_R3.PacketPlayOutCustomPayload;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
+import net.minecraft.server.v1_16_R3.MinecraftKey;
+import net.minecraft.server.v1_16_R3.PacketDataSerializer;
+import net.minecraft.server.v1_16_R3.PacketPlayOutCustomPayload;
+import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 import java.nio.charset.Charset;
@@ -16,7 +17,7 @@ public class LabyModProtocol {
     public static void sendLMCMessage(Player player, String key, JsonObject messageContent) {
         byte[] bytes = getBytesToSend(key, messageContent.toString());
         PacketDataSerializer pds = new PacketDataSerializer(Unpooled.wrappedBuffer(bytes));
-        PacketPlayOutCustomPayload payloadPacket = new PacketPlayOutCustomPayload("LMC", pds);
+        PacketPlayOutCustomPayload payloadPacket = new PacketPlayOutCustomPayload(MinecraftKey.a("LMC"), pds);
         ((CraftPlayer)player).getHandle().playerConnection.sendPacket(payloadPacket);
     }
 

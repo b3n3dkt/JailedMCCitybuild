@@ -2,7 +2,7 @@ name: JailedMC_Citybuild
 author: b3n3dkt
 version: 1.0.0
 main: me.b3n3dkt.Citybuild
-api-version: 1.8
+api-version: 1.16
 depend: [ProtocolLib]
 
 commands:
@@ -32,7 +32,6 @@ commands:
    setspawn:
    spawn:
    vanish:
-   enchant:
    enderchest:
       aliases: [ec]
    event:

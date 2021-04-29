@@ -14,7 +14,7 @@ public class InventoryCloseListener implements Listener{
 	public void onHandle(InventoryCloseEvent e) {
 		try {
 		
-		if(e.getInventory().getTitle().equalsIgnoreCase("§bWähle ein Item!")) {
+		if(e.getView().getTitle().equalsIgnoreCase("§bWähle ein Item!")) {
 			InventoryClick_Auktionshaus.currentValue = 0;
 
 			Bukkit.getScheduler().runTaskLater(Citybuild.getMain(), new Runnable() {
@@ -30,7 +30,7 @@ public class InventoryCloseListener implements Listener{
 		              }
 				}
 			}, 1);
-		}else if(e.getInventory().getTitle().equalsIgnoreCase("§eSofort Verkaufsangebot")) {
+		}else if(e.getView().getTitle().equalsIgnoreCase("§eSofort Verkaufsangebot")) {
 			Bukkit.getScheduler().runTaskLater(Citybuild.getMain(), new Runnable() {
 				
 				@Override
@@ -41,7 +41,7 @@ public class InventoryCloseListener implements Listener{
 					
 				}
 			}, 1);
-		}else if(e.getInventory().getTitle().equalsIgnoreCase("§6Bist du sicher?")) {
+		}else if(e.getView().getTitle().equalsIgnoreCase("§6Bist du sicher?")) {
 			Bukkit.getScheduler().runTaskLater(Citybuild.getMain(), new Runnable() {
 				
 				@Override
@@ -52,13 +52,13 @@ public class InventoryCloseListener implements Listener{
 					
 				}
 			}, 1);
-		}else if(e.getInventory().getTitle().equalsIgnoreCase("§6Auktionshaus")) {
+		}else if(e.getView().getTitle().equalsIgnoreCase("§6Auktionshaus")) {
 			CMD_Auktionshaus.inAh.remove(e.getPlayer());
-		}else if(e.getInventory().getTitle().equalsIgnoreCase("§eDeine Items")) {
+		}else if(e.getView().getTitle().equalsIgnoreCase("§eDeine Items")) {
 
-		}else if(e.getInventory().getTitle().equalsIgnoreCase("§6Item Einstellungen")) {
+		}else if(e.getView().getTitle().equalsIgnoreCase("§6Item Einstellungen")) {
 			
-		}else if(e.getInventory().getTitle().equalsIgnoreCase("§6Bestätigen")) {
+		}else if(e.getView().getTitle().equalsIgnoreCase("§6Bestätigen")) {
 			Bukkit.getScheduler().runTaskLater(Citybuild.getMain(), new Runnable() {
 				
 				@Override
@@ -69,7 +69,7 @@ public class InventoryCloseListener implements Listener{
 					
 				}
 			}, 1);
-		}else if(e.getInventory().getTitle().equalsIgnoreCase("§6Preis ändern")) {
+		}else if(e.getView().getTitle().equalsIgnoreCase("§6Preis ändern")) {
 			Bukkit.getScheduler().runTaskLater(Citybuild.getMain(), new Runnable() {
 				
 				@Override

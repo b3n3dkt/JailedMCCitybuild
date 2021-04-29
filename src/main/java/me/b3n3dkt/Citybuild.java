@@ -105,7 +105,6 @@ public class Citybuild extends JavaPlugin{
         getCommand("tpa").setExecutor(new TPA());
         getCommand("rand").setExecutor(new Rand());
         getCommand("sign").setExecutor(new Sign());
-        getCommand("enchant").setExecutor(new Enchant());
         getCommand("enderchest").setExecutor(new Enderchest());
         getCommand("crash").setExecutor(new CMD_Crash());
         getCommand("merge").setExecutor(new Merge());
@@ -115,7 +114,6 @@ public class Citybuild extends JavaPlugin{
         Bukkit.getPluginManager().registerEvents(new ChatEvent(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerRespawn(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerDeath(), this);
-        Bukkit.getPluginManager().registerEvents(new Achievements(), this);
         Bukkit.getPluginManager().registerEvents(new UnknownCommand(), this);
         Bukkit.getPluginManager().registerEvents(new WeatherChange(), this);
         Bukkit.getPluginManager().registerEvents(new LogIn(), this);

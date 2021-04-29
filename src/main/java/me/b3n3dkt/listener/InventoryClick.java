@@ -42,7 +42,7 @@ public class InventoryClick implements Listener{
     }
     @EventHandler
     public void onLeave(InventoryCloseEvent e) {
-        if(e.getInventory().getTitle().equalsIgnoreCase("§5EnderChest")){
+        if(e.getView().getTitle().equalsIgnoreCase("§5EnderChest")){
             EnderChest ec = new EnderChest((Player) e.getPlayer());
             ec.saveEnderChest((Player) e.getPlayer());
         }

@@ -27,7 +27,7 @@ public class InventoryClick_Job implements Listener {
         Player player = (Player) event.getWhoClicked();
         PlayerData data = new PlayerData(player);
         Score sb = new Score(player);
-        if (event.getInventory().getTitle().equalsIgnoreCase("§3Job-Auswählen")) {
+        if (event.getView().getTitle().equalsIgnoreCase("§3Job-Auswählen")) {
             event.setCancelled(true);
             if (event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7Holzfäller")) {
                 Quest quest = new Quest("holzfäller", player);
@@ -67,7 +67,7 @@ public class InventoryClick_Job implements Listener {
             /*
             JOB INFO GUI
              */
-        } else if (event.getInventory().getTitle().equalsIgnoreCase("§3Holzfäller")) { //HOLZFÄLLER
+        } else if (event.getView().getTitle().equalsIgnoreCase("§3Holzfäller")) { //HOLZFÄLLER
             event.setCancelled(true);
             if (event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7Kündige deinen Job")) {
                 data.setJob("arbeitslos");
@@ -81,7 +81,7 @@ public class InventoryClick_Job implements Listener {
                 Shop_CMD.openShopInventory(player);
             }
             sb.update();
-        } else if (event.getInventory().getTitle().equalsIgnoreCase("§3Fischer")) { //FISCHER
+        } else if (event.getView().getTitle().equalsIgnoreCase("§3Fischer")) { //FISCHER
             event.setCancelled(true);
             if (event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7Kündige deinen Job")) {
                 data.setJob("arbeitslos");
@@ -92,7 +92,7 @@ public class InventoryClick_Job implements Listener {
                 Shop_CMD.openShopInventory(player);
             }
             sb.update();
-        } else if (event.getInventory().getTitle().equalsIgnoreCase("§3Miner")) { //MINER
+        } else if (event.getView().getTitle().equalsIgnoreCase("§3Miner")) { //MINER
             event.setCancelled(true);
             if (event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7Kündige deinen Job")) {
                 data.setJob("arbeitslos");
@@ -103,7 +103,7 @@ public class InventoryClick_Job implements Listener {
                 Shop_CMD.openShopInventory(player);
             }
             sb.update();
-        } else if (event.getInventory().getTitle().equalsIgnoreCase("§3Farmer")) { //FARMER
+        } else if (event.getView().getTitle().equalsIgnoreCase("§3Farmer")) { //FARMER
             event.setCancelled(true);
             if (event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7Kündige deinen Job")) {
                 data.setJob("arbeitslos");

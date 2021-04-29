@@ -40,10 +40,10 @@ public class Job implements CommandExecutor {
                     ItemStack fischer = (new ItemBuilder(Material.FISHING_ROD).setAmount(1).setDisplayName("§7Fischer")).build();
                     ItemStack miner = (new ItemBuilder(Material.IRON_PICKAXE).setAmount(1).setDisplayName("§7Miner")).build();
                     ItemStack farmer = (new ItemBuilder(Material.IRON_HOE).setAmount(1).setDisplayName("§7Farmer")).build();
-                    ItemStack forscher = (new ItemBuilder(Material.EMPTY_MAP).setAmount(1).setDisplayName("§7Forscher").setLore(Arrays.asList("§cSoon"))).build();
+                    ItemStack forscher = (new ItemBuilder(Material.MAP).setAmount(1).setDisplayName("§7Forscher").setLore(Arrays.asList("§cSoon"))).build();
                     ItemStack techniker = (new ItemBuilder(Material.REDSTONE).setAmount(1).setDisplayName("§7Techniker").setLore(Arrays.asList("§cSoon"))).build();
                     ItemStack schmied = (new ItemBuilder(Material.ANVIL).setAmount(1).setDisplayName("§7Schmied").setLore(Arrays.asList("§cSoon"))).build();
-                    ItemStack glas = (new ItemBuilder(Material.STAINED_GLASS_PANE).setAmount(1).setDisplayName("§7")).build();
+                    ItemStack glas = (new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setAmount(1).setDisplayName("§7")).build();
                     player.openInventory(inv);
                     for (int i = 0; i < 3 * 9; i++) {
                         inv.setItem(i, glas);
@@ -132,10 +132,10 @@ public class Job implements CommandExecutor {
                         statslore.add("§3" + allcrops + " §7Item(s) hast du insgesammt geerntet!");
                     }
                     ItemStack challanges = (new ItemBuilder(Material.BOOK).setAmount(1).setDisplayName("§7Challanges").setLore(Arrays.asList(questlore, "§5",quest.getReplacedMSG(data.getQuestID(data.getJob()), data.getNeededBlocks(data.getJob()), data.getQuestDN(data.getJob())), "§7Abgebaut: §a"+data.getAbgebauteBlöcke(data.getJob()) + "§7/§c" + data.getNeededBlocks(data.getJob()), "§7Du bekommst §a" + data.getQuestXP(data.getJob()) + "XP§7!", "§7Du bekommst §a" + quest.getMoneyPrice(data.getQuestID(data.getJob())))).build());
-                    ItemStack stats = (new ItemBuilder(Material.EMPTY_MAP).setAmount(1).setDisplayName("§7Abgebaute Blöcke").setLore(statslore)).build();
-                    ItemStack xp = (new ItemBuilder(Material.EMPTY_MAP).setAmount(1).setDisplayName("§7Dein XP Fortschritt").setLore(Arrays.asList(xplore, "§e", "§7Dein Aktuelles Level: §3" + data.getLevel(data.getJob()), "§7Deine Aktuelle XP: §a" + data.getXP(data.getJob()) + "§7/§c" + data.getXPToNextLevel(data.getJob())))).build();
+                    ItemStack stats = (new ItemBuilder(Material.MAP).setAmount(1).setDisplayName("§7Abgebaute Blöcke").setLore(statslore)).build();
+                    ItemStack xp = (new ItemBuilder(Material.MAP).setAmount(1).setDisplayName("§7Dein XP Fortschritt").setLore(Arrays.asList(xplore, "§e", "§7Dein Aktuelles Level: §3" + data.getLevel(data.getJob()), "§7Deine Aktuelle XP: §a" + data.getXP(data.getJob()) + "§7/§c" + data.getXPToNextLevel(data.getJob())))).build();
                     ItemStack arbeitslos = (new ItemBuilder(Material.BARRIER).setAmount(1).setDisplayName("§7Kündige deinen Job").setLore(Arrays.asList("§7* Klicke zum Kündigen *"))).build();
-                    ItemStack glas = (new ItemBuilder(Material.STAINED_GLASS_PANE).setAmount(1).setDisplayName("§7")).build();
+                    ItemStack glas = (new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setAmount(1).setDisplayName("§7")).build();
                     player.openInventory(inv);
                     for (int i = 0; i < 3 * 9; i++) {
                         inv.setItem(i, glas);
