@@ -44,10 +44,9 @@ public class InventoryClick_YourItems implements Listener {
                 event.setCancelled(true);
             }
             if(event.getCurrentItem().getItemMeta().hasLore() != true){return;}
-            System.out.println("TEST");
             if (event.getCurrentItem().getItemMeta().hasDisplayName()) {
                 if(event.getCurrentItem().getItemMeta().getDisplayName().equals("§aNächste Seite")) {
-                    PlayerData data = new PlayerData(player);
+                    PlayerData data = new PlayerData(player, player.getUniqueId());
                     String tempLore = event.getCurrentItem().getItemMeta().getLore().get(1);
                     String temp = tempLore.replace("§7Momentane Seite: ", "");
                     Integer currentPage = Integer.parseInt(temp);
@@ -58,7 +57,7 @@ public class InventoryClick_YourItems implements Listener {
                             invYItem.setItem(i, new ItemStack(Material.AIR));
                         }
 
-                        ItemStack greenglas = new ItemStack(Material.WHITE_STAINED_GLASS_PANE, 1);
+                        ItemStack greenglas = new ItemStack(Material.GREEN_STAINED_GLASS_PANE, 1);
                         ItemMeta greenglasmeta = greenglas.getItemMeta();
                         greenglasmeta.setDisplayName("§aNächste Seite");
                         ArrayList<String> greenlore = new ArrayList<String>();
@@ -68,7 +67,7 @@ public class InventoryClick_YourItems implements Listener {
                         greenglasmeta.setLore(greenlore);
                         greenglas.setItemMeta(greenglasmeta);
 
-                        ItemStack redglas= new ItemStack(Material.WHITE_STAINED_GLASS_PANE, 1);
+                        ItemStack redglas= new ItemStack(Material.RED_STAINED_GLASS_PANE, 1);
                         ItemMeta redglasmeta = redglas.getItemMeta();
                         redglasmeta.setDisplayName("§cLetzte Seite");
                         ArrayList<String> redlore = new ArrayList<String>();
@@ -107,7 +106,7 @@ public class InventoryClick_YourItems implements Listener {
                     }
 
                 }else if(event.getCurrentItem().getItemMeta().getDisplayName().contains("§cLetzte Seite")) {
-                    PlayerData data = new PlayerData(player);
+                    PlayerData data = new PlayerData(player, player.getUniqueId());
                     String tempLore = event.getCurrentItem().getItemMeta().getLore().get(1);
                     String temp = tempLore.replace("§7Momentane Seite: ", "");
                     Integer currentPage = Integer.parseInt(temp);
@@ -115,7 +114,7 @@ public class InventoryClick_YourItems implements Listener {
                     for(int i = 0; i<45;i++) {
                         invYItem.setItem(i, new ItemStack(Material.AIR));
                     }
-                    ItemStack greenglas = new ItemStack(Material.WHITE_STAINED_GLASS_PANE, 1);
+                    ItemStack greenglas = new ItemStack(Material.GREEN_STAINED_GLASS_PANE, 1);
                     ItemMeta greenglasmeta = greenglas.getItemMeta();
                     greenglasmeta.setDisplayName("§aNächste Seite");
                     ArrayList<String> greenlore = new ArrayList<String>();
@@ -125,7 +124,7 @@ public class InventoryClick_YourItems implements Listener {
                     greenglasmeta.setLore(greenlore);
                     greenglas.setItemMeta(greenglasmeta);
 
-                    ItemStack redglas= new ItemStack(Material.WHITE_STAINED_GLASS_PANE, 1);
+                    ItemStack redglas= new ItemStack(Material.RED_STAINED_GLASS_PANE, 1);
                     ItemMeta redglasmeta = redglas.getItemMeta();
                     redglasmeta.setDisplayName("§cLetzte Seite");
                     ArrayList<String> redlore = new ArrayList<String>();
@@ -135,7 +134,7 @@ public class InventoryClick_YourItems implements Listener {
                     redglasmeta.setLore(redlore);
                     redglas.setItemMeta(redglasmeta);
 
-                    ItemStack backglas = new ItemStack(Material.WHITE_STAINED_GLASS_PANE, 1);
+                    ItemStack backglas = new ItemStack(Material.RED_STAINED_GLASS_PANE, 1);
                     ItemMeta backglasmeta = backglas.getItemMeta();
                     backglasmeta.setDisplayName("§cZurück"); //§cZurück
                     backglas.setItemMeta(backglasmeta);
@@ -176,14 +175,14 @@ public class InventoryClick_YourItems implements Listener {
                     CMD_Auktionshaus.openAuktionshaus(player);
                 }
             }else if(event.getCurrentItem().getItemMeta().hasLore() == true){
-                PlayerData data = new PlayerData(player);
+                PlayerData data = new PlayerData(player, player.getUniqueId());
                 String tempLore = event.getCurrentItem().getItemMeta().getLore().get(3);
                 String temp = tempLore.replace("§7-ID: §a", "");
                 Integer index = Integer.parseInt(temp);
                 Inventory inv = Bukkit.createInventory(null, 3*9, "§6Item Einstellungen"); //§6Item Einstellungen
                 ItemStack stack = new ItemStack(data.getItem(index));
 
-                ItemStack redglas= new ItemStack(Material.WHITE_STAINED_GLASS_PANE, 1);
+                ItemStack redglas= new ItemStack(Material.RED_STAINED_GLASS_PANE, 1);
                 ItemMeta redglasmeta = redglas.getItemMeta();
                 redglasmeta.setDisplayName("§cAbbruch"); //§cAbbruch
                 redglas.setItemMeta(redglasmeta);
@@ -227,48 +226,48 @@ public class InventoryClick_YourItems implements Listener {
         }else if(event.getView().getTitle().equals("§6Item Einstellungen")){ //Item Settings
             event.setCancelled(true);
             if(event.getCurrentItem().getItemMeta().hasDisplayName() != true){return;}
-            PlayerData data = new PlayerData(player);
+            PlayerData data = new PlayerData(player, player.getUniqueId());
             currentValue = data.getPrice(sindex);
             if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§aPreis ändern")) {
                 Inventory inv = Bukkit.createInventory(null, 5*9, "§6Preis ändern"); //§6Preis ändern
                 ItemStack stack = event.getInventory().getItem(13);
 
-                ItemStack p1c = new ItemStack(Material.WHITE_STAINED_GLASS_PANE, 1);
+                ItemStack p1c = new ItemStack(Material.GREEN_STAINED_GLASS_PANE, 1);
                 ItemMeta p1cmeta = p1c.getItemMeta();
                 p1cmeta.setDisplayName("§aPlus 0.01 Coins");
                 p1c.setItemMeta(p1cmeta);
 
-                ItemStack p1d = new ItemStack(Material.WHITE_STAINED_GLASS_PANE, 1);
+                ItemStack p1d = new ItemStack(Material.GREEN_STAINED_GLASS_PANE, 1);
                 ItemMeta p1dmeta = p1d.getItemMeta();
                 p1dmeta.setDisplayName("§aPlus 1 Coins");
                 p1d.setItemMeta(p1dmeta);
 
-                ItemStack p10d = new ItemStack(Material.WHITE_STAINED_GLASS_PANE, 1);
+                ItemStack p10d = new ItemStack(Material.GREEN_STAINED_GLASS_PANE, 1);
                 ItemMeta p10dmeta = p10d.getItemMeta();
                 p10dmeta.setDisplayName("§aPlus 10 Coins");
                 p10d.setItemMeta(p10dmeta);
 
-                ItemStack p100d = new ItemStack(Material.WHITE_STAINED_GLASS_PANE, 1);
+                ItemStack p100d = new ItemStack(Material.GREEN_STAINED_GLASS_PANE, 1);
                 ItemMeta p100dmeta = p100d.getItemMeta();
                 p100dmeta.setDisplayName("§aPlus 100 Coins");
                 p100d.setItemMeta(p100dmeta);
 
-                ItemStack m1c = new ItemStack(Material.WHITE_STAINED_GLASS_PANE, 1);
+                ItemStack m1c = new ItemStack(Material.RED_STAINED_GLASS_PANE, 1);
                 ItemMeta m1cmeta = m1c.getItemMeta();
                 m1cmeta.setDisplayName("§cMinus 0.01 Coins");
                 m1c.setItemMeta(m1cmeta);
 
-                ItemStack m1d = new ItemStack(Material.WHITE_STAINED_GLASS_PANE, 1);
+                ItemStack m1d = new ItemStack(Material.RED_STAINED_GLASS_PANE, 1);
                 ItemMeta m1dmeta = m1d.getItemMeta();
                 m1dmeta.setDisplayName("§cMinus 1 Coins");
                 m1d.setItemMeta(m1dmeta);
 
-                ItemStack m10d = new ItemStack(Material.WHITE_STAINED_GLASS_PANE, 1);
+                ItemStack m10d = new ItemStack(Material.RED_STAINED_GLASS_PANE, 1);
                 ItemMeta m10dmeta = m10d.getItemMeta();
                 m10dmeta.setDisplayName("§cMinus 10 Coins");
                 m10d.setItemMeta(m10dmeta);
 
-                ItemStack m100d = new ItemStack(Material.WHITE_STAINED_GLASS_PANE, 1);
+                ItemStack m100d = new ItemStack(Material.RED_STAINED_GLASS_PANE, 1);
                 ItemMeta m100dmeta = m100d.getItemMeta();
                 m100dmeta.setDisplayName("§cMinus 100 Coins");
                 m100d.setItemMeta(m100dmeta);
@@ -278,7 +277,7 @@ public class InventoryClick_YourItems implements Listener {
                 signmeta.setDisplayName("§7Aktueller Preis: §a" + data.getPrice(sindex)); //§7Aktueller Preis: §a 
                 sign.setItemMeta(signmeta);
 
-                ItemStack greenglas = new ItemStack(Material.WHITE_STAINED_GLASS_PANE, 1);
+                ItemStack greenglas = new ItemStack(Material.GREEN_STAINED_GLASS_PANE, 1);
                 ItemMeta greenglasmeta = greenglas.getItemMeta();
                 greenglasmeta.setDisplayName("§aBestätige Preisänderung"); //§aBestätige Preisänderung
                 ArrayList<String> buylore = new ArrayList<String>();
@@ -289,7 +288,7 @@ public class InventoryClick_YourItems implements Listener {
                 greenglasmeta.setLore(buylore);
                 greenglas.setItemMeta(greenglasmeta);
 
-                ItemStack redglas= new ItemStack(Material.WHITE_STAINED_GLASS_PANE, 1);
+                ItemStack redglas= new ItemStack(Material.RED_STAINED_GLASS_PANE, 1);
                 ItemMeta redglasmeta = redglas.getItemMeta();
                 redglasmeta.setDisplayName("§cAbbruch");
                 redglas.setItemMeta(redglasmeta);
@@ -318,12 +317,12 @@ public class InventoryClick_YourItems implements Listener {
                 Inventory inv = Bukkit.createInventory(null, 3*9, "§6Bestätigen"); //§6Bestätigen
                 ItemStack stack = event.getInventory().getItem(13);
 
-                ItemStack greenglas = new ItemStack(Material.WHITE_STAINED_GLASS_PANE, 1);
+                ItemStack greenglas = new ItemStack(Material.GREEN_STAINED_GLASS_PANE, 1);
                 ItemMeta greenglasmeta = greenglas.getItemMeta();
                 greenglasmeta.setDisplayName("§aLöschen"); //§aDelete
                 greenglas.setItemMeta(greenglasmeta);
 
-                ItemStack redglas= new ItemStack(Material.WHITE_STAINED_GLASS_PANE, 1);
+                ItemStack redglas= new ItemStack(Material.RED_STAINED_GLASS_PANE, 1);
                 ItemMeta redglasmeta = redglas.getItemMeta();
                 redglasmeta.setDisplayName("§cAbbruch");
                 redglas.setItemMeta(redglasmeta);
@@ -359,7 +358,7 @@ public class InventoryClick_YourItems implements Listener {
         }else if(event.getView().getTitle().equals("§6Bestätigen")){ //Confirm
             Inventory inv = Bukkit.createInventory(null, 9*6, "§6Auktionshaus");
             event.setCancelled(true);
-            PlayerData data = new PlayerData(player);
+            PlayerData data = new PlayerData(player, player.getUniqueId());
             Items item = new Items();
             if(event.getCurrentItem().getItemMeta().getDisplayName().equals("§aLöschen")) {
                 if(player.getInventory().firstEmpty() != -1) {
@@ -385,7 +384,7 @@ public class InventoryClick_YourItems implements Listener {
             }
         }else if(event.getView().getTitle().equals("§6Preis ändern")){ //Change Price
             event.setCancelled(true);
-            PlayerData data = new PlayerData(player);
+            PlayerData data = new PlayerData(player, player.getUniqueId());
             if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§aPlus 0.01 Coins")) {
                 currentValue = currentValue + 0.01;
                 currentValue = round(currentValue, 2);
@@ -487,7 +486,7 @@ public class InventoryClick_YourItems implements Listener {
         ItemMeta glasmeta = glas.getItemMeta();
         glasmeta.setDisplayName("§6");
         glas.setItemMeta(glasmeta);
-        ItemStack greenglas = new ItemStack(Material.WHITE_STAINED_GLASS_PANE, 1);
+        ItemStack greenglas = new ItemStack(Material.GREEN_STAINED_GLASS_PANE, 1);
         ItemMeta greenglasmeta = greenglas.getItemMeta();
         greenglasmeta.setDisplayName("§aNächste Seite");
         ArrayList<String> greenlore = new ArrayList<String>();
@@ -497,7 +496,7 @@ public class InventoryClick_YourItems implements Listener {
         greenglasmeta.setLore(greenlore);
         greenglas.setItemMeta(greenglasmeta);
 
-        ItemStack redglas= new ItemStack(Material.WHITE_STAINED_GLASS_PANE, 1);
+        ItemStack redglas= new ItemStack(Material.RED_STAINED_GLASS_PANE, 1);
         ItemMeta redglasmeta = redglas.getItemMeta();
         redglasmeta.setDisplayName("§cZurück");
         redglasmeta.setLore(Arrays.asList("", "§7* Klicke um zurück zu gehen! *")); //§7* Klicke um zurück zu gehen! *
@@ -514,7 +513,7 @@ public class InventoryClick_YourItems implements Listener {
         invYItem.setItem(53, greenglas);
 
         int slot = 0;
-        PlayerData data = new PlayerData(p);
+        PlayerData data = new PlayerData(p, p.getUniqueId());
         for(int i = 0;i<data.getIndex();i++) {
             if(data.getItem(i) != null) {
                 if(slot > 44) {
@@ -547,7 +546,7 @@ public class InventoryClick_YourItems implements Listener {
         ItemMeta glasmeta = glas.getItemMeta();
         glasmeta.setDisplayName("§6");
         glas.setItemMeta(glasmeta);
-        ItemStack greenglas = new ItemStack(Material.WHITE_STAINED_GLASS_PANE, 1);
+        ItemStack greenglas = new ItemStack(Material.GREEN_STAINED_GLASS_PANE, 1);
         ItemMeta greenglasmeta = greenglas.getItemMeta();
         greenglasmeta.setDisplayName("§aNächste Seite");
         ArrayList<String> greenlore = new ArrayList<String>();
@@ -557,7 +556,7 @@ public class InventoryClick_YourItems implements Listener {
         greenglasmeta.setLore(greenlore);
         greenglas.setItemMeta(greenglasmeta);
 
-        ItemStack redglas= new ItemStack(Material.WHITE_STAINED_GLASS_PANE, 1);
+        ItemStack redglas= new ItemStack(Material.RED_STAINED_GLASS_PANE, 1);
         ItemMeta redglasmeta = redglas.getItemMeta();
         redglasmeta.setDisplayName("§cZurück");
         redglas.setItemMeta(redglasmeta);
@@ -573,7 +572,7 @@ public class InventoryClick_YourItems implements Listener {
         invYOffers.setItem(53, greenglas);
 
         int slot = 0;
-        PlayerData data = new PlayerData(p);
+        PlayerData data = new PlayerData(p, p.getUniqueId());
         for(int i = 0;i<24;i++) {
             if(slot > 44) {
             }else {
@@ -602,7 +601,7 @@ public class InventoryClick_YourItems implements Listener {
         signmeta.setDisplayName("§7Verkaufe für: §a" + currentValue);
         sign.setItemMeta(signmeta);
 
-        ItemStack greenglas = new ItemStack(Material.WHITE_STAINED_GLASS_PANE, 1);
+        ItemStack greenglas = new ItemStack(Material.GREEN_STAINED_GLASS_PANE, 1);
         ItemMeta greenglasmeta = greenglas.getItemMeta();
         greenglasmeta.setDisplayName("§aBestätige Preisänderung");
         ArrayList<String> buylore = new ArrayList<String>();

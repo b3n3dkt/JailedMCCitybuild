@@ -1,6 +1,5 @@
 package me.b3n3dkt.shop;
 
-import com.intellectualcrafters.plot.config.C;
 import me.b3n3dkt.Citybuild;
 import me.b3n3dkt.utils.ItemBuilder;
 import org.bukkit.Bukkit;
@@ -137,7 +136,7 @@ public class Shop_CMD implements CommandExecutor {
                 tempLore = tempLore.replace("§7ID: §a", "");
                 int id = Integer.parseInt(tempLore);
                 ItemMeta stackmeta = stack.getItemMeta();
-                stackmeta.setLore(Arrays.asList("§7ID: §a" + shop.getID(id), "§7Preis: §a" + df.format(shop.getPrice(id)), "§7Verfügbar: §a" + shop.getAvailable(id),"§aKaufen§8(Linksklick)|§cVerkaufen§8(Rechtsklick)"));
+                stackmeta.setLore(Arrays.asList("§7ID: §a" + shop.getID(id), "§7Preis: §a" + df.format(shop.getPrice(id)), "§7Verfügbar: §a" + shop.getAvailable(id),"§aKaufen§8(Linksklick)"));//|§cVerkaufen§8(Rechtsklick)
                 stack.setItemMeta(stackmeta);
                 if(i >= 0 && i <= 4){
                     if(s <= 3){

@@ -42,15 +42,21 @@ public class InventoryClick implements Listener{
     }
     @EventHandler
     public void onLeave(InventoryCloseEvent e) {
-        if(e.getView().getTitle().equalsIgnoreCase("§5EnderChest")){
-            EnderChest ec = new EnderChest((Player) e.getPlayer());
-            ec.saveEnderChest((Player) e.getPlayer());
-        }
         if (Invsee.getuser.contains(e.getPlayer())) {
             Invsee.getuser.remove(e.getPlayer());
         }
         if(Enderchest.inEc.contains(e.getPlayer())){
+            if(e.getView().getTitle().equalsIgnoreCase("§5EnderChest")){
+                EnderChest ec = new EnderChest((Player) e.getPlayer());
+                ec.saveEnderChest((Player) e.getPlayer());
+            }
             Enderchest.inEc.remove(e.getPlayer());
+        }else if(Enderchest.inOtherEC.containsKey(e.getPlayer())){
+            if(e.getView().getTitle().equalsIgnoreCase("§5EnderChest")){
+                EnderChest ec = new EnderChest((Enderchest.inOtherEC.get(e.getPlayer())));
+                ec.saveEnderChest(Enderchest.inOtherEC.get(e.getPlayer()));
+            }
+            Enderchest.inOtherEC.remove(e.getPlayer());
         }
 
     }

@@ -66,7 +66,7 @@ public class Quest {
 
     public void getNewQuest(String job){
         String dn = "";
-        PlayerData data = new PlayerData(player);
+        PlayerData data = new PlayerData(player, player.getUniqueId());
         ItemStack stack = null;
         Random random = new Random();
         int index = random.nextInt(getIndex() + 1 - 1) + 1;
@@ -189,4 +189,5 @@ public class Quest {
         this.fb.setValue("index", index);
         this.fb.save();
     }
+
 }

@@ -37,64 +37,28 @@ public class InventoryClick_Listener implements Listener {
                 if(event.getCurrentItem().getItemMeta().getLore().get(0).contains("§7ID: §a")){
                     ItemStack ggrlass = (new ItemBuilder(Material.GREEN_STAINED_GLASS_PANE).setAmount(1).setDisplayName("4")).build();
                     if(event.getInventory().getItem(1).equals(ggrlass)){
-                        if(event.getClick().equals(ClickType.RIGHT)){
-                            openSellInventory(event.getCurrentItem(), player, "holz");
-                        }else if(event.getClick().equals(ClickType.LEFT))
                             openBuyInventory(event.getCurrentItem(), player, "holz");
                     }else if(event.getInventory().getItem(7).equals(ggrlass)){
-                        if(event.getClick().equals(ClickType.RIGHT)){
-                            openSellInventory(event.getCurrentItem(), player, "baumaterialien");
-                        }else if(event.getClick().equals(ClickType.LEFT))
                         openBuyInventory(event.getCurrentItem(), player, "baumaterialien");
                     }else if(event.getInventory().getItem(10).equals(ggrlass)){
-                        if(event.getClick().equals(ClickType.RIGHT)){
-                            openSellInventory(event.getCurrentItem(), player, "besonderes");
-                        }else if(event.getClick().equals(ClickType.LEFT))
                         openBuyInventory(event.getCurrentItem(), player, "besonderes");
                     }else if(event.getInventory().getItem(16).equals(ggrlass)){
-                        if(event.getClick().equals(ClickType.RIGHT)) {
-                            openSellInventory(event.getCurrentItem(), player, "werkzeuge");
-                        }else if(event.getClick().equals(ClickType.LEFT))
                         openBuyInventory(event.getCurrentItem(), player, "werkzeuge");
                     }else if(event.getInventory().getItem(19).equals(ggrlass)){
-                        if(event.getClick().equals(ClickType.RIGHT)){
-                            openSellInventory(event.getCurrentItem(), player, "waffen");
-                        }else if(event.getClick().equals(ClickType.LEFT))
                         openBuyInventory(event.getCurrentItem(), player, "waffen");
                     }else if(event.getInventory().getItem(25).equals(ggrlass)){
-                        if(event.getClick().equals(ClickType.RIGHT)){
-                            openSellInventory(event.getCurrentItem(), player, "mobloot");
-                        }else if(event.getClick().equals(ClickType.LEFT))
                         openBuyInventory(event.getCurrentItem(), player, "mobloot");
                     }else if(event.getInventory().getItem(28).equals(ggrlass)){
-                        if(event.getClick().equals(ClickType.RIGHT)){
-                            openSellInventory(event.getCurrentItem(), player, "spawneggs");
-                        }else if(event.getClick().equals(ClickType.LEFT))
                         openBuyInventory(event.getCurrentItem(), player, "spawneggs");
                     }else if(event.getInventory().getItem(34).equals(ggrlass)){
-                        if(event.getClick().equals(ClickType.RIGHT)){
-                            openSellInventory(event.getCurrentItem(), player, "redstone");
-                        }else if(event.getClick().equals(ClickType.LEFT))
                         openBuyInventory(event.getCurrentItem(), player, "redstone");
                     }else if(event.getInventory().getItem(37).equals(ggrlass)){
-                        if(event.getClick().equals(ClickType.RIGHT)){
-                            openSellInventory(event.getCurrentItem(), player, "rüstung");
-                        }else if(event.getClick().equals(ClickType.LEFT))
                         openBuyInventory(event.getCurrentItem(), player, "rüstung");
                     }else if(event.getInventory().getItem(43).equals(ggrlass)){
-                        if(event.getClick().equals(ClickType.RIGHT)){
-                            openSellInventory(event.getCurrentItem(), player, "verzauberungen");
-                        }else if(event.getClick().equals(ClickType.LEFT))
                         openBuyInventory(event.getCurrentItem(), player, "verzauberungen");
                     }else if(event.getInventory().getItem(46).equals(ggrlass)){
-                        if(event.getClick().equals(ClickType.RIGHT)){
-                            openSellInventory(event.getCurrentItem(), player, "deko");
-                        }else if(event.getClick().equals(ClickType.LEFT))
                         openBuyInventory(event.getCurrentItem(), player, "deko");
                     }else if(event.getInventory().getItem(52).equals(ggrlass)){
-                        if(event.getClick().equals(ClickType.RIGHT)){
-                            openSellInventory(event.getCurrentItem(), player, "essen");
-                        }else if(event.getClick().equals(ClickType.LEFT))
                         openBuyInventory(event.getCurrentItem(), player, "essen");
                     }
                 }

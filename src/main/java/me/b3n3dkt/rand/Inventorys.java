@@ -45,12 +45,12 @@ public class Inventorys {
 
         ItemStack glas = (new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setAmount(1).setDisplayName("§7")).build();
         ItemStack zurück = (new ItemBuilder(Material.RED_STAINED_GLASS_PANE).setAmount(1).setDisplayName("§cZurück")).build();
-        ItemStack birch = (new ItemBuilder(Material.BIRCH_STAIRS, (short) 2).setAmount(1).setDisplayName("§aBirkenholzstufe")).build();
-        ItemStack acacia = (new ItemBuilder(Material.ACACIA_STAIRS, (short) 4).setAmount(1).setDisplayName("§aAkazienholzstufe")).build();
-        ItemStack jungle = (new ItemBuilder(Material.JUNGLE_STAIRS, (short) 3).setAmount(1).setDisplayName("§aTropenholzstufe")).build();
-        ItemStack darkoak = (new ItemBuilder(Material.DARK_OAK_STAIRS, (short) 5).setAmount(1).setDisplayName("§aSchwarzeichenholzstufe")).build();
-        ItemStack oak = (new ItemBuilder(Material.OAK_STAIRS, (short) 0).setAmount(1).setDisplayName("§aEichenholzstufe")).build();
-        ItemStack spruce = (new ItemBuilder(Material.SPRUCE_STAIRS, (short) 1).setAmount(1).setDisplayName("§aFichtenholzstufe")).build();
+        ItemStack birch = (new ItemBuilder(Material.BIRCH_SLAB, (short) 2).setAmount(1).setDisplayName("§aBirkenholzstufe")).build();
+        ItemStack acacia = (new ItemBuilder(Material.ACACIA_SLAB, (short) 4).setAmount(1).setDisplayName("§aAkazienholzstufe")).build();
+        ItemStack jungle = (new ItemBuilder(Material.JUNGLE_SLAB, (short) 3).setAmount(1).setDisplayName("§aTropenholzstufe")).build();
+        ItemStack darkoak = (new ItemBuilder(Material.DARK_OAK_SLAB, (short) 5).setAmount(1).setDisplayName("§aSchwarzeichenholzstufe")).build();
+        ItemStack oak = (new ItemBuilder(Material.OAK_SLAB, (short) 0).setAmount(1).setDisplayName("§aEichenholzstufe")).build();
+        ItemStack spruce = (new ItemBuilder(Material.SPRUCE_SLAB, (short) 1).setAmount(1).setDisplayName("§aFichtenholzstufe")).build();
 
         ItemStack stone = (new ItemBuilder(Material.STONE_SLAB).setAmount(1).setDisplayName("§aSteinstufe")).build();
         ItemStack brickstone = (new ItemBuilder(Material.BRICK_SLAB, (short) 5).setAmount(1).setDisplayName("§aZiegelsteinstufe")).build();
@@ -91,8 +91,8 @@ public class Inventorys {
         ItemStack rail = (new ItemBuilder(Material.RAIL).setAmount(1).setDisplayName("§aSchienen")).build();
         ItemStack beacon = (new ItemBuilder(Material.BEACON).setAmount(1).setDisplayName("§aBeacon")).build();
         ItemStack snow = (new ItemBuilder(Material.SNOW).setAmount(1).setDisplayName("§aSchnee")).build();
-        ItemStack ironfence = (new ItemBuilder(Material.LEGACY_IRON_FENCE).setAmount(1).setDisplayName("§aEisengitter")).build();
-        ItemStack spawner = (new ItemBuilder(Material.SPAWNER).setAmount(1).setDisplayName("§aSpawner")).build();
+        ItemStack ironfence = (new ItemBuilder(Material.IRON_BARS).setAmount(1).setDisplayName("§aEisengitter")).build();
+        ItemStack spawner = (new ItemBuilder(Material.END_PORTAL_FRAME).setAmount(1).setDisplayName("§aEnderportal-Rahmen")).build();
 
         player.openInventory(inv);
         for(int i = 0;i<3*9;i++){

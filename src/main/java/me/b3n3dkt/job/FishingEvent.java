@@ -15,7 +15,7 @@ public class FishingEvent implements Listener {
     @EventHandler
     public void onHandle(PlayerFishEvent event){
         Player player = event.getPlayer();
-        PlayerData data = new PlayerData(player);
+        PlayerData data = new PlayerData(player, player.getUniqueId());
         if(event.getCaught() != null){
             Item d =(Item) event.getCaught();
             String dn = data.getQuestDN(data.getJob());

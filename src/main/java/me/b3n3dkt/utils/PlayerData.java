@@ -20,9 +20,9 @@ public class PlayerData {
    private FileBuilder fb = null;
    private Player player;
 
-   public PlayerData(Player player) {
+   public PlayerData(Player player, UUID uuid) {
       this.player = player;
-      this.uuid = player.getUniqueId();
+      this.uuid = uuid;
       this.fb = new FileBuilder("plugins//Citybuild//PlayerData//", uuid.toString() + ".yml");
    }
 
@@ -327,7 +327,7 @@ public class PlayerData {
          this.fb.setValue("player.data.job." + job + ".currentQuest.block", null);
          this.fb.save();
          player.sendMessage(Citybuild.getPrefix() + "§aDu hast eine Quest abgeschlossen und bekommst dafür §8'§3" + xp + "XP§8'§7und §8'§3" + money + " Coins§8'§7!");
-         player.playSound(player.getLocation(), Sound.LEVEL_UP, 1, 1);
+         player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
          addXP(job, xp);
          MySQL.setcoins(player.getUniqueId().toString(), MySQL.getcoins(player.getUniqueId().toString()) + money);
          sb.update();
@@ -365,7 +365,7 @@ public class PlayerData {
          this.fb.setValue("player.data.job." + job + ".xpToNextLevel",  Math.round(getXPToNextLevel(job) * 1.5));
          this.fb.save();
          this.player.sendMessage(Citybuild.getPrefix() + "§aDu bist ein Level in dem Job §8'§3" + getJobName() + "§8' §aaufgestiegen! Du bist nun Level §8'§3" + getLevel(job) + "§8'§a!");
-         player.playSound(player.getLocation(), Sound.LEVEL_UP, 1, 1);
+         player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
       }else{
          setXP(job, getXP(job)+amount);
       }

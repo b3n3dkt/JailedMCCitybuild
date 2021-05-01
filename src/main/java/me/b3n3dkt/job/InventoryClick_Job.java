@@ -25,7 +25,7 @@ public class InventoryClick_Job implements Listener {
             return;
         }
         Player player = (Player) event.getWhoClicked();
-        PlayerData data = new PlayerData(player);
+        PlayerData data = new PlayerData(player, player.getUniqueId());
         Score sb = new Score(player);
         if (event.getView().getTitle().equalsIgnoreCase("§3Job-Auswählen")) {
             event.setCancelled(true);

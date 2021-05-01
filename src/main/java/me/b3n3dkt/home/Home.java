@@ -81,7 +81,7 @@ public class Home implements CommandExecutor {
             ItemStack item22 = new ItemStack(Material.GRASS);
             ItemMeta meta22 = item22.getItemMeta();
             meta22.setDisplayName("§7Home setzen");
-            ItemStack glas = new ItemStack(Material.STAINED_GLASS_PANE, 1 ,(short) 7);
+            ItemStack glas = new ItemStack(Material.GRAY_STAINED_GLASS_PANE, 1);
             ItemMeta glasmeta = glas.getItemMeta();
             glasmeta.setDisplayName("§7");
             glas.setItemMeta(glasmeta);

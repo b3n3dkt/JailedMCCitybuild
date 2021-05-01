@@ -7,6 +7,7 @@ import me.b3n3dkt.utils.PlayerData;
 import me.b3n3dkt.utils.Score;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -19,6 +20,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.UUID;
 
 public class InventoryClick_Auktionshaus implements Listener {
 
@@ -341,49 +343,56 @@ public class InventoryClick_Auktionshaus implements Listener {
             }
         } else if (event.getView().getTitle().equals("§6Bist du sicher?")) { //Are you sure
             event.setCancelled(true);
+            if (event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§aItem kaufen")) {
+                try{
+                    Items item3 = new Items();
+                    String tempLore3 = event.getInventory().getItem(4).getItemMeta().getLore().get(3);
+                    String temp3 = tempLore3.replace("§7-ID: ", "");
+                    Integer index = Integer.parseInt(temp3);
+                    Items item = new Items();
 
-            if (event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§aItem kaufen")) { //Item Kaufen
-                Items item3 = new Items();
-                String tempLore3 = event.getInventory().getItem(4).getItemMeta().getLore().get(3);
-                String temp3 = tempLore3.replace("§7-ID: ", "");
-                Integer index = Integer.parseInt(temp3);
-                Items item = new Items();
-
-                Double price = item.getPrice(index);
-                PlayerData data = new PlayerData(player);
-                Player seller = Bukkit.getPlayer(data.getPlayerName(index));
-                ItemStack stack = new ItemStack(item3.getItem(index));
-                if (MySQL.getcoins(player.getUniqueId().toString()) >= price) {
-                    if (player.getInventory().firstEmpty() != -1) {
-                        if(player.getUniqueId() == seller.getUniqueId()){
-                            if(!player.hasPermission("jailedmc.command.auktionshaus")){
-                                player.sendMessage(Citybuild.getPrefix() + "§cDu kannst deine eigenen Items nicht kaufen!");
-                                return;
+                    Double price = item.getPrice(index);
+                    Player seller = Bukkit.getPlayer(item.getUUID(index));
+                    UUID uuid = UUID.fromString(item.getUUID(index));
+                    String playername = item.getPlayerName(index);
+                    System.out.println(playername);
+                    System.out.println(uuid.toString());
+                    PlayerData data = new PlayerData(Bukkit.getPlayer(playername), uuid);
+                    ItemStack stack = new ItemStack(item3.getItem(index));
+                    if (MySQL.getcoins(player.getUniqueId().toString()) >= price) {
+                        if (player.getInventory().firstEmpty() != -1) {
+                            if(player == seller){
+                                if(!player.hasPermission("jailedmc.command.auktionshaus")){
+                                    player.sendMessage(Citybuild.getPrefix() + "§cDu kannst deine eigenen Items nicht kaufen!");
+                                    return;
+                                }
                             }
-                        }
-                        player.closeInventory();
-                        player.getInventory().addItem(stack);
-                        player.sendMessage(Citybuild.getPrefix() + "§aDu hast ein Item für " + item.getPrice(index) + " Coins gekauft!");
-                        MySQL.setcoins(player.getUniqueId().toString(), MySQL.getcoins(player.getUniqueId().toString()) - price);
-                        MySQL.setcoins(seller.getUniqueId().toString(), MySQL.getcoins(seller.getUniqueId().toString())+price);
-                        if(seller != null){
-                            Score sb = new Score(seller);
-                            sb.update();
-                            seller.sendMessage(Citybuild.getPrefix() + "§aJemand hat ein Item von dir gekauft!");
-                        }
-                        canCloseInv = true;
-                        Integer sindex = item.getID(index);
-                        data.deleteItem(sindex);
-                        item.deleteItem(index);
-                        item.loadDefaults();
-                        for (Player all : CMD_Auktionshaus.inAh) {
-                            CMD_Auktionshaus.openAuktionshaus(all);
+                            player.closeInventory();
+                            player.getInventory().addItem(stack);
+                            player.sendMessage(Citybuild.getPrefix() + "§aDu hast ein Item für " + item.getPrice(index) + " Coins gekauft!");
+                            MySQL.setcoins(player.getUniqueId().toString(), MySQL.getcoins(player.getUniqueId().toString()) - price);
+                            MySQL.setcoins(item.getUUID(index), MySQL.getcoins(item.getUUID(index))+price);
+                            if(Bukkit.getServer().getPlayer(item.getUUID(index)) != null){
+                                Score sb = new Score(seller);
+                                sb.update();
+                                seller.sendMessage(Citybuild.getPrefix() + "§aJemand hat ein Item von dir gekauft!");
+                            }
+                            canCloseInv = true;
+                            Integer sindex = item.getID(index);
+                            item.deleteItem(index);
+                            item.loadDefaults();
+                            for (Player all : CMD_Auktionshaus.inAh) {
+                                CMD_Auktionshaus.openAuktionshaus(all);
+                            }
+                        } else {
+                            player.sendMessage(Citybuild.getPrefix() + "§cDein Inventar ist voll!");
                         }
                     } else {
-                        player.sendMessage(Citybuild.getPrefix() + "§cDein Inventar ist voll!");
+                        player.sendMessage(Citybuild.getPrefix() + "§cDu hast nicht genug Geld!");
                     }
-                } else {
-                    player.sendMessage(Citybuild.getPrefix() + "§cDu hast nicht genug Geld!");
+                }catch (Exception e1){
+                    e1.printStackTrace();
+                    //System.out.println("INventoryCLick_Autkionshaus hat fehler");
                 }
             } else if (event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cAbbruch")) { //Item NICHT kaufen
                 player.closeInventory();
@@ -541,14 +550,16 @@ public class InventoryClick_Auktionshaus implements Listener {
                 isInSellMenu = false;
                 player.closeInventory();
                 Items item = new Items();
-                PlayerData data = new PlayerData(player);
+                PlayerData data = new PlayerData(player, player.getUniqueId());
                 ItemStack stack = event.getInventory().getItem(13);
                 String uuid = player.getUniqueId().toString();
                 String dn = stack.getType().toString();
                 String ench = stack.getEnchantments().toString();
-                String stacklore = null;
-                if(stack.getItemMeta().hasLore() == true) {
-                    stacklore = stack.getItemMeta().getLore().toString();
+                String stacklore =  null;
+                if(stack.hasItemMeta()){
+                    if(stack.getItemMeta().hasLore()){
+                        stacklore = stack.getItemMeta().getLore().toString();
+                    }
                 }
 
                 if(stack.getItemMeta().hasDisplayName() != false) {

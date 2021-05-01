@@ -27,7 +27,7 @@ public class Rang {
             prefix = "§e§lPhoenix";
         }else if(rang.equalsIgnoreCase("vip")){
             prefix = "§3VIP";
-        }else if(rang.equalsIgnoreCase("vip")){
+        }else if(rang.equalsIgnoreCase("vip+")){
             prefix = "§3§lVIP+";
         }else if(rang.equalsIgnoreCase("elite")){
             prefix = "§b§lElite";
@@ -87,7 +87,7 @@ public class Rang {
             suffix = "§e§lPhoenix";
         }else if(rang.equalsIgnoreCase("vip")){
             suffix = "§3VIP";
-        }else if(rang.equalsIgnoreCase("vip")){
+        }else if(rang.equalsIgnoreCase("vip+")){
             suffix = "§3§lVIP+";
         }else if(rang.equalsIgnoreCase("elite")){
             suffix = "§b§lElite";
@@ -146,7 +146,7 @@ public class Rang {
             number = "0019";
         } else if (group.equalsIgnoreCase("vip")) {
             number = "0018";
-        } else if (group.equalsIgnoreCase("vip")) {
+        } else if (group.equalsIgnoreCase("vip+")) {
             number = "0017";
         } else if (group.equalsIgnoreCase("elite")) {
             number = "0016";
@@ -205,7 +205,7 @@ public class Rang {
             number = "0018";
         } else if (rang.equalsIgnoreCase("vip")) {
             number = "0017";
-        } else if (rang.equalsIgnoreCase("vip")) {
+        } else if (rang.equalsIgnoreCase("vip+")) {
             number = "0016";
         } else if (rang.equalsIgnoreCase("elite")) {
             number = "0015";

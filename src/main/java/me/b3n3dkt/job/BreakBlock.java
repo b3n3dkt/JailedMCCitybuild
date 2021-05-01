@@ -26,7 +26,7 @@ public class BreakBlock implements Listener {
     @EventHandler
     public void onHandle(BlockBreakEvent event){
         Player player = (Player) event.getPlayer();
-        PlayerData data = new PlayerData(player);
+        PlayerData data = new PlayerData(player, player.getUniqueId());
         Material stack = event.getBlock().getType();
         int id = event.getBlock().getData();
         ItemStack item = new ItemStack(stack);

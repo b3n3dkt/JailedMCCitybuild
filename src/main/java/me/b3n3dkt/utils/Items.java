@@ -8,6 +8,7 @@ import org.bukkit.inventory.ItemStack;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 public class Items {
 	
@@ -32,7 +33,7 @@ public class Items {
 	}
 	
 	public void addItem(Player player, ItemStack stack, String uuid, double price, String dn, String ench, String lore, Integer id, boolean instantsell) {
-		PlayerData data = new PlayerData(player);
+		PlayerData data = new PlayerData(player, player.getUniqueId());
 		data.addItem(player.getName(), stack, uuid, price, dn, ench, lore, getIndex(), instantsell);
 		String path = "listings." + getIndex();
 		fb.setValue(path + ".item", stack);
@@ -56,7 +57,7 @@ public class Items {
 	}
 	
 	public void addOffer(Player player, double price, String uuid, Integer index) {
-		PlayerData data = new PlayerData(player);
+		PlayerData data = new PlayerData(player, player.getUniqueId());
 		data.addOffer(player.getName(), price, uuid, index);
 		String path = "listings." + index;
 		fb.setValue(path + ".offers.index", getAucIndex(index) +1);
@@ -91,7 +92,7 @@ public class Items {
 										Bukkit.getConsoleSender().sendMessage("Test6");
 										String player = getPlayerNameFromHighestBid(i1);
 										Bukkit.getConsoleSender().sendMessage("Test7");
-										PlayerData data = new PlayerData(Bukkit.getPlayer(player));
+										PlayerData data = new PlayerData(Bukkit.getPlayer(player), Bukkit.getPlayer(player).getUniqueId());
 										Bukkit.getConsoleSender().sendMessage("Test8");
 											data.addCollectableItems(getItem(i1), getPlayerName(i1), bid, getUUID(i1), getID(i1).toString());
 											//deleteItem(i1);
@@ -132,23 +133,13 @@ public class Items {
 	}
 	
 	public void deleteItem(Integer index) {
-		PlayerData data = new PlayerData(Bukkit.getPlayer(getPlayerName(index)));
+		String playername = getPlayerName(index);
+		Player player = Bukkit.getPlayer(playername);
+		UUID uuid = UUID.fromString(getUUID(index));
+		PlayerData data = new PlayerData(player, uuid);
 		data.deleteItem(getID(index));
 		String path = "listings." + index;
-		fb.setValue(path + ".item", null);
-		fb.setValue(path + ".seller", null);
-		fb.setValue(path + ".price", null);
-		fb.setValue(path + ".uuid", null);
-		fb.setValue(path + ".time", null);
-		fb.setValue(path + ".id", null);
-		fb.setValue(path + ".instantsell",  null);
-		for(int i = 0;i<getAucIndex(index);i++) {
-			fb.setValue(path + ".offers." + i + ".player", null);
-			fb.setValue(path + ".offers." + i + ".price", null);
-			fb.setValue(path + ".offers." + i + ".uuid", null);
-			fb.setValue(path + ".offers." + i + ".id", null);
-			fb.setValue(path + ".offers.index" , null);
-		}
+		fb.setValue(path, null);
 		fb.save();
 		update();
 	}
@@ -298,8 +289,8 @@ public class Items {
 		return fb.getInt("index");
 	}
 	
-	public String getUUID(Integer index) {
-		String uuid = fb.getString("listings." + index + "uuid");
+	public String getUUID (Integer index) {
+		String uuid = fb.getString("listings." + index + ".uuid");
 		return uuid;
 	}
 	

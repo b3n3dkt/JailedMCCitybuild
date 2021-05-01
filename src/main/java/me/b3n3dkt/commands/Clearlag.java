@@ -38,8 +38,9 @@ public class Clearlag implements CommandExecutor {
 
                             entity = (Entity)entities.next();
                         } while(!(entity instanceof Item) && !(entity instanceof Animals) && !(entity instanceof Monster));
-
-                        entity.remove();
+                        if(entity.getCustomName() == null) {
+                            entity.remove();
+                        }
                     }
                 }
                 for(Player all : Bukkit.getOnlinePlayers()){

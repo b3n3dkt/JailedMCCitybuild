@@ -23,7 +23,7 @@ public class Score implements AutoCloseable {
 
     public void setscoreboard() {
         Scoreboard sb = Bukkit.getScoreboardManager().getNewScoreboard();
-        PlayerData data = new PlayerData(player);
+        PlayerData data = new PlayerData(player, player.getUniqueId());
         Objective obj = sb.getObjective("aaa");
         if (obj == null) {
             obj = sb.registerNewObjective("aaa", "bbb");
@@ -78,7 +78,7 @@ public class Score implements AutoCloseable {
 
     public void update() {
         Bukkit.getScheduler().runTaskLater(Citybuild.getMain(), new Runnable() {
-        PlayerData data = new PlayerData(player);
+        PlayerData data = new PlayerData(player, player.getUniqueId());
             public void run() {
                 if (Score.this.player.getScoreboard() == null) {
                     Score.this.setscoreboard();

@@ -1,15 +1,20 @@
 package me.b3n3dkt.listener;
 
+import com.google.gson.JsonObject;
+import eu.cloudnetservice.cloudnet.ext.labymod.LabyModChannelUtils;
+import eu.cloudnetservice.cloudnet.ext.labymod.LabyModUtils;
+import eu.cloudnetservice.cloudnet.ext.labymod.config.LabyModAddon;
+import eu.cloudnetservice.cloudnet.ext.labymod.listener.LabyModListener;
+import eu.cloudnetservice.cloudnet.ext.labymod.node.listener.LabyModCustomChannelMessageListener;
+import eu.cloudnetservice.cloudnet.ext.labymod.player.LabyModPlayerOptions;
 import me.b3n3dkt.Citybuild;
 import me.b3n3dkt.commands.Event;
 import me.b3n3dkt.commands.MSG;
-import me.b3n3dkt.job.Quest;
-import me.b3n3dkt.mysql.MySQL;
-import me.b3n3dkt.npc.EntityAPI;
-import me.b3n3dkt.utils.Combat;
+import me.b3n3dkt.utils.LabyModProtocol;
 import me.b3n3dkt.utils.PlayerData;
 import me.b3n3dkt.utils.Rang;
 import me.b3n3dkt.utils.Score;
+import net.minecraft.server.v1_16_R3.ChatMessage;
 import net.minecraft.server.v1_16_R3.IChatBaseComponent;
 import net.minecraft.server.v1_16_R3.PacketPlayOutPlayerListHeaderFooter;
 import net.minecraft.server.v1_16_R3.PlayerConnection;
@@ -38,10 +43,10 @@ public class Join_Quit implements Listener {
         Player player = event.getPlayer();
         Score sb = new Score(player);
         event.setJoinMessage("§8[§a+§8] §7" + player.getName());
-        if (player.hasPlayedBefore()) {
+        if (!player.hasPlayedBefore()) {
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName() + " group add spieler");
         }
-        PlayerData data = new PlayerData(player);
+        PlayerData data = new PlayerData(player, player.getUniqueId());
         if(data.exist() != true){
             data.newData();
         }
@@ -55,8 +60,6 @@ public class Join_Quit implements Listener {
                 player.sendMessage(" ");
             }
         }
-
-        Citybuild.getMain().sendCurrentPlayingGamemode(event.getPlayer(), true, "§b§lJailedMC.net\n §aCitybuild");
 
         player.sendMessage(" ");
         player.sendMessage(" §7Wilkommen auf §bJailedmc.net");
@@ -92,16 +95,7 @@ public class Join_Quit implements Listener {
             }
         }, 20);
 
-        Tab(player, "\n§8» §bJailedmc.net §8«\n\n §fBETA Release\n", "\n     §7TeamSpeak | §bjailedmc.net     \n§7Server | §b§oCitybuild\n");
-
-        Citybuild.getExecutorService().execute(() -> {
-            EntityAPI.getNpcEntities().forEach((entity) -> {
-                entity.sendSpawnPackets(player);
-            });
-            EntityAPI.getCreatureEntities().forEach((entity) -> {
-                entity.sendSpawnPackets(player);
-            });
-        });
+        //Tab(player, "\n§8» §bJailedmc.net §8«\n\n §fBETA Release\n", "\n     §7TeamSpeak | §bjailedmc.net     \n§7Server | §b§oCitybuild\n");
 
     }
 
@@ -127,8 +121,26 @@ public class Join_Quit implements Listener {
         }
     }
 
-    public static void Tab(Player p, String header, String footer) {
-        if (header == null) header = "";
+    public static void Tab(Player p, String head, String foot) {
+        IChatBaseComponent header = new ChatMessage(head);
+        IChatBaseComponent footer = new ChatMessage(foot);
+        PacketPlayOutPlayerListHeaderFooter tablist = new PacketPlayOutPlayerListHeaderFooter();
+        try {
+            Field headerField = tablist.getClass().getDeclaredField("a");
+            headerField.setAccessible(true);
+            headerField.set(tablist, header);
+            headerField.setAccessible(!headerField.isAccessible());
+            Field footerField = tablist.getClass().getDeclaredField("b");
+            footerField.setAccessible(true);
+            footerField.set(tablist, footer);
+            footerField.setAccessible(!footerField.isAccessible());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        CraftPlayer cp = (CraftPlayer) p;
+        cp.getHandle().playerConnection.sendPacket(tablist);
+        /*if (header == null) header = "";
         if (footer == null) footer = "";
 
         PlayerConnection connection = (((CraftPlayer)p).getHandle()).playerConnection;
@@ -139,19 +151,17 @@ public class Join_Quit implements Listener {
         PacketPlayOutPlayerListHeaderFooter headerPacket = new PacketPlayOutPlayerListHeaderFooter();
 
         try {
-            Field fielda = headerPacket.getClass().getDeclaredField("a");
-            fielda.setAccessible(true);
-            fielda.set(headerPacket, Title);
-            Field fieldb = headerPacket.getClass().getDeclaredField("b");
-            fieldb.setAccessible(true);
-            fieldb.set(headerPacket, Foot);
+            Field field = headerPacket.getClass().getDeclaredField("b");
+            field.setAccessible(true);
+            field.set(headerPacket, Foot);
+            field.set(header, Title);
         }
         catch (Exception e) {
 
             e.printStackTrace();
         } finally {
             connection.sendPacket(headerPacket);
-        }
+        }*/
     }
 
 }

@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 import me.b3n3dkt.Citybuild;
 import me.b3n3dkt.mysql.MySQL;
+import net.wesjd.anvilgui.AnvilGUI;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -25,7 +26,7 @@ public class InventoryClickHome implements Listener {
        if(e.getInventory() == null){ return;}
         if(e.getCurrentItem() == null) { return;}
         Player p = (Player)e.getWhoClicked();
-        if (e.getInventory().getName().equalsIgnoreCase("§3Deine Homes")) {
+        if (e.getView().getTitle().equalsIgnoreCase("§3Deine Homes")) {
             e.setCancelled(true);
             if (e.getCurrentItem().getType() == Material.TRIPWIRE_HOOK) {
                 try {
@@ -38,7 +39,7 @@ public class InventoryClickHome implements Listener {
                 } catch (Exception var9) {
                 }
             }
-        } else if (e.getInventory().getName().equalsIgnoreCase("§3Homes Löschen")) {
+        } else if (e.getView().getTitle().equalsIgnoreCase("§3Homes Löschen")) {
             e.setCancelled(true);
 
             try {
@@ -47,7 +48,7 @@ public class InventoryClickHome implements Listener {
                 p.closeInventory();
             } catch (Exception var8) {
             }
-        } else if (e.getInventory().getName().equalsIgnoreCase("§3Home GUI")) {
+        } else if (e.getView().getTitle().equalsIgnoreCase("§3Home GUI")) {
             e.setCancelled(true);
             Inventory inv;
             if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7Deine Homes")) {
@@ -136,7 +137,33 @@ public class InventoryClickHome implements Listener {
                 }
 
                 int gethomespermsmax = homesint;
-                AnvilGUI gui = new AnvilGUI(p, (event) -> {
+                new AnvilGUI.Builder()
+                        .preventClose()
+                        .text("Home-Name")
+                        .title("§aName des Homes")
+                        .itemLeft(new ItemStack(Material.PAPER))
+                        .onComplete((player, s) -> {
+                    if (s.length() < 10) {
+                        if (homesint > MySQL.gethomesint(p)) {
+                            if (!MySQL.isHomeExist(p, s)) {
+                                if (s != p.getName()) {
+                                    MySQL.addHome(p, s);
+                                    p.sendMessage(Citybuild.getPrefix() + "§7Du hast das Home §8'§3" + s + "§8' §7erstellt!");
+                                } else {
+                                    p.sendMessage(Citybuild.getPrefix() + "§cDu solltest nicht deinen eigenen Namen als Home nutzen!");
+                                }
+                            } else {
+                                p.sendMessage(Citybuild.getPrefix() + "§cDas Home existiert bereits!");
+                            }
+                        } else {
+                            p.sendMessage(Citybuild.getPrefix() + "§cDu hast die maximale Anzahl an Homes erreicht! §7(" + gethomespermsmax + "§7 Stück)");
+                        }
+                    } else {
+                        p.sendMessage(Citybuild.getPrefix() + "§cDer Name kann nicht länger als 10 Zeichen sein!");
+                    }
+                    return AnvilGUI.Response.close();
+                });
+                /*AnvilGUI gui = new AnvilGUI(p, (event) -> {
                     if (event.getSlot() == AnvilGUI.AnvilSlot.OUTPUT) {
                         if (event.getName().length() < 10) {
                             if (homesint > MySQL.gethomesint(p)) {
@@ -163,13 +190,7 @@ public class InventoryClickHome implements Listener {
                         event.setWillDestroy(false);
                     }
 
-                });
-                ItemStack i = new ItemStack(Material.PAPER);
-                ItemMeta im = i.getItemMeta();
-                im.setDisplayName("Home-Name");
-                i.setItemMeta(im);
-                gui.setSlot(AnvilGUI.AnvilSlot.INPUT_LEFT, i);
-                gui.open();
+                });*/
             }
         }
 

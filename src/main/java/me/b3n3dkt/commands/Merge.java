@@ -3,9 +3,8 @@ package me.b3n3dkt.commands;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
-import com.intellectualcrafters.plot.api.PlotAPI;
-import com.intellectualcrafters.plot.config.C;
-import com.intellectualcrafters.plot.object.Plot;
+import com.github.intellectualsites.plotsquared.api.PlotAPI;
+import com.github.intellectualsites.plotsquared.plot.object.Plot;
 import me.b3n3dkt.Citybuild;
 import me.b3n3dkt.mysql.MySQL;
 import me.b3n3dkt.utils.Score;
@@ -42,7 +41,7 @@ public class Merge implements CommandExecutor {
                 else if (args[0].equalsIgnoreCase("confirm")) {
                     if (MySQL.getcoins(p.getUniqueId().toString()) >= 50000) {
                         PlotAPI plotAPI = new PlotAPI();
-                        Plot plot = plotAPI.getPlot(p.getLocation());
+                        Plot plot = getPlot(p.getLocation());
                         Score sb = new Score(p);
                         if(plot == null){p.sendMessage(Citybuild.getPrefix() + "§cDu befindest dich nicht auf einem Plot");p.playSound(p.getLocation(), Sound.BLOCK_ANVIL_BREAK, 1.0F, 2.0F); return true;}
                         if(isOwner(p, plot)){
@@ -85,6 +84,17 @@ public class Merge implements CommandExecutor {
         }
 
         return true;
+    }
+
+    public static Plot getPlot(org.bukkit.Location loc) {
+        com.github.intellectualsites.plotsquared.plot.object.Location loc2 = new com.github.intellectualsites.plotsquared.plot.object.Location(loc.getWorld().getName(),
+                (int)loc.getX(),
+                (int)loc.getY(),
+                (int)loc.getZ(),
+                loc.getYaw(),
+                loc.getPitch());
+
+        return loc2.getPlot();
     }
 
     public static boolean isOwner(Player p, Plot plot) {

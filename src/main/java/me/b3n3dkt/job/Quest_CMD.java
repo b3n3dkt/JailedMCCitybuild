@@ -17,7 +17,7 @@ public class Quest_CMD implements CommandExecutor {
             if(args.length == 1){ //quest <new> <Spieler>
                 if(sender instanceof Player){
                     Player player = (Player) sender;
-                    PlayerData data = new PlayerData(player);
+                    PlayerData data = new PlayerData(player, player.getUniqueId());
                     Quest quest = new Quest(data.getJob(), player);
                     quest.getNewQuest(data.getJob());
                     player.sendMessage(Citybuild.getPrefix() + "§7Du hast nun eine neue Quest bekommen, eventuell musst du reconnecten!");
@@ -26,7 +26,7 @@ public class Quest_CMD implements CommandExecutor {
                 }
             }else if(args.length == 2){
                 OfflinePlayer op = Bukkit.getOfflinePlayer(Utility.getUUIDFromName(args[1]));
-                PlayerData data = new PlayerData((Player)op);
+                PlayerData data = new PlayerData((Player)op, op.getUniqueId());
                 if(data.exist() != true){ return true;}
                 Quest quest = new Quest(data.getJob(), (Player)op);
                 sender.sendMessage(Citybuild.getPrefix() + "§aDer angegebene Spieler bekommt nun eine neue Quest, er muss eventuell reconnecten!");
